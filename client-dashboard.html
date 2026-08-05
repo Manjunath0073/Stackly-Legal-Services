@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Client Dashboard — Stackly Legal Services. Manage your cases, appointments, documents, and invoices.">
+  <meta name="keywords" content="client dashboard, legal portal, case management, Stackly Legal Services">
+  <meta name="author" content="Stackly Legal Services">
+  <meta name="theme-color" content="#0F172A">
+
+  <link rel="canonical" href="https://www.stacklylegal.com/client-dashboard.html">
+  
+
+  <title>Client Dashboard | Stackly Legal Services</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/client-dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="Dashboard navigation">
+    <div class="sidebar__header">
+      <a href="index.html" class="sidebar__logo" aria-label="Stackly Legal Services home">
+        <img src="assets/logo-stackly.webp" alt="" width="72" height="72" loading="eager">
+        
+      </a>
+      <button class="sidebar__collapse" id="sidebarCollapse" aria-label="Collapse sidebar" type="button">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <nav class="sidebar__nav" aria-label="Dashboard menu">
+      <ul class="sidebar__menu">
+        <li>
+          <a href="#dashboard" class="sidebar__link active" data-section="dashboard" aria-current="page">
+            <i class="fas fa-th-large" aria-hidden="true"></i>
+            <span class="sidebar__label">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#cases" class="sidebar__link" data-section="cases">
+            <i class="fas fa-briefcase" aria-hidden="true"></i>
+            <span class="sidebar__label">My Cases</span>
+          </a>
+        </li>
+        <li>
+          <a href="#appointments" class="sidebar__link" data-section="appointments">
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+            <span class="sidebar__label">Appointments</span>
+          </a>
+        </li>
+        <li>
+          <a href="#documents" class="sidebar__link" data-section="documents">
+            <i class="fas fa-file-alt" aria-hidden="true"></i>
+            <span class="sidebar__label">Documents</span>
+          </a>
+        </li>
+        <li>
+          <a href="#messages" class="sidebar__link" data-section="messages">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <span class="sidebar__label">Messages</span>
+            <span class="sidebar__badge">3</span>
+          </a>
+        </li>
+        <li>
+          <a href="#invoices" class="sidebar__link" data-section="invoices">
+            <i class="fas fa-receipt" aria-hidden="true"></i>
+            <span class="sidebar__label">Invoices</span>
+          </a>
+        </li>
+        <li>
+          <a href="#settings" class="sidebar__link" data-section="settings">
+            <i class="fas fa-cog" aria-hidden="true"></i>
+            <span class="sidebar__label">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <a href="login.html" class="sidebar__logout" aria-label="Logout">
+        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+        <span class="sidebar__label">Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Sidebar Overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- Main Area -->
+  <div class="dashboard">
+
+    <!-- Header -->
+    <header class="dash-header" id="dashHeader" role="banner">
+      <div class="dash-header__left">
+        <button class="dash-header__toggle" id="sidebarToggle" aria-label="Toggle sidebar" type="button">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="dash-header__welcome">
+          <h1 class="dash-header__greeting" id="dashGreeting">Good Morning</h1>
+          <p class="dash-header__user-name" id="dashUserName">Welcome back, Client</p>
+        </div>
+      </div>
+      <div class="dash-header__right">
+        <div class="dash-header__clock-wrap">
+          <span class="dash-header__clock" id="dashClock"></span>
+        </div>
+        <div class="dash-header__search">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input type="search" class="dash-header__search-input" placeholder="Search..." aria-label="Search dashboard">
+        </div>
+        <button class="dash-header__icon-btn" id="themeToggle" aria-label="Toggle dark mode" type="button">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+        <button class="dash-header__icon-btn dash-header__notif" id="notifBtn" aria-label="Notifications" type="button">
+          <i class="fas fa-bell" aria-hidden="true"></i>
+          <span class="dash-header__notif-badge">5</span>
+        </button>
+        <div class="notif-panel" id="notifPanel" role="dialog" aria-label="Notifications">
+          <div class="notif-panel__header"><h3>Notifications</h3><span class="notif-panel__count">5 new</span></div>
+          <div class="notif-panel__list" id="notifList">
+            <div class="notif-item"><div class="notif-item__icon" style="background:rgba(59,130,246,0.1);color:#3b82f6"><i class="fas fa-file-alt" aria-hidden="true"></i></div><div class="notif-item__info"><p>New document uploaded for your case</p><span class="notif-item__time">10 min ago</span></div></div>
+            <div class="notif-item"><div class="notif-item__icon" style="background:rgba(34,197,94,0.1);color:#22c55e"><i class="fas fa-calendar-check" aria-hidden="true"></i></div><div class="notif-item__info"><p>Appointment confirmed for tomorrow</p><span class="notif-item__time">1 hour ago</span></div></div>
+            <div class="notif-item"><div class="notif-item__icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6"><i class="fas fa-credit-card" aria-hidden="true"></i></div><div class="notif-item__info"><p>Invoice payment processed</p><span class="notif-item__time">2 hours ago</span></div></div>
+          </div>
+          <a href="#" class="notif-panel__footer">View All Notifications</a>
+        </div>
+        <div class="dash-header__profile" id="profileDropdown">
+          <button class="dash-header__profile-btn" aria-label="Profile menu" type="button" aria-expanded="false" aria-controls="profileMenu">
+            <div class="dash-header__avatar" id="dashAvatar">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </div>
+            <span class="dash-header__profile-name" id="dashProfileName">Client</span>
+            <i class="fas fa-chevron-down dash-header__chevron" aria-hidden="true"></i>
+          </button>
+          <div class="dash-header__dropdown" id="profileMenu" role="menu">
+            <a href="#settings" class="dash-header__dropdown-item" data-section="settings" role="menuitem">
+              <i class="fas fa-user-cog" aria-hidden="true"></i> My Profile
+            </a>
+            <a href="#settings" class="dash-header__dropdown-item" data-section="settings" role="menuitem">
+              <i class="fas fa-cog" aria-hidden="true"></i> Settings
+            </a>
+            <hr class="dash-header__dropdown-divider">
+            <a href="login.html" class="dash-header__dropdown-item" role="menuitem">
+              <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Scrollable Content Area -->
+    <main class="dash-main" id="main" role="main">
+
+      <!-- ==================== SECTION 1: DASHBOARD ==================== -->
+      <section class="dash-section active" id="section-dashboard" aria-label="Dashboard overview">
+        <div class="dash-section__header">
+          <h2 class="dash-section__title">Dashboard</h2>
+          <p class="dash-section__subtitle">Overview of your legal matters and activities</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--blue">
+              <i class="fas fa-briefcase" aria-hidden="true"></i>
+            </div>
+            <div class="stat-card__info">
+              <span class="stat-card__number" id="kpi-active" data-count="4">0</span>
+              <span class="stat-card__label">Active Cases</span>
+            </div>
+            <canvas class="stat-card__sparkline" id="spark1" aria-hidden="true"></canvas>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--gold">
+              <i class="fas fa-calendar-check" aria-hidden="true"></i>
+            </div>
+            <div class="stat-card__info">
+              <span class="stat-card__number" id="kpi-meetings" data-count="2">0</span>
+              <span class="stat-card__label">Upcoming Meetings</span>
+            </div>
+            <canvas class="stat-card__sparkline" id="spark2" aria-hidden="true"></canvas>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--green">
+              <i class="fas fa-file-signature" aria-hidden="true"></i>
+            </div>
+            <div class="stat-card__info">
+              <span class="stat-card__number" id="kpi-pending" data-count="3">0</span>
+              <span class="stat-card__label">Pending Documents</span>
+            </div>
+            <canvas class="stat-card__sparkline" id="spark3" aria-hidden="true"></canvas>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--red">
+              <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i>
+            </div>
+            <div class="stat-card__info">
+              <span class="stat-card__number" id="kpi-invoices" data-count="1">0</span>
+              <span class="stat-card__label">Unpaid Invoices</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dash-grid">
+          <!-- Recent Activity -->
+          <div class="dash-card dash-card--activity">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Recent Activity</h3>
+              <a href="#" class="dash-card__link">View All</a>
+            </div>
+            <div class="dash-card__body">
+              <div class="timeline" id="dashActivityFeed">
+                <div class="timeline__item">
+                  <div class="timeline__dot timeline__dot--blue"></div>
+                  <div class="timeline__content">
+                    <p class="timeline__text">New document uploaded for <strong>Corporate Merger Case</strong></p>
+                    <span class="timeline__time">2 hours ago</span>
+                  </div>
+                </div>
+                <div class="timeline__item">
+                  <div class="timeline__dot timeline__dot--gold"></div>
+                  <div class="timeline__content">
+                    <p class="timeline__text">Meeting scheduled with <strong>Attorney Sarah Mitchell</strong></p>
+                    <span class="timeline__time">5 hours ago</span>
+                  </div>
+                </div>
+                <div class="timeline__item">
+                  <div class="timeline__dot timeline__dot--green"></div>
+                  <div class="timeline__content">
+                    <p class="timeline__text">Invoice #INV-2024-018 paid successfully</p>
+                    <span class="timeline__time">1 day ago</span>
+                  </div>
+                </div>
+                <div class="timeline__item">
+                  <div class="timeline__dot timeline__dot--red"></div>
+                  <div class="timeline__content">
+                    <p class="timeline__text">Document review required for <strong>Estate Planning</strong></p>
+                    <span class="timeline__time">2 days ago</span>
+                  </div>
+                </div>
+                <div class="timeline__item">
+                  <div class="timeline__dot timeline__dot--blue"></div>
+                  <div class="timeline__content">
+                    <p class="timeline__text">Case status updated to <strong>Under Review</strong></p>
+                    <span class="timeline__time">3 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Progress -->
+          <div class="dash-card dash-card--progress">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Case Progress</h3>
+            </div>
+            <div class="dash-card__body">
+              <div class="progress-list">
+                <div class="progress-item">
+                  <div class="progress-item__header">
+                    <span class="progress-item__name">Corporate Merger</span>
+                    <span class="progress-item__pct">75%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-bar__fill" data-width="75"></div>
+                  </div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-item__header">
+                    <span class="progress-item__name">Estate Planning</span>
+                    <span class="progress-item__pct">45%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-bar__fill progress-bar__fill--gold" data-width="45"></div>
+                  </div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-item__header">
+                    <span class="progress-item__name">Trademark Registration</span>
+                    <span class="progress-item__pct">90%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-bar__fill progress-bar__fill--green" data-width="90"></div>
+                  </div>
+                </div>
+                <div class="progress-item">
+                  <div class="progress-item__header">
+                    <span class="progress-item__name">Contract Review</span>
+                    <span class="progress-item__pct">30%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-bar__fill progress-bar__fill--red" data-width="30"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Chart -->
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Case Activity</h3>
+              <div class="dash-card__tabs">
+                <button class="dash-card__tab active" data-period="week">Week</button>
+                <button class="dash-card__tab" data-period="month">Month</button>
+              </div>
+            </div>
+            <div class="dash-card__body">
+              <div class="chart-container" id="lineChart" aria-label="Case activity line chart" role="img">
+                <canvas id="lineCanvas"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="dash-card dash-card--actions">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Quick Actions</h3>
+            </div>
+            <div class="dash-card__body">
+              <div class="quick-actions">
+                <button class="quick-action" data-section="appointments">
+                  <div class="quick-action__icon"><i class="fas fa-calendar-plus" aria-hidden="true"></i></div>
+                  <span class="quick-action__label">Book Appointment</span>
+                </button>
+                <button class="quick-action" data-section="documents">
+                  <div class="quick-action__icon"><i class="fas fa-upload" aria-hidden="true"></i></div>
+                  <span class="quick-action__label">Upload Document</span>
+                </button>
+                <button class="quick-action" data-section="messages">
+                  <div class="quick-action__icon"><i class="fas fa-paper-plane" aria-hidden="true"></i></div>
+                  <span class="quick-action__label">Send Message</span>
+                </button>
+                <button class="quick-action" data-section="invoices">
+                  <div class="quick-action__icon"><i class="fas fa-credit-card" aria-hidden="true"></i></div>
+                  <span class="quick-action__label">Pay Invoice</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Charts Row -->
+        <div class="dash-grid dash-grid--2" style="margin-top:20px">
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Monthly Case Activity</h3>
+            </div>
+            <div class="dash-card__body">
+              <div class="chart-container"><canvas id="dashBarChart"></canvas></div>
+            </div>
+          </div>
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Document Activity</h3>
+            </div>
+            <div class="dash-card__body">
+              <div class="chart-container"><canvas id="dashAreaChart"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 2: MY CASES ==================== -->
+      <section class="dash-section" id="section-cases" aria-label="My Cases">
+        <div class="dash-section__header">
+          <div>
+            <h2 class="dash-section__title">My Cases</h2>
+            <p class="dash-section__subtitle">Track and manage all your active legal matters</p>
+          </div>
+        </div>
+
+        <!-- Cases Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar__search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input type="search" class="toolbar__search-input" placeholder="Search cases..." aria-label="Search cases" id="caseSearch">
+          </div>
+          <div class="toolbar__filters">
+            <select class="toolbar__select" id="caseFilter" aria-label="Filter by status">
+              <option value="all">All Status</option>
+              <option value="active">Active</option>
+              <option value="pending">Pending</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Cases Table -->
+        <div class="table-wrapper" id="casesTable">
+          <table class="data-table" aria-label="Cases table">
+            <thead>
+              <tr>
+                <th>Case ID</th>
+                <th>Case Name</th>
+                <th>Attorney</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Progress</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="data-table__id">CS-2024-001</span></td>
+                <td><strong>Corporate Merger &amp; Acquisition</strong></td>
+                <td>Sarah Mitchell</td>
+                <td>Corporate Law</td>
+                <td><span class="badge badge--active">Active</span></td>
+                <td>
+                  <div class="table-progress">
+                    <div class="table-progress__bar"><div class="table-progress__fill" data-width="75"></div></div>
+                    <span>75%</span>
+                  </div>
+                </td>
+                <td><button class="btn-icon-sm" aria-label="View case details"><i class="fas fa-eye" aria-hidden="true"></i></button></td>
+              </tr>
+              <tr>
+                <td><span class="data-table__id">CS-2024-002</span></td>
+                <td><strong>Estate Planning &amp; Trust</strong></td>
+                <td>James Hartwell</td>
+                <td>Estate Law</td>
+                <td><span class="badge badge--active">Active</span></td>
+                <td>
+                  <div class="table-progress">
+                    <div class="table-progress__bar"><div class="table-progress__fill table-progress__fill--gold" data-width="45"></div></div>
+                    <span>45%</span>
+                  </div>
+                </td>
+                <td><button class="btn-icon-sm" aria-label="View case details"><i class="fas fa-eye" aria-hidden="true"></i></button></td>
+              </tr>
+              <tr>
+                <td><span class="data-table__id">CS-2024-003</span></td>
+                <td><strong>Trademark Registration</strong></td>
+                <td>Elena Rodriguez</td>
+                <td>IP Law</td>
+                <td><span class="badge badge--pending">Pending</span></td>
+                <td>
+                  <div class="table-progress">
+                    <div class="table-progress__bar"><div class="table-progress__fill table-progress__fill--green" data-width="90"></div></div>
+                    <span>90%</span>
+                  </div>
+                </td>
+                <td><button class="btn-icon-sm" aria-label="View case details"><i class="fas fa-eye" aria-hidden="true"></i></button></td>
+              </tr>
+              <tr>
+                <td><span class="data-table__id">CS-2024-004</span></td>
+                <td><strong>Commercial Lease Review</strong></td>
+                <td>David Chen</td>
+                <td>Real Estate</td>
+                <td><span class="badge badge--active">Active</span></td>
+                <td>
+                  <div class="table-progress">
+                    <div class="table-progress__bar"><div class="table-progress__fill table-progress__fill--red" data-width="30"></div></div>
+                    <span>30%</span>
+                  </div>
+                </td>
+                <td><button class="btn-icon-sm" aria-label="View case details"><i class="fas fa-eye" aria-hidden="true"></i></button></td>
+              </tr>
+              <tr>
+                <td><span class="data-table__id">CS-2023-018</span></td>
+                <td><strong>Employment Contract Dispute</strong></td>
+                <td>Margaret Stackly</td>
+                <td>Employment</td>
+                <td><span class="badge badge--closed">Closed</span></td>
+                <td>
+                  <div class="table-progress">
+                    <div class="table-progress__bar"><div class="table-progress__fill table-progress__fill--green" data-width="100"></div></div>
+                    <span>100%</span>
+                  </div>
+                </td>
+                <td><button class="btn-icon-sm" aria-label="View case details"><i class="fas fa-eye" aria-hidden="true"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mobile Cases Cards -->
+        <div class="cases-cards" id="casesCards">
+          <div class="case-card">
+            <div class="case-card__header">
+              <span class="data-table__id">CS-2024-001</span>
+              <span class="badge badge--active">Active</span>
+            </div>
+            <h4 class="case-card__name">Corporate Merger &amp; Acquisition</h4>
+            <div class="case-card__meta">
+              <span><i class="fas fa-user-tie" aria-hidden="true"></i> Sarah Mitchell</span>
+              <span><i class="fas fa-tag" aria-hidden="true"></i> Corporate Law</span>
+            </div>
+            <div class="case-card__progress">
+              <div class="progress-bar"><div class="progress-bar__fill" data-width="75"></div></div>
+              <span>75%</span>
+            </div>
+            <button class="btn btn-primary btn-sm">View Details</button>
+          </div>
+          <div class="case-card">
+            <div class="case-card__header">
+              <span class="data-table__id">CS-2024-002</span>
+              <span class="badge badge--active">Active</span>
+            </div>
+            <h4 class="case-card__name">Estate Planning &amp; Trust</h4>
+            <div class="case-card__meta">
+              <span><i class="fas fa-user-tie" aria-hidden="true"></i> James Hartwell</span>
+              <span><i class="fas fa-tag" aria-hidden="true"></i> Estate Law</span>
+            </div>
+            <div class="case-card__progress">
+              <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--gold" data-width="45"></div></div>
+              <span>45%</span>
+            </div>
+            <button class="btn btn-primary btn-sm">View Details</button>
+          </div>
+          <div class="case-card">
+            <div class="case-card__header">
+              <span class="data-table__id">CS-2024-003</span>
+              <span class="badge badge--pending">Pending</span>
+            </div>
+            <h4 class="case-card__name">Trademark Registration</h4>
+            <div class="case-card__meta">
+              <span><i class="fas fa-user-tie" aria-hidden="true"></i> Elena Rodriguez</span>
+              <span><i class="fas fa-tag" aria-hidden="true"></i> IP Law</span>
+            </div>
+            <div class="case-card__progress">
+              <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--green" data-width="90"></div></div>
+              <span>90%</span>
+            </div>
+            <button class="btn btn-primary btn-sm">View Details</button>
+          </div>
+          <div class="case-card">
+            <div class="case-card__header">
+              <span class="data-table__id">CS-2024-004</span>
+              <span class="badge badge--active">Active</span>
+            </div>
+            <h4 class="case-card__name">Commercial Lease Review</h4>
+            <div class="case-card__meta">
+              <span><i class="fas fa-user-tie" aria-hidden="true"></i> David Chen</span>
+              <span><i class="fas fa-tag" aria-hidden="true"></i> Real Estate</span>
+            </div>
+            <div class="case-card__progress">
+              <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--red" data-width="30"></div></div>
+              <span>30%</span>
+            </div>
+            <button class="btn btn-primary btn-sm">View Details</button>
+          </div>
+          <div class="case-card">
+            <div class="case-card__header">
+              <span class="data-table__id">CS-2023-018</span>
+              <span class="badge badge--closed">Closed</span>
+            </div>
+            <h4 class="case-card__name">Employment Contract Dispute</h4>
+            <div class="case-card__meta">
+              <span><i class="fas fa-user-tie" aria-hidden="true"></i> Margaret Stackly</span>
+              <span><i class="fas fa-tag" aria-hidden="true"></i> Employment</span>
+            </div>
+            <div class="case-card__progress">
+              <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--green" data-width="100"></div></div>
+              <span>100%</span>
+            </div>
+            <button class="btn btn-primary btn-sm">View Details</button>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="pagination__btn" disabled aria-label="Previous page"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+          <button class="pagination__btn active" aria-label="Page 1" aria-current="page">1</button>
+          <button class="pagination__btn" aria-label="Page 2">2</button>
+          <button class="pagination__btn" aria-label="Next page"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 3: APPOINTMENTS ==================== -->
+      <section class="dash-section" id="section-appointments" aria-label="Appointments">
+        <div class="dash-section__header">
+          <div>
+            <h2 class="dash-section__title">Appointments</h2>
+            <p class="dash-section__subtitle">Manage your consultations and meetings</p>
+          </div>
+          <button class="btn btn-primary" id="requestAppointmentBtn">
+            <i class="fas fa-plus" aria-hidden="true"></i>
+            <span>Request Appointment</span>
+          </button>
+        </div>
+
+        <div class="appointments-grid">
+          <!-- Calendar Widget -->
+          <div class="dash-card dash-card--calendar">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title" id="calendarTitle">August 2026</h3>
+              <div class="calendar-nav">
+                <button class="calendar-nav__btn" id="calPrev" aria-label="Previous month"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                <button class="calendar-nav__btn" id="calNext" aria-label="Next month"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+              </div>
+            </div>
+            <div class="dash-card__body">
+              <div class="calendar" id="calendar" aria-label="Calendar">
+                <div class="calendar__header">
+                  <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div class="calendar__grid" id="calendarGrid"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Consultations -->
+          <div class="dash-card dash-card--consultations">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Upcoming Consultations</h3>
+            </div>
+            <div class="dash-card__body">
+              <div class="consultation-list">
+                <div class="consultation-card">
+                  <div class="consultation-card__date">
+                    <span class="consultation-card__day">12</span>
+                    <span class="consultation-card__month">Aug</span>
+                  </div>
+                  <div class="consultation-card__info">
+                    <h4 class="consultation-card__title">Corporate Merger Review</h4>
+                    <p class="consultation-card__attorney"><i class="fas fa-user-tie" aria-hidden="true"></i> Sarah Mitchell</p>
+                    <p class="consultation-card__time"><i class="fas fa-clock" aria-hidden="true"></i> 10:00 AM - 11:30 AM</p>
+                  </div>
+                  <span class="badge badge--active">Confirmed</span>
+                </div>
+                <div class="consultation-card">
+                  <div class="consultation-card__date">
+                    <span class="consultation-card__day">18</span>
+                    <span class="consultation-card__month">Aug</span>
+                  </div>
+                  <div class="consultation-card__info">
+                    <h4 class="consultation-card__title">Estate Planning Discussion</h4>
+                    <p class="consultation-card__attorney"><i class="fas fa-user-tie" aria-hidden="true"></i> James Hartwell</p>
+                    <p class="consultation-card__time"><i class="fas fa-clock" aria-hidden="true"></i> 2:00 PM - 3:00 PM</p>
+                  </div>
+                  <span class="badge badge--pending">Pending</span>
+                </div>
+                <div class="consultation-card">
+                  <div class="consultation-card__date">
+                    <span class="consultation-card__day">25</span>
+                    <span class="consultation-card__month">Aug</span>
+                  </div>
+                  <div class="consultation-card__info">
+                    <h4 class="consultation-card__title">Trademark Filing Follow-up</h4>
+                    <p class="consultation-card__attorney"><i class="fas fa-user-tie" aria-hidden="true"></i> Elena Rodriguez</p>
+                    <p class="consultation-card__time"><i class="fas fa-clock" aria-hidden="true"></i> 11:00 AM - 12:00 PM</p>
+                  </div>
+                  <span class="badge badge--active">Confirmed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 4: DOCUMENTS ==================== -->
+      <section class="dash-section" id="section-documents" aria-label="Documents">
+        <div class="dash-section__header">
+          <div>
+            <h2 class="dash-section__title">Documents</h2>
+            <p class="dash-section__subtitle">Manage and organize your legal documents</p>
+          </div>
+          <button class="btn btn-primary" id="uploadDocBtn">
+            <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+            <span>Upload Document</span>
+          </button>
+        </div>
+
+        <!-- Upload Area Placeholder -->
+        <div class="upload-zone" id="uploadZone" aria-label="Upload documents">
+          <i class="fas fa-cloud-upload-alt upload-zone__icon" aria-hidden="true"></i>
+          <p class="upload-zone__text">Drag & drop files here or <span class="upload-zone__link">browse</span></p>
+          <p class="upload-zone__hint">Supports PDF, DOC, DOCX, JPG, PNG (Max 25MB)</p>
+        </div>
+
+        <!-- Document Filters -->
+        <div class="toolbar">
+          <div class="toolbar__search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input type="search" class="toolbar__search-input" placeholder="Search documents..." aria-label="Search documents">
+          </div>
+          <div class="toolbar__filters">
+            <select class="toolbar__select" aria-label="Filter by category">
+              <option value="all">All Categories</option>
+              <option value="contracts">Contracts</option>
+              <option value="court">Court Documents</option>
+              <option value="correspondence">Correspondence</option>
+              <option value="financial">Financial</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Document Cards -->
+        <div class="doc-grid">
+          <div class="doc-card">
+            <div class="doc-card__icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+            <h4 class="doc-card__name">Merger Agreement v2.1.pdf</h4>
+            <p class="doc-card__meta">Corporate Merger Case &bull; 2.4 MB</p>
+            <span class="badge badge--active">Approved</span>
+            <div class="doc-card__actions">
+              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card__icon"><i class="fas fa-file-word" aria-hidden="true"></i></div>
+            <h4 class="doc-card__name">Trust Fund Document.docx</h4>
+            <p class="doc-card__meta">Estate Planning &bull; 1.8 MB</p>
+            <span class="badge badge--pending">Pending Review</span>
+            <div class="doc-card__actions">
+              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card__icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+            <h4 class="doc-card__name">Trademark Application.pdf</h4>
+            <p class="doc-card__meta">Trademark Registration &bull; 3.1 MB</p>
+            <span class="badge badge--active">Submitted</span>
+            <div class="doc-card__actions">
+              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card__icon"><i class="fas fa-file-contract" aria-hidden="true"></i></div>
+            <h4 class="doc-card__name">Lease Contract Draft.pdf</h4>
+            <p class="doc-card__meta">Commercial Lease &bull; 1.2 MB</p>
+            <span class="badge badge--pending">Awaiting Signature</span>
+            <div class="doc-card__actions">
+              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card__icon"><i class="fas fa-file-image" aria-hidden="true"></i></div>
+            <h4 class="doc-card__name">Property Photo Evidence.jpg</h4>
+            <p class="doc-card__meta">Commercial Lease &bull; 4.5 MB</p>
+            <span class="badge badge--active">Verified</span>
+            <div class="doc-card__actions">
+              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card__icon"><i class="fas fa-file-invoice" aria-hidden="true"></i></div>
+            <h4 class="doc-card__name">Financial Disclosure 2026.pdf</h4>
+            <p class="doc-card__meta">Estate Planning &bull; 890 KB</p>
+            <span class="badge badge--active">Approved</span>
+            <div class="doc-card__actions">
+              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 5: MESSAGES ==================== -->
+      <section class="dash-section" id="section-messages" aria-label="Messages">
+        <div class="dash-section__header">
+          <div>
+            <h2 class="dash-section__title">Messages</h2>
+            <p class="dash-section__subtitle">Communicate securely with your legal team</p>
+          </div>
+          <button class="btn btn-primary" id="newMessageBtn">
+            <i class="fas fa-pen" aria-hidden="true"></i>
+            <span>New Message</span>
+          </button>
+        </div>
+
+        <div class="messages-layout">
+          <!-- Conversation List -->
+          <div class="messages-sidebar" id="messagesSidebar">
+            <div class="messages-sidebar__search">
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <input type="search" placeholder="Search conversations..." aria-label="Search conversations">
+            </div>
+            <div class="conversation-list">
+              <div class="conversation-item active">
+                <div class="conversation-item__avatar">
+                  <span>SM</span>
+                </div>
+                <div class="conversation-item__info">
+                  <div class="conversation-item__header">
+                    <span class="conversation-item__name">Sarah Mitchell</span>
+                    <span class="conversation-item__time">2h ago</span>
+                  </div>
+                  <p class="conversation-item__preview">I've reviewed the merger documents and...</p>
+                </div>
+                <span class="conversation-item__unread">2</span>
+              </div>
+              <div class="conversation-item">
+                <div class="conversation-item__avatar">
+                  <span>JH</span>
+                </div>
+                <div class="conversation-item__info">
+                  <div class="conversation-item__header">
+                    <span class="conversation-item__name">James Hartwell</span>
+                    <span class="conversation-item__time">1d ago</span>
+                  </div>
+                  <p class="conversation-item__preview">Your estate planning documents are ready...</p>
+                </div>
+              </div>
+              <div class="conversation-item">
+                <div class="conversation-item__avatar">
+                  <span>ER</span>
+                </div>
+                <div class="conversation-item__info">
+                  <div class="conversation-item__header">
+                    <span class="conversation-item__name">Elena Rodriguez</span>
+                    <span class="conversation-item__time">3d ago</span>
+                  </div>
+                  <p class="conversation-item__preview">The trademark application has been submitted...</p>
+                </div>
+              </div>
+              <div class="conversation-item">
+                <div class="conversation-item__avatar">
+                  <span>DC</span>
+                </div>
+                <div class="conversation-item__info">
+                  <div class="conversation-item__header">
+                    <span class="conversation-item__name">David Chen</span>
+                    <span class="conversation-item__time">5d ago</span>
+                  </div>
+                  <p class="conversation-item__preview">Let me know when you've reviewed the lease...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Area -->
+          <div class="chat-area">
+            <div class="chat-area__header">
+              <div class="chat-area__user">
+                <div class="chat-area__avatar"><span>SM</span></div>
+                <div>
+                  <h4 class="chat-area__name">Sarah Mitchell</h4>
+                  <span class="chat-area__status"><span class="chat-area__status-dot"></span> Online</span>
+                </div>
+              </div>
+              <button class="btn-icon-sm" aria-label="More options"><i class="fas fa-ellipsis-v" aria-hidden="true"></i></button>
+            </div>
+            <div class="chat-area__messages" id="chatMessages">
+              <div class="chat-msg chat-msg--other">
+                <div class="chat-msg__avatar"><span>SM</span></div>
+                <div class="chat-msg__content">
+                  <p>Good morning! I've completed the initial review of the merger documents. Everything looks good so far.</p>
+                  <span class="chat-msg__time">10:30 AM</span>
+                </div>
+              </div>
+              <div class="chat-msg chat-msg--self">
+                <div class="chat-msg__content">
+                  <p>Thank you, Sarah! Is there anything I need to sign before the next meeting?</p>
+                  <span class="chat-msg__time">10:45 AM</span>
+                </div>
+              </div>
+              <div class="chat-msg chat-msg--other">
+                <div class="chat-msg__avatar"><span>SM</span></div>
+                <div class="chat-msg__content">
+                  <p>Yes, I'll send you the updated agreement by end of day. Please review sections 4.2 and 7.1 specifically — those have minor revisions.</p>
+                  <span class="chat-msg__time">11:02 AM</span>
+                </div>
+              </div>
+            </div>
+            <div class="chat-area__input">
+              <input type="text" class="chat-area__text-input" placeholder="Type your message..." aria-label="Type message" id="chatInput">
+              <button class="chat-area__send" id="chatSend" aria-label="Send message"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 6: INVOICES ==================== -->
+      <section class="dash-section" id="section-invoices" aria-label="Invoices">
+        <div class="dash-section__header">
+          <div>
+            <h2 class="dash-section__title">Invoices</h2>
+            <p class="dash-section__subtitle">Review and manage your billing</p>
+          </div>
+        </div>
+
+        <!-- Invoice Summary -->
+        <div class="stats-grid stats-grid--2">
+          <div class="stat-card stat-card--wide">
+            <div class="stat-card__icon stat-card__icon--green">
+              <i class="fas fa-check-circle" aria-hidden="true"></i>
+            </div>
+            <div class="stat-card__info">
+              <span class="stat-card__number stat-card__number--large">$12,450</span>
+              <span class="stat-card__label">Total Paid</span>
+            </div>
+          </div>
+          <div class="stat-card stat-card--wide">
+            <div class="stat-card__icon stat-card__icon--red">
+              <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+            </div>
+            <div class="stat-card__info">
+              <span class="stat-card__number stat-card__number--large">$3,200</span>
+              <span class="stat-card__label">Outstanding Balance</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Invoice List -->
+        <div class="invoice-list">
+          <div class="invoice-card">
+            <div class="invoice-card__header">
+              <div>
+                <h4 class="invoice-card__id">INV-2024-019</h4>
+                <span class="invoice-card__case">Corporate Merger Case</span>
+              </div>
+              <span class="badge badge--active">Paid</span>
+            </div>
+            <div class="invoice-card__body">
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Amount</span>
+                <span class="invoice-card__detail-value invoice-card__detail-value--large">$4,200.00</span>
+              </div>
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Due Date</span>
+                <span class="invoice-card__detail-value">Aug 05, 2026</span>
+              </div>
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Paid On</span>
+                <span class="invoice-card__detail-value">Aug 03, 2026</span>
+              </div>
+            </div>
+            <div class="invoice-card__footer">
+              <button class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</button>
+            </div>
+          </div>
+
+          <div class="invoice-card">
+            <div class="invoice-card__header">
+              <div>
+                <h4 class="invoice-card__id">INV-2024-018</h4>
+                <span class="invoice-card__case">Estate Planning</span>
+              </div>
+              <span class="badge badge--pending">Pending</span>
+            </div>
+            <div class="invoice-card__body">
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Amount</span>
+                <span class="invoice-card__detail-value invoice-card__detail-value--large">$3,200.00</span>
+              </div>
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Due Date</span>
+                <span class="invoice-card__detail-value invoice-card__detail-value--overdue">Aug 15, 2026</span>
+              </div>
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Status</span>
+                <span class="invoice-card__detail-value">Awaiting Payment</span>
+              </div>
+            </div>
+            <div class="invoice-card__footer">
+              <button class="btn btn-primary btn-sm"><i class="fas fa-credit-card" aria-hidden="true"></i> Pay Now</button>
+              <button class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</button>
+            </div>
+          </div>
+
+          <div class="invoice-card">
+            <div class="invoice-card__header">
+              <div>
+                <h4 class="invoice-card__id">INV-2024-017</h4>
+                <span class="invoice-card__case">Trademark Registration</span>
+              </div>
+              <span class="badge badge--active">Paid</span>
+            </div>
+            <div class="invoice-card__body">
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Amount</span>
+                <span class="invoice-card__detail-value invoice-card__detail-value--large">$5,050.00</span>
+              </div>
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Due Date</span>
+                <span class="invoice-card__detail-value">Jul 28, 2026</span>
+              </div>
+              <div class="invoice-card__detail">
+                <span class="invoice-card__detail-label">Paid On</span>
+                <span class="invoice-card__detail-value">Jul 25, 2026</span>
+              </div>
+            </div>
+            <div class="invoice-card__footer">
+              <button class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 7: SETTINGS ==================== -->
+      <section class="dash-section" id="section-settings" aria-label="Settings">
+        <div class="dash-section__header">
+          <div>
+            <h2 class="dash-section__title">Settings</h2>
+            <p class="dash-section__subtitle">Manage your account and preferences</p>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <!-- Profile Information -->
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Profile Information</h3>
+            </div>
+            <div class="dash-card__body">
+              <form class="settings-form" id="profileForm" aria-label="Profile information form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="settingsFirstName" class="form-label">First Name</label>
+                    <input type="text" id="settingsFirstName" class="form-input" value="John">
+                  </div>
+                  <div class="form-group">
+                    <label for="settingsLastName" class="form-label">Last Name</label>
+                    <input type="text" id="settingsLastName" class="form-input" value="Anderson">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="settingsEmail" class="form-label">Email Address</label>
+                  <input type="email" id="settingsEmail" class="form-input" value="john.anderson@email.com">
+                </div>
+                <div class="form-group">
+                  <label for="settingsPhone" class="form-label">Phone Number</label>
+                  <input type="tel" id="settingsPhone" class="form-input" value="+1 (555) 234-5678">
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Change Password</h3>
+            </div>
+            <div class="dash-card__body">
+              <form class="settings-form" id="passwordForm" aria-label="Change password form">
+                <div class="form-group">
+                  <label for="settingsCurrentPass" class="form-label">Current Password</label>
+                  <input type="password" id="settingsCurrentPass" class="form-input" placeholder="Enter current password">
+                </div>
+                <div class="form-group">
+                  <label for="settingsNewPass" class="form-label">New Password</label>
+                  <input type="password" id="settingsNewPass" class="form-input" placeholder="Enter new password">
+                </div>
+                <div class="form-group">
+                  <label for="settingsConfirmPass" class="form-label">Confirm New Password</label>
+                  <input type="password" id="settingsConfirmPass" class="form-input" placeholder="Confirm new password">
+                </div>
+                <button type="submit" class="btn btn-primary">Update Password</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Notification Preferences -->
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Notification Preferences</h3>
+            </div>
+            <div class="dash-card__body">
+              <div class="settings-toggles">
+                <div class="settings-toggle">
+                  <div class="settings-toggle__info">
+                    <span class="settings-toggle__label">Email Notifications</span>
+                    <span class="settings-toggle__desc">Receive updates about your cases via email</span>
+                  </div>
+                  <label class="toggle" aria-label="Toggle email notifications">
+                    <input type="checkbox" checked>
+                    <span class="toggle__slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle">
+                  <div class="settings-toggle__info">
+                    <span class="settings-toggle__label">SMS Notifications</span>
+                    <span class="settings-toggle__desc">Get text alerts for urgent matters</span>
+                  </div>
+                  <label class="toggle" aria-label="Toggle SMS notifications">
+                    <input type="checkbox" checked>
+                    <span class="toggle__slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle">
+                  <div class="settings-toggle__info">
+                    <span class="settings-toggle__label">Appointment Reminders</span>
+                    <span class="settings-toggle__desc">Receive reminders 24 hours before meetings</span>
+                  </div>
+                  <label class="toggle" aria-label="Toggle appointment reminders">
+                    <input type="checkbox" checked>
+                    <span class="toggle__slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle">
+                  <div class="settings-toggle__info">
+                    <span class="settings-toggle__label">Invoice Alerts</span>
+                    <span class="settings-toggle__desc">Notifications for new invoices and payments</span>
+                  </div>
+                  <label class="toggle" aria-label="Toggle invoice alerts">
+                    <input type="checkbox">
+                    <span class="toggle__slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Language & Appearance -->
+          <div class="dash-card">
+            <div class="dash-card__header">
+              <h3 class="dash-card__title">Language & Appearance</h3>
+            </div>
+            <div class="dash-card__body">
+              <div class="form-group">
+                <label for="settingsLanguage" class="form-label">Language</label>
+                <select id="settingsLanguage" class="form-input form-select">
+                  <option value="en" selected>English</option>
+                  <option value="es">Espa&ntilde;ol</option>
+                  <option value="fr">Fran&ccedil;ais</option>
+                  <option value="de">Deutsch</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Theme</label>
+                <div class="theme-options">
+                  <label class="theme-option">
+                    <input type="radio" name="theme" value="light" checked>
+                    <div class="theme-option__box">
+                      <i class="fas fa-sun" aria-hidden="true"></i>
+                      <span>Light</span>
+                    </div>
+                  </label>
+                  <label class="theme-option">
+                    <input type="radio" name="theme" value="dark">
+                    <div class="theme-option__box">
+                      <i class="fas fa-moon" aria-hidden="true"></i>
+                      <span>Dark</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/client-dashboard.js"></script>
+</body>
+</html>

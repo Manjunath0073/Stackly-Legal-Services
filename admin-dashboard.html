@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Administrator Dashboard — Stackly Legal Services. Executive management platform for law firm operations.">
+  <meta name="keywords" content="admin dashboard, law firm management, legal administration, Stackly Legal Services">
+  <meta name="author" content="Stackly Legal Services">
+  <meta name="theme-color" content="#0F172A">
+  <link rel="canonical" href="https://www.stacklylegal.com/admin-dashboard.html">
+  
+  <title>Admin Dashboard | Stackly Legal Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+<body>
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="adm-sidebar" id="admSidebar" aria-label="Admin navigation">
+    <div class="adm-sidebar__header">
+      <a href="index.html" class="adm-sidebar__logo" aria-label="Stackly Legal Services home">
+        <img src="assets/logo-stackly.webp" alt="" width="72" height="72" loading="eager">
+        
+      </a>
+      <button class="adm-sidebar__collapse" id="admSidebarCollapse" aria-label="Collapse sidebar" type="button">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- Admin Profile Card -->
+    <div class="adm-sidebar__profile">
+      <div class="adm-sidebar__avatar" id="admAvatar">
+        <i class="fas fa-user-shield" aria-hidden="true"></i>
+        <span class="adm-sidebar__online" aria-label="Online"></span>
+      </div>
+      <div class="adm-sidebar__profile-info">
+        <span class="adm-sidebar__profile-name" id="admProfileName">Administrator</span>
+        <span class="adm-sidebar__profile-role">Super Admin</span>
+      </div>
+    </div>
+
+    <nav class="adm-sidebar__nav" aria-label="Admin menu">
+      <div class="adm-sidebar__section">
+        <span class="adm-sidebar__section-label">Main</span>
+      </div>
+      <ul class="adm-sidebar__menu">
+        <li>
+          <a href="#executive" class="adm-sidebar__link active" data-section="executive" aria-current="page">
+            <i class="fas fa-th-large" aria-hidden="true"></i>
+            <span class="adm-sidebar__label">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#clients" class="adm-sidebar__link" data-section="clients">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <span class="adm-sidebar__label">Client Management</span>
+          </a>
+        </li>
+        <li>
+          <a href="#cases" class="adm-sidebar__link" data-section="cases">
+            <i class="fas fa-gavel" aria-hidden="true"></i>
+            <span class="adm-sidebar__label">Case Management</span>
+          </a>
+        </li>
+        <li>
+          <a href="#appointments" class="adm-sidebar__link" data-section="appointments">
+            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+            <span class="adm-sidebar__label">Appointments</span>
+          </a>
+        </li>
+      </ul>
+      <div class="adm-sidebar__section">
+        <span class="adm-sidebar__section-label">Operations</span>
+      </div>
+      <ul class="adm-sidebar__menu">
+        <li>
+          <a href="#documents" class="adm-sidebar__link" data-section="documents">
+            <i class="fas fa-file-shield" aria-hidden="true"></i>
+            <span class="adm-sidebar__label">Document Verification</span>
+          </a>
+        </li>
+        <li>
+          <a href="#payments" class="adm-sidebar__link" data-section="payments">
+            <i class="fas fa-credit-card" aria-hidden="true"></i>
+            <span class="adm-sidebar__label">Payments & Billing</span>
+          </a>
+        </li>
+      </ul>
+      <div class="adm-sidebar__section">
+        <span class="adm-sidebar__section-label">Insights</span>
+      </div>
+      <ul class="adm-sidebar__menu">
+        <li>
+          <a href="#reports" class="adm-sidebar__link" data-section="reports">
+            <i class="fas fa-chart-line" aria-hidden="true"></i>
+            <span class="adm-sidebar__label">Reports & Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="#settings" class="adm-sidebar__link" data-section="settings">
+            <i class="fas fa-cog" aria-hidden="true"></i>
+            <span class="adm-sidebar__label">System Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="adm-sidebar__footer">
+      <a href="login.html" class="adm-sidebar__logout" aria-label="Logout">
+        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+        <span class="adm-sidebar__label">Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <div class="adm-sidebar-overlay" id="admSidebarOverlay" aria-hidden="true"></div>
+
+  <!-- ==================== MAIN DASHBOARD ==================== -->
+  <div class="adm-dashboard">
+    <!-- Header -->
+    <header class="adm-header" id="admHeader" role="banner">
+      <div class="adm-header__left">
+        <button class="adm-header__toggle" id="admSidebarToggle" aria-label="Toggle sidebar" type="button">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="adm-header__search">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input type="search" class="adm-header__search-input" placeholder="Search clients, cases, documents..." aria-label="Global search" id="globalSearch">
+        </div>
+      </div>
+      <div class="adm-header__right">
+        <div class="adm-header__clock-wrap">
+          <span class="adm-header__clock" id="admClock"></span>
+          <span class="adm-header__date" id="admDate"></span>
+        </div>
+        <button class="adm-header__icon-btn" id="admThemeToggle" aria-label="Toggle dark mode" type="button">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+        <div class="adm-header__notif-wrap">
+          <button class="adm-header__icon-btn adm-header__notif" id="admNotifBtn" aria-label="Notifications" type="button">
+            <i class="fas fa-bell" aria-hidden="true"></i>
+            <span class="adm-header__badge">8</span>
+          </button>
+          <div class="adm-notif-panel" id="admNotifPanel" role="dialog" aria-label="Notifications">
+            <div class="adm-notif-panel__header"><h3>Notifications</h3><span class="adm-notif-panel__count">8 new</span></div>
+            <div class="adm-notif-panel__list" id="admNotifList">
+              <div class="adm-notif-item"><div class="adm-notif-item__icon" style="background:rgba(59,130,246,0.1);color:#3b82f6"><i class="fas fa-user-plus" aria-hidden="true"></i></div><div class="adm-notif-item__info"><p>New client <strong>Victoria Hartwell</strong> registered</p><span class="adm-notif-item__time">10 min ago</span></div></div>
+              <div class="adm-notif-item"><div class="adm-notif-item__icon" style="background:rgba(200,169,107,0.15);color:#C8A96B"><i class="fas fa-credit-card" aria-hidden="true"></i></div><div class="adm-notif-item__info"><p>Payment of <strong>$4,200</strong> received</p><span class="adm-notif-item__time">25 min ago</span></div></div>
+              <div class="adm-notif-item"><div class="adm-notif-item__icon" style="background:rgba(239,68,68,0.1);color:#ef4444"><i class="fas fa-file-alt" aria-hidden="true"></i></div><div class="adm-notif-item__info"><p>Document <strong>Merger v3.2</strong> needs review</p><span class="adm-notif-item__time">1 hour ago</span></div></div>
+              <div class="adm-notif-item"><div class="adm-notif-item__icon" style="background:rgba(34,197,94,0.1);color:#22c55e"><i class="fas fa-calendar-check" aria-hidden="true"></i></div><div class="adm-notif-item__info"><p>Appointment confirmed for <strong>Aug 15</strong></p><span class="adm-notif-item__time">2 hours ago</span></div></div>
+            </div>
+            <a href="#" class="adm-notif-panel__footer">View All Notifications</a>
+          </div>
+        </div>
+        <button class="adm-header__icon-btn" id="admMsgBtn" aria-label="Messages" type="button">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <span class="adm-header__badge">3</span>
+        </button>
+        <div class="adm-header__profile" id="admProfileDropdown">
+          <button class="adm-header__profile-btn" aria-label="Profile menu" type="button" aria-expanded="false" aria-controls="admProfileMenu">
+            <div class="adm-header__avatar" id="admHeaderAvatar"><i class="fas fa-user-shield" aria-hidden="true"></i></div>
+            <span class="adm-header__profile-name" id="admHeaderName">Admin</span>
+            <i class="fas fa-chevron-down adm-header__chevron" aria-hidden="true"></i>
+          </button>
+          <div class="adm-header__dropdown" id="admProfileMenu" role="menu">
+            <a href="#settings" class="adm-header__dropdown-item" data-section="settings" role="menuitem"><i class="fas fa-user-cog" aria-hidden="true"></i> My Profile</a>
+            <a href="#settings" class="adm-header__dropdown-item" data-section="settings" role="menuitem"><i class="fas fa-cog" aria-hidden="true"></i> Settings</a>
+            <hr class="adm-header__dropdown-divider">
+            <a href="login.html" class="adm-header__dropdown-item" role="menuitem"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Scrollable Main -->
+    <main class="adm-main" id="main" role="main">
+
+      <!-- ========== MODULE 1: EXECUTIVE DASHBOARD ========== -->
+      <section class="adm-section active" id="section-executive" aria-label="Executive Dashboard">
+        <div class="adm-section__header">
+          <div>
+            <h2 class="adm-section__title" id="admGreeting">Executive Dashboard</h2>
+            <p class="adm-section__subtitle">Overview of firm performance and key metrics</p>
+          </div>
+          <button class="btn btn-primary adm-btn-sm" id="admExportBtn"><i class="fas fa-download" aria-hidden="true"></i> Export Report</button>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="adm-kpi-grid">
+          <div class="adm-kpi">
+            <div class="adm-kpi__icon adm-kpi__icon--blue"><i class="fas fa-users" aria-hidden="true"></i></div>
+            <div class="adm-kpi__data">
+              <span class="adm-kpi__number" id="kpi-clients" data-count="248">0</span>
+              <span class="adm-kpi__label">Total Clients</span>
+            </div>
+            <canvas class="adm-kpi__sparkline" id="sparkline1" aria-hidden="true"></canvas>
+            <span class="adm-kpi__trend adm-kpi__trend--up"><i class="fas fa-arrow-up" aria-hidden="true"></i> 12%</span>
+          </div>
+          <div class="adm-kpi">
+            <div class="adm-kpi__icon adm-kpi__icon--gold"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+            <div class="adm-kpi__data">
+              <span class="adm-kpi__number" id="kpi-cases" data-count="67">0</span>
+              <span class="adm-kpi__label">Active Cases</span>
+            </div>
+            <canvas class="adm-kpi__sparkline" id="sparkline2" aria-hidden="true"></canvas>
+            <span class="adm-kpi__trend adm-kpi__trend--up"><i class="fas fa-arrow-up" aria-hidden="true"></i> 8%</span>
+          </div>
+          <div class="adm-kpi">
+            <div class="adm-kpi__icon adm-kpi__icon--amber"><i class="fas fa-clock" aria-hidden="true"></i></div>
+            <div class="adm-kpi__data">
+              <span class="adm-kpi__number" data-count="23">0</span>
+              <span class="adm-kpi__label">Pending Cases</span>
+            </div>
+            <span class="adm-kpi__trend adm-kpi__trend--down"><i class="fas fa-arrow-down" aria-hidden="true"></i> 5%</span>
+          </div>
+          <div class="adm-kpi">
+            <div class="adm-kpi__icon adm-kpi__icon--green"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
+            <div class="adm-kpi__data">
+              <span class="adm-kpi__number" data-count="158">0</span>
+              <span class="adm-kpi__label">Closed Cases</span>
+            </div>
+            <span class="adm-kpi__trend adm-kpi__trend--up"><i class="fas fa-arrow-up" aria-hidden="true"></i> 15%</span>
+          </div>
+          <div class="adm-kpi">
+            <div class="adm-kpi__icon adm-kpi__icon--purple"><i class="fas fa-dollar-sign" aria-hidden="true"></i></div>
+            <div class="adm-kpi__data">
+              <span class="adm-kpi__number" data-prefix="$" data-count="847500" data-format="currency">0</span>
+              <span class="adm-kpi__label">Monthly Revenue</span>
+            </div>
+            <span class="adm-kpi__trend adm-kpi__trend--up"><i class="fas fa-arrow-up" aria-hidden="true"></i> 22%</span>
+          </div>
+          <div class="adm-kpi">
+            <div class="adm-kpi__icon adm-kpi__icon--red"><i class="fas fa-gavel" aria-hidden="true"></i></div>
+            <div class="adm-kpi__data">
+              <span class="adm-kpi__number" data-count="12">0</span>
+              <span class="adm-kpi__label">Upcoming Hearings</span>
+            </div>
+            <span class="adm-kpi__trend adm-kpi__trend--neutral"><i class="fas fa-minus" aria-hidden="true"></i> 0%</span>
+          </div>
+          <div class="adm-kpi">
+            <div class="adm-kpi__icon adm-kpi__icon--teal"><i class="fas fa-file-alt" aria-hidden="true"></i></div>
+            <div class="adm-kpi__data">
+              <span class="adm-kpi__number" data-count="34">0</span>
+              <span class="adm-kpi__label">Pending Documents</span>
+            </div>
+            <span class="adm-kpi__trend adm-kpi__trend--down"><i class="fas fa-arrow-down" aria-hidden="true"></i> 3%</span>
+          </div>
+          <div class="adm-kpi">
+            <div class="adm-kpi__icon adm-kpi__icon--indigo"><i class="fas fa-user-tie" aria-hidden="true"></i></div>
+            <div class="adm-kpi__data">
+              <span class="adm-kpi__number" data-count="18">0</span>
+              <span class="adm-kpi__label">Staff Members</span>
+            </div>
+            <span class="adm-kpi__trend adm-kpi__trend--up"><i class="fas fa-arrow-up" aria-hidden="true"></i> 2</span>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="adm-grid adm-grid--2">
+          <!-- Recent Activity -->
+          <div class="adm-card">
+            <div class="adm-card__header">
+              <h3 class="adm-card__title">Recent Activity</h3>
+              <a href="#" class="adm-card__link">View All</a>
+            </div>
+            <div class="adm-card__body">
+              <div class="adm-timeline" id="admActivityFeed">
+                <div class="adm-timeline__item"><div class="adm-timeline__dot adm-timeline__dot--blue"></div><div class="adm-timeline__content"><p class="adm-timeline__text">New client <strong>Victoria Hartwell</strong> registered</p><span class="adm-timeline__time">10 min ago</span></div></div>
+                <div class="adm-timeline__item"><div class="adm-timeline__dot adm-timeline__dot--gold"></div><div class="adm-timeline__content"><p class="adm-timeline__text">Case <strong>#CS-2024-089</strong> assigned to Sarah Mitchell</p><span class="adm-timeline__time">25 min ago</span></div></div>
+                <div class="adm-timeline__item"><div class="adm-timeline__dot adm-timeline__dot--green"></div><div class="adm-timeline__content"><p class="adm-timeline__text">Payment of <strong>$4,200</strong> received from Daniel Frost</p><span class="adm-timeline__time">1 hour ago</span></div></div>
+                <div class="adm-timeline__item"><div class="adm-timeline__dot adm-timeline__dot--red"></div><div class="adm-timeline__content"><p class="adm-timeline__text">Document <strong>Merger Agreement</strong> requires verification</p><span class="adm-timeline__time">2 hours ago</span></div></div>
+                <div class="adm-timeline__item"><div class="adm-timeline__dot adm-timeline__dot--blue"></div><div class="adm-timeline__content"><p class="adm-timeline__text">Appointment scheduled for <strong>Aug 15</strong></p><span class="adm-timeline__time">3 hours ago</span></div></div>
+                <div class="adm-timeline__item"><div class="adm-timeline__dot adm-timeline__dot--gold"></div><div class="adm-timeline__content"><p class="adm-timeline__text">Case <strong>#CS-2024-085</strong> status updated to Closed</p><span class="adm-timeline__time">5 hours ago</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Today's Tasks -->
+          <div class="adm-card">
+            <div class="adm-card__header">
+              <h3 class="adm-card__title">Today's Tasks</h3>
+              <button class="adm-card__action-btn" aria-label="Add task"><i class="fas fa-plus" aria-hidden="true"></i></button>
+            </div>
+            <div class="adm-card__body">
+              <div class="adm-tasks">
+                <label class="adm-task"><input type="checkbox" class="adm-task__check"><div class="adm-task__content"><span class="adm-task__text">Review merger agreement draft</span><span class="adm-task__meta">Corporate Law — Due 2:00 PM</span></div></label>
+                <label class="adm-task"><input type="checkbox" class="adm-task__check"><div class="adm-task__content"><span class="adm-task__text">Client onboarding call — Hartwell</span><span class="adm-task__meta">Intake — Due 3:30 PM</span></div></label>
+                <label class="adm-task adm-task--done"><input type="checkbox" class="adm-task__check" checked><div class="adm-task__content"><span class="adm-task__text">Approve invoice #INV-2024-092</span><span class="adm-task__meta">Billing — Completed</span></div></label>
+                <label class="adm-task"><input type="checkbox" class="adm-task__check"><div class="adm-task__content"><span class="adm-task__text">Verify trademark application docs</span><span class="adm-task__meta">IP Law — Due 4:00 PM</span></div></label>
+                <label class="adm-task adm-task--done"><input type="checkbox" class="adm-task__check" checked><div class="adm-task__content"><span class="adm-task__text">Weekly team briefing preparation</span><span class="adm-task__meta">Admin — Completed</span></div></label>
+                <label class="adm-task"><input type="checkbox" class="adm-task__check"><div class="adm-task__content"><span class="adm-task__text">Court document filing — Morrison case</span><span class="adm-task__meta">Litigation — Due 5:00 PM</span></div></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Row -->
+        <div class="adm-grid adm-grid--3">
+          <!-- Performance Chart -->
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header">
+              <h3 class="adm-card__title">Case Performance</h3>
+              <div class="adm-card__tabs">
+                <button class="adm-card__tab active" data-period="week">Week</button>
+                <button class="adm-card__tab" data-period="month">Month</button>
+                <button class="adm-card__tab" data-period="year">Year</button>
+              </div>
+            </div>
+            <div class="adm-card__body">
+              <div class="adm-chart-container"><canvas id="admLineChart"></canvas></div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Quick Actions</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-quick-grid">
+                <button class="adm-quick" data-section="clients"><div class="adm-quick__icon"><i class="fas fa-user-plus" aria-hidden="true"></i></div><span>New Client</span></button>
+                <button class="adm-quick" data-section="cases"><div class="adm-quick__icon"><i class="fas fa-folder-plus" aria-hidden="true"></i></div><span>New Case</span></button>
+                <button class="adm-quick" data-section="appointments"><div class="adm-quick__icon"><i class="fas fa-calendar-plus" aria-hidden="true"></i></div><span>Schedule</span></button>
+                <button class="adm-quick" data-section="documents"><div class="adm-quick__icon"><i class="fas fa-file-upload" aria-hidden="true"></i></div><span>Upload Doc</span></button>
+                <button class="adm-quick" data-section="payments"><div class="adm-quick__icon"><i class="fas fa-receipt" aria-hidden="true"></i></div><span>Invoice</span></button>
+                <button class="adm-quick" data-section="reports"><div class="adm-quick__icon"><i class="fas fa-chart-bar" aria-hidden="true"></i></div><span>Reports</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Distribution -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Case Distribution</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-donut-chart" id="admDonutChart" aria-label="Case distribution chart" role="img">
+                <canvas id="admDonutCanvas"></canvas>
+                <div class="adm-donut-center">
+                  <span class="adm-donut-center__number">67</span>
+                  <span class="adm-donut-center__label">Active</span>
+                </div>
+              </div>
+              <div class="adm-donut-legend">
+                <span><i class="fas fa-circle" style="color:#C8A96B" aria-hidden="true"></i> Corporate 35%</span>
+                <span><i class="fas fa-circle" style="color:#3b82f6" aria-hidden="true"></i> Family 25%</span>
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Criminal 20%</span>
+                <span><i class="fas fa-circle" style="color:#8b5cf6" aria-hidden="true"></i> Other 20%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Third Row: More Charts -->
+        <div class="adm-grid adm-grid--2">
+          <!-- Horizontal Bar Chart -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Practice Area Breakdown</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-chart-container"><canvas id="admHBarChart"></canvas></div>
+            </div>
+          </div>
+          <!-- Weekly Activity Area Chart -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Weekly Activity</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-chart-container"><canvas id="admAreaChart"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth Row: Live Stats + Staff Performance -->
+        <div class="adm-grid adm-grid--3">
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Today's Summary</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-mini-stats">
+                <div class="adm-mini-stat"><span class="adm-mini-stat__label">Active Users</span><span class="adm-mini-stat__value" id="kpi-messages" data-count="12">0</span></div>
+                <div class="adm-mini-stat"><span class="adm-mini-stat__label">Open Tickets</span><span class="adm-mini-stat__value" data-count="5">0</span></div>
+                <div class="adm-mini-stat"><span class="adm-mini-stat__label">Success Rate</span><span class="adm-mini-stat__value" data-count="94" data-suffix="%">0</span></div>
+                <div class="adm-mini-stat"><span class="adm-mini-stat__label">Avg Response</span><span class="adm-mini-stat__value">2.4h</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Staff Performance</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-staff-list">
+                <div class="adm-staff"><div class="adm-staff__avatar">SM</div><div class="adm-staff__info"><span class="adm-staff__name">Sarah Mitchell</span><div class="adm-progress" style="margin-top:6px"><div class="adm-progress__fill" data-width="92" style="background:#22c55e"></div></div></div><span class="adm-staff__score">92%</span></div>
+                <div class="adm-staff"><div class="adm-staff__avatar">JH</div><div class="adm-staff__info"><span class="adm-staff__name">James Hartwell</span><div class="adm-progress" style="margin-top:6px"><div class="adm-progress__fill" data-width="88" style="background:#3b82f6"></div></div></div><span class="adm-staff__score">88%</span></div>
+                <div class="adm-staff"><div class="adm-staff__avatar">ER</div><div class="adm-staff__info"><span class="adm-staff__name">Elena Rodriguez</span><div class="adm-progress" style="margin-top:6px"><div class="adm-progress__fill" data-width="85" style="background:#C8A96B"></div></div></div><span class="adm-staff__score">85%</span></div>
+                <div class="adm-staff"><div class="adm-staff__avatar">DC</div><div class="adm-staff__info"><span class="adm-staff__name">David Chen</span><div class="adm-progress" style="margin-top:6px"><div class="adm-progress__fill" data-width="79" style="background:#8b5cf6"></div></div></div><span class="adm-staff__score">79%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Upcoming Deadlines</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-deadlines">
+                <div class="adm-deadline"><div class="adm-deadline__date"><span>12</span><span>Aug</span></div><div class="adm-deadline__info"><strong>Court Hearing — Hartwell</strong><span>Room 401, Federal Court</span></div><span class="adm-countdown" data-countdown="2026-08-12T09:00:00"></span></div>
+                <div class="adm-deadline"><div class="adm-deadline__date"><span>18</span><span>Aug</span></div><div class="adm-deadline__info"><strong>Filing Deadline — Vance IP</strong><span>USPTO Submission</span></div><span class="adm-countdown" data-countdown="2026-08-18T17:00:00"></span></div>
+                <div class="adm-deadline"><div class="adm-deadline__date"><span>22</span><span>Aug</span></div><div class="adm-deadline__info"><strong>Contract Review — Harrison</strong><span>Lease Agreement</span></div><span class="adm-countdown" data-countdown="2026-08-22T12:00:00"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== MODULE 2: CLIENT MANAGEMENT ========== -->
+      <section class="adm-section" id="section-clients" aria-label="Client Management">
+        <div class="adm-section__header">
+          <div><h2 class="adm-section__title">Client Management</h2><p class="adm-section__subtitle">Manage all client accounts and information</p></div>
+          <button class="btn btn-primary adm-btn-sm"><i class="fas fa-plus" aria-hidden="true"></i> Add Client</button>
+        </div>
+        <div class="adm-toolbar">
+          <div class="adm-toolbar__search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" class="adm-toolbar__input" placeholder="Search clients..." aria-label="Search clients" id="clientSearch"></div>
+          <div class="adm-toolbar__filters">
+            <select class="adm-toolbar__select" id="clientStatusFilter" aria-label="Filter by status">
+              <option value="all">All Status</option><option value="active">Active</option><option value="pending">Pending</option><option value="inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="adm-table-wrap" id="clientTableWrap">
+          <table class="adm-table" aria-label="Clients table">
+            <thead><tr><th>Client</th><th>Email</th><th>Phone</th><th>Status</th><th>Assigned Lawyer</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><div class="adm-table__user"><div class="adm-table__avatar">VH</div><strong>Victoria Hartwell</strong></div></td><td>victoria@hartwell.com</td><td>+1 (555) 234-5678</td><td><span class="adm-badge adm-badge--active">Active</span></td><td>Sarah Mitchell</td><td><button class="adm-action-btn" aria-label="View client"><i class="fas fa-eye" aria-hidden="true"></i></button><button class="adm-action-btn" aria-label="Edit client"><i class="fas fa-pen" aria-hidden="true"></i></button></td></tr>
+              <tr><td><div class="adm-table__user"><div class="adm-table__avatar">DF</div><strong>Daniel Frost</strong></div></td><td>daniel@frostcorp.com</td><td>+1 (555) 345-6789</td><td><span class="adm-badge adm-badge--active">Active</span></td><td>James Hartwell</td><td><button class="adm-action-btn" aria-label="View client"><i class="fas fa-eye" aria-hidden="true"></i></button><button class="adm-action-btn" aria-label="Edit client"><i class="fas fa-pen" aria-hidden="true"></i></button></td></tr>
+              <tr><td><div class="adm-table__user"><div class="adm-table__avatar">EV</div><strong>Eleanor Vance</strong></div></td><td>eleanor@vance.co</td><td>+1 (555) 456-7890</td><td><span class="adm-badge adm-badge--pending">Pending</span></td><td>Elena Rodriguez</td><td><button class="adm-action-btn" aria-label="View client"><i class="fas fa-eye" aria-hidden="true"></i></button><button class="adm-action-btn" aria-label="Edit client"><i class="fas fa-pen" aria-hidden="true"></i></button></td></tr>
+              <tr><td><div class="adm-table__user"><div class="adm-table__avatar">WH</div><strong>William Harrison</strong></div></td><td>william@harrisonlaw.com</td><td>+1 (555) 567-8901</td><td><span class="adm-badge adm-badge--active">Active</span></td><td>David Chen</td><td><button class="adm-action-btn" aria-label="View client"><i class="fas fa-eye" aria-hidden="true"></i></button><button class="adm-action-btn" aria-label="Edit client"><i class="fas fa-pen" aria-hidden="true"></i></button></td></tr>
+              <tr><td><div class="adm-table__user"><div class="adm-table__avatar">CM</div><strong>Charlotte Morgan</strong></div></td><td>charlotte@morgan.io</td><td>+1 (555) 678-9012</td><td><span class="adm-badge adm-badge--inactive">Inactive</span></td><td>Margaret Stackly</td><td><button class="adm-action-btn" aria-label="View client"><i class="fas fa-eye" aria-hidden="true"></i></button><button class="adm-action-btn" aria-label="Edit client"><i class="fas fa-pen" aria-hidden="true"></i></button></td></tr>
+              <tr><td><div class="adm-table__user"><div class="adm-table__avatar">JW</div><strong>James Whitfield</strong></div></td><td>james@whitfield.com</td><td>+1 (555) 789-0123</td><td><span class="adm-badge adm-badge--active">Active</span></td><td>Sarah Mitchell</td><td><button class="adm-action-btn" aria-label="View client"><i class="fas fa-eye" aria-hidden="true"></i></button><button class="adm-action-btn" aria-label="Edit client"><i class="fas fa-pen" aria-hidden="true"></i></button></td></tr>
+              <tr><td><div class="adm-table__user"><div class="adm-table__avatar">SC</div><strong>Sarah Chen</strong></div></td><td>sarah@chentech.com</td><td>+1 (555) 890-1234</td><td><span class="adm-badge adm-badge--active">Active</span></td><td>James Hartwell</td><td><button class="adm-action-btn" aria-label="View client"><i class="fas fa-eye" aria-hidden="true"></i></button><button class="adm-action-btn" aria-label="Edit client"><i class="fas fa-pen" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="adm-cards-mobile" id="clientCards"></div>
+        <div class="adm-pagination"><button class="adm-pagination__btn" disabled aria-label="Previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button><button class="adm-pagination__btn active" aria-current="page">1</button><button class="adm-pagination__btn">2</button><button class="adm-pagination__btn" aria-label="Next"><i class="fas fa-chevron-right" aria-hidden="true"></i></button></div>
+      </section>
+
+      <!-- ========== MODULE 3: CASE MANAGEMENT ========== -->
+      <section class="adm-section" id="section-cases" aria-label="Case Management">
+        <div class="adm-section__header">
+          <div><h2 class="adm-section__title">Case Management</h2><p class="adm-section__subtitle">Track and manage all legal cases</p></div>
+          <button class="btn btn-primary adm-btn-sm"><i class="fas fa-plus" aria-hidden="true"></i> New Case</button>
+        </div>
+        <div class="adm-toolbar">
+          <div class="adm-toolbar__search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" class="adm-toolbar__input" placeholder="Search cases..." aria-label="Search cases" id="caseSearch"></div>
+          <div class="adm-toolbar__filters">
+            <select class="adm-toolbar__select" id="casePriorityFilter" aria-label="Filter by priority"><option value="all">All Priority</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select>
+            <select class="adm-toolbar__select" id="caseStatusFilter" aria-label="Filter by status"><option value="all">All Status</option><option value="active">Active</option><option value="pending">Pending</option><option value="closed">Closed</option></select>
+          </div>
+        </div>
+        <div class="adm-table-wrap" id="caseTableWrap">
+          <table class="adm-table" aria-label="Cases table">
+            <thead><tr><th>Case #</th><th>Client</th><th>Lawyer</th><th>Practice Area</th><th>Priority</th><th>Status</th><th>Court Date</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><strong>#CS-2024-089</strong></td><td>Victoria Hartwell</td><td>Sarah Mitchell</td><td>Corporate Law</td><td><span class="adm-priority adm-priority--high">High</span></td><td><span class="adm-badge adm-badge--active">Active</span></td><td>Aug 15, 2026</td><td><button class="adm-action-btn" aria-label="View"><i class="fas fa-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td><strong>#CS-2024-088</strong></td><td>Daniel Frost</td><td>James Hartwell</td><td>Estate Law</td><td><span class="adm-priority adm-priority--medium">Medium</span></td><td><span class="adm-badge adm-badge--active">Active</span></td><td>Sep 2, 2026</td><td><button class="adm-action-btn" aria-label="View"><i class="fas fa-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td><strong>#CS-2024-087</strong></td><td>Eleanor Vance</td><td>Elena Rodriguez</td><td>IP Law</td><td><span class="adm-priority adm-priority--high">High</span></td><td><span class="adm-badge adm-badge--pending">Pending</span></td><td>Aug 22, 2026</td><td><button class="adm-action-btn" aria-label="View"><i class="fas fa-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td><strong>#CS-2024-086</strong></td><td>William Harrison</td><td>David Chen</td><td>Real Estate</td><td><span class="adm-priority adm-priority--low">Low</span></td><td><span class="adm-badge adm-badge--active">Active</span></td><td>Sep 10, 2026</td><td><button class="adm-action-btn" aria-label="View"><i class="fas fa-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td><strong>#CS-2024-085</strong></td><td>Charlotte Morgan</td><td>Margaret Stackly</td><td>Family Law</td><td><span class="adm-priority adm-priority--medium">Medium</span></td><td><span class="adm-badge adm-badge--closed">Closed</span></td><td>—</td><td><button class="adm-action-btn" aria-label="View"><i class="fas fa-eye" aria-hidden="true"></i></button></td></tr>
+              <tr><td><strong>#CS-2024-084</strong></td><td>James Whitfield</td><td>Sarah Mitchell</td><td>Corporate Law</td><td><span class="adm-priority adm-priority--high">High</span></td><td><span class="adm-badge adm-badge--active">Active</span></td><td>Aug 28, 2026</td><td><button class="adm-action-btn" aria-label="View"><i class="fas fa-eye" aria-hidden="true"></i></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="adm-cards-mobile" id="caseCards"></div>
+        <div class="adm-pagination"><button class="adm-pagination__btn" disabled aria-label="Previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button><button class="adm-pagination__btn active" aria-current="page">1</button><button class="adm-pagination__btn">2</button><button class="adm-pagination__btn" aria-label="Next"><i class="fas fa-chevron-right" aria-hidden="true"></i></button></div>
+      </section>
+
+      <!-- ========== MODULE 4: APPOINTMENT MANAGEMENT ========== -->
+      <section class="adm-section" id="section-appointments" aria-label="Appointment Management">
+        <div class="adm-section__header">
+          <div><h2 class="adm-section__title">Appointment Management</h2><p class="adm-section__subtitle">Schedule and manage all consultations</p></div>
+          <button class="btn btn-primary adm-btn-sm"><i class="fas fa-plus" aria-hidden="true"></i> Schedule Meeting</button>
+        </div>
+        <div class="adm-grid adm-grid--2">
+          <!-- Calendar -->
+          <div class="adm-card">
+            <div class="adm-card__header">
+              <h3 class="adm-card__title" id="admCalTitle">August 2026</h3>
+              <div class="adm-cal-nav"><button class="adm-cal-nav__btn" id="admCalPrev" aria-label="Previous month"><i class="fas fa-chevron-left" aria-hidden="true"></i></button><button class="adm-cal-nav__btn" id="admCalNext" aria-label="Next month"><i class="fas fa-chevron-right" aria-hidden="true"></i></button></div>
+            </div>
+            <div class="adm-card__body"><div class="adm-calendar" id="admCalendar"><div class="adm-calendar__head"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div class="adm-calendar__grid" id="admCalGrid"></div></div></div>
+          </div>
+          <!-- Today's Meetings -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Today's Meetings</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-meetings">
+                <div class="adm-meeting"><div class="adm-meeting__time"><span>09:00</span><span>AM</span></div><div class="adm-meeting__info"><h4>Client Onboarding — Hartwell</h4><p><i class="fas fa-user-tie" aria-hidden="true"></i> Sarah Mitchell &bull; <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Room A</p></div><span class="adm-badge adm-badge--active">Confirmed</span></div>
+                <div class="adm-meeting"><div class="adm-meeting__time"><span>11:30</span><span>AM</span></div><div class="adm-meeting__info"><h4>Case Review — Frost Estate</h4><p><i class="fas fa-user-tie" aria-hidden="true"></i> James Hartwell &bull; <i class="fas fa-video" aria-hidden="true"></i> Video Call</p></div><span class="adm-badge adm-badge--active">Confirmed</span></div>
+                <div class="adm-meeting"><div class="adm-meeting__time"><span>02:00</span><span>PM</span></div><div class="adm-meeting__info"><h4>Trademark Filing — Vance</h4><p><i class="fas fa-user-tie" aria-hidden="true"></i> Elena Rodriguez &bull; <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Room B</p></div><span class="adm-badge adm-badge--pending">Pending</span></div>
+                <div class="adm-meeting"><div class="adm-meeting__time"><span>04:30</span><span>PM</span></div><div class="adm-meeting__info"><h4>Contract Signing — Harrison</h4><p><i class="fas fa-user-tie" aria-hidden="true"></i> David Chen &bull; <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Conference</p></div><span class="adm-badge adm-badge--active">Confirmed</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Pending Requests -->
+        <div class="adm-card" style="margin-top:20px;">
+          <div class="adm-card__header"><h3 class="adm-card__title">Pending Appointment Requests</h3></div>
+          <div class="adm-card__body">
+            <div class="adm-request-list">
+              <div class="adm-request"><div class="adm-request__info"><strong>Robert Chen</strong><span>New Client Consultation — Corporate Law</span></div><div class="adm-request__meta"><span>Requested: Aug 8</span><span>Preferred: Aug 20</span></div><div class="adm-request__actions"><button class="btn btn-primary adm-btn-xs">Approve</button><button class="btn btn-secondary adm-btn-xs">Reschedule</button><button class="adm-btn-text adm-btn-text--danger">Cancel</button></div></div>
+              <div class="adm-request"><div class="adm-request__info"><strong>Amara Johnson</strong><span>Follow-up — Family Law Consultation</span></div><div class="adm-request__meta"><span>Requested: Aug 6</span><span>Preferred: Aug 18</span></div><div class="adm-request__actions"><button class="btn btn-primary adm-btn-xs">Approve</button><button class="btn btn-secondary adm-btn-xs">Reschedule</button><button class="adm-btn-text adm-btn-text--danger">Cancel</button></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== MODULE 5: DOCUMENT VERIFICATION ========== -->
+      <section class="adm-section" id="section-documents" aria-label="Document Verification">
+        <div class="adm-section__header">
+          <div><h2 class="adm-section__title">Document Verification</h2><p class="adm-section__subtitle">Review and verify submitted documents</p></div>
+        </div>
+        <!-- Status Summary -->
+        <div class="adm-status-row">
+          <div class="adm-status-pill adm-status-pill--pending"><i class="fas fa-clock" aria-hidden="true"></i> 14 Pending</div>
+          <div class="adm-status-pill adm-status-pill--verified"><i class="fas fa-check-circle" aria-hidden="true"></i> 142 Verified</div>
+          <div class="adm-status-pill adm-status-pill--rejected"><i class="fas fa-times-circle" aria-hidden="true"></i> 3 Rejected</div>
+        </div>
+        <!-- Document Cards -->
+        <div class="adm-doc-grid">
+          <div class="adm-doc-card">
+            <div class="adm-doc-card__header"><span class="adm-badge adm-badge--pending">Pending</span><span class="adm-doc-card__date">Aug 5, 2026</span></div>
+            <div class="adm-doc-card__icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+            <h4 class="adm-doc-card__name">Merger Agreement v3.2.pdf</h4>
+            <p class="adm-doc-card__meta">Client: Victoria Hartwell &bull; 2.4 MB</p>
+            <div class="adm-doc-card__actions"><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-eye" aria-hidden="true"></i> Preview</button><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-download" aria-hidden="true"></i> Download</button></div>
+            <div class="adm-doc-card__verify"><button class="btn btn-primary adm-btn-xs"><i class="fas fa-check" aria-hidden="true"></i> Verify</button><button class="adm-btn-text adm-btn-text--danger">Reject</button></div>
+          </div>
+          <div class="adm-doc-card">
+            <div class="adm-doc-card__header"><span class="adm-badge adm-badge--pending">Pending</span><span class="adm-doc-card__date">Aug 4, 2026</span></div>
+            <div class="adm-doc-card__icon"><i class="fas fa-file-word" aria-hidden="true"></i></div>
+            <h4 class="adm-doc-card__name">Trust Fund Document.docx</h4>
+            <p class="adm-doc-card__meta">Client: Daniel Frost &bull; 1.8 MB</p>
+            <div class="adm-doc-card__actions"><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-eye" aria-hidden="true"></i> Preview</button><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-download" aria-hidden="true"></i> Download</button></div>
+            <div class="adm-doc-card__verify"><button class="btn btn-primary adm-btn-xs"><i class="fas fa-check" aria-hidden="true"></i> Verify</button><button class="adm-btn-text adm-btn-text--danger">Reject</button></div>
+          </div>
+          <div class="adm-doc-card">
+            <div class="adm-doc-card__header"><span class="adm-badge adm-badge--active">Verified</span><span class="adm-doc-card__date">Aug 3, 2026</span></div>
+            <div class="adm-doc-card__icon"><i class="fas fa-file-contract" aria-hidden="true"></i></div>
+            <h4 class="adm-doc-card__name">Lease Contract — Harrison.pdf</h4>
+            <p class="adm-doc-card__meta">Client: William Harrison &bull; 3.1 MB</p>
+            <div class="adm-doc-card__actions"><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-eye" aria-hidden="true"></i> Preview</button><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-download" aria-hidden="true"></i> Download</button></div>
+          </div>
+          <div class="adm-doc-card">
+            <div class="adm-doc-card__header"><span class="adm-badge adm-badge--pending">Pending</span><span class="adm-doc-card__date">Aug 5, 2026</span></div>
+            <div class="adm-doc-card__icon"><i class="fas fa-file-image" aria-hidden="true"></i></div>
+            <h4 class="adm-doc-card__name">Property Evidence Photos.zip</h4>
+            <p class="adm-doc-card__meta">Client: William Harrison &bull; 8.2 MB</p>
+            <div class="adm-doc-card__actions"><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-eye" aria-hidden="true"></i> Preview</button><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-download" aria-hidden="true"></i> Download</button></div>
+            <div class="adm-doc-card__verify"><button class="btn btn-primary adm-btn-xs"><i class="fas fa-check" aria-hidden="true"></i> Verify</button><button class="adm-btn-text adm-btn-text--danger">Reject</button></div>
+          </div>
+          <div class="adm-doc-card">
+            <div class="adm-doc-card__header"><span class="adm-badge adm-badge--rejected">Rejected</span><span class="adm-doc-card__date">Aug 2, 2026</span></div>
+            <div class="adm-doc-card__icon"><i class="fas fa-file-invoice" aria-hidden="true"></i></div>
+            <h4 class="adm-doc-card__name">Financial Disclosure — Incomplete</h4>
+            <p class="adm-doc-card__meta">Client: Eleanor Vance &bull; 540 KB</p>
+            <div class="adm-doc-card__actions"><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-eye" aria-hidden="true"></i> Preview</button><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-download" aria-hidden="true"></i> Download</button></div>
+          </div>
+          <div class="adm-doc-card">
+            <div class="adm-doc-card__header"><span class="adm-badge adm-badge--active">Verified</span><span class="adm-doc-card__date">Aug 1, 2026</span></div>
+            <div class="adm-doc-card__icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
+            <h4 class="adm-doc-card__name">Trademark Application — Vance.pdf</h4>
+            <p class="adm-doc-card__meta">Client: Eleanor Vance &bull; 1.2 MB</p>
+            <div class="adm-doc-card__actions"><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-eye" aria-hidden="true"></i> Preview</button><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-download" aria-hidden="true"></i> Download</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== MODULE 6: PAYMENTS & BILLING ========== -->
+      <section class="adm-section" id="section-payments" aria-label="Payments and Billing">
+        <div class="adm-section__header">
+          <div><h2 class="adm-section__title">Payments & Billing</h2><p class="adm-section__subtitle">Manage invoices, payments, and revenue</p></div>
+          <button class="btn btn-primary adm-btn-sm"><i class="fas fa-plus" aria-hidden="true"></i> Create Invoice</button>
+        </div>
+        <div class="adm-kpi-grid adm-kpi-grid--3">
+          <div class="adm-kpi"><div class="adm-kpi__icon adm-kpi__icon--green"><i class="fas fa-check-double" aria-hidden="true"></i></div><div class="adm-kpi__data"><span class="adm-kpi__number" data-prefix="$" data-count="124850" data-format="currency">0</span><span class="adm-kpi__label">Completed Payments</span></div></div>
+          <div class="adm-kpi"><div class="adm-kpi__icon adm-kpi__icon--amber"><i class="fas fa-hourglass-half" aria-hidden="true"></i></div><div class="adm-kpi__data"><span class="adm-kpi__number" data-prefix="$" data-count="32400" data-format="currency">0</span><span class="adm-kpi__label">Pending Payments</span></div></div>
+          <div class="adm-kpi"><div class="adm-kpi__icon adm-kpi__icon--blue"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></div><div class="adm-kpi__data"><span class="adm-kpi__number" data-count="24">0</span><span class="adm-kpi__label">Total Invoices</span></div></div>
+        </div>
+        <div class="adm-grid adm-grid--2">
+          <!-- Revenue Chart -->
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Revenue Trend</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admRevenueChart"></canvas></div></div>
+          </div>
+          <!-- Transaction Table -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Recent Transactions</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-tx-list">
+                <div class="adm-tx"><div class="adm-tx__icon adm-tx__icon--in"><i class="fas fa-arrow-down" aria-hidden="true"></i></div><div class="adm-tx__info"><span class="adm-tx__name">Victoria Hartwell</span><span class="adm-tx__desc">Invoice #INV-2024-092</span></div><span class="adm-tx__amount adm-tx__amount--in">+$4,200</span></div>
+                <div class="adm-tx"><div class="adm-tx__icon adm-tx__icon--in"><i class="fas fa-arrow-down" aria-hidden="true"></i></div><div class="adm-tx__info"><span class="adm-tx__name">Daniel Frost</span><span class="adm-tx__desc">Invoice #INV-2024-091</span></div><span class="adm-tx__amount adm-tx__amount--in">+$6,800</span></div>
+                <div class="adm-tx"><div class="adm-tx__icon adm-tx__icon--out"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><div class="adm-tx__info"><span class="adm-tx__name">Office Lease</span><span class="adm-tx__desc">Monthly Rent</span></div><span class="adm-tx__amount adm-tx__amount--out">-$8,500</span></div>
+                <div class="adm-tx"><div class="adm-tx__icon adm-tx__icon--in"><i class="fas fa-arrow-down" aria-hidden="true"></i></div><div class="adm-tx__info"><span class="adm-tx__name">James Whitfield</span><span class="adm-tx__desc">Invoice #INV-2024-090</span></div><span class="adm-tx__amount adm-tx__amount--in">+$3,100</span></div>
+                <div class="adm-tx"><div class="adm-tx__icon adm-tx__icon--pending"><i class="fas fa-clock" aria-hidden="true"></i></div><div class="adm-tx__info"><span class="adm-tx__name">Sarah Chen</span><span class="adm-tx__desc">Invoice #INV-2024-089</span></div><span class="adm-tx__amount adm-tx__amount--pending">+$5,400</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== MODULE 7: REPORTS & ANALYTICS ========== -->
+      <section class="adm-section" id="section-reports" aria-label="Reports and Analytics">
+        <div class="adm-section__header">
+          <div><h2 class="adm-section__title">Reports & Analytics</h2><p class="adm-section__subtitle">Executive analytics and performance insights</p></div>
+          <button class="btn btn-primary adm-btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Export Report</button>
+        </div>
+        <div class="adm-kpi-grid adm-kpi-grid--4">
+          <div class="adm-kpi"><div class="adm-kpi__icon adm-kpi__icon--blue"><i class="fas fa-percentage" aria-hidden="true"></i></div><div class="adm-kpi__data"><span class="adm-kpi__number" data-count="94" data-suffix="%">0</span><span class="adm-kpi__label">Win Rate</span></div></div>
+          <div class="adm-kpi"><div class="adm-kpi__icon adm-kpi__icon--gold"><i class="fas fa-handshake" aria-hidden="true"></i></div><div class="adm-kpi__data"><span class="adm-kpi__number" data-count="96" data-suffix="%">0</span><span class="adm-kpi__label">Client Retention</span></div></div>
+          <div class="adm-kpi"><div class="adm-kpi__icon adm-kpi__icon--green"><i class="fas fa-trending-up" aria-hidden="true"></i></div><div class="adm-kpi__data"><span class="adm-kpi__number" data-count="18" data-suffix="%">0</span><span class="adm-kpi__label">Revenue Growth</span></div></div>
+          <div class="adm-kpi"><div class="adm-kpi__icon adm-kpi__icon--purple"><i class="fas fa-star" aria-hidden="true"></i></div><div class="adm-kpi__data"><span class="adm-kpi__number" data-count="4" data-suffix=".8">0</span><span class="adm-kpi__label">Client Rating</span></div></div>
+        </div>
+        <div class="adm-grid adm-grid--2">
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Monthly Performance</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admBarChart"></canvas></div></div>
+          </div>
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Case Distribution by Practice Area</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-bar-list">
+                <div class="adm-bar-item"><div class="adm-bar-item__header"><span>Corporate Law</span><strong>35%</strong></div><div class="adm-progress"><div class="adm-progress__fill" data-width="35" style="background:var(--color-secondary)"></div></div></div>
+                <div class="adm-bar-item"><div class="adm-bar-item__header"><span>Family Law</span><strong>25%</strong></div><div class="adm-progress"><div class="adm-progress__fill" data-width="25" style="background:#3b82f6"></div></div></div>
+                <div class="adm-bar-item"><div class="adm-bar-item__header"><span>Criminal Defense</span><strong>18%</strong></div><div class="adm-progress"><div class="adm-progress__fill" data-width="18" style="background:#ef4444"></div></div></div>
+                <div class="adm-bar-item"><div class="adm-bar-item__header"><span>IP Law</span><strong>12%</strong></div><div class="adm-progress"><div class="adm-progress__fill" data-width="12" style="background:#8b5cf6"></div></div></div>
+                <div class="adm-bar-item"><div class="adm-bar-item__header"><span>Real Estate</span><strong>10%</strong></div><div class="adm-progress"><div class="adm-progress__fill" data-width="10" style="background:#22c55e"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Circular Progress -->
+        <div class="adm-grid adm-grid--4" style="margin-top:20px;">
+          <div class="adm-card" style="text-align:center;">
+            <div class="adm-card__body"><div class="adm-circle-progress" data-value="87"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" stroke-width="8"/><circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-secondary)" stroke-width="8" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="adm-circle-progress__ring" transform="rotate(-90 60 60)"/></svg><span class="adm-circle-progress__text">87%</span></div><p class="adm-circle-progress__label">Case Completion</p></div>
+          </div>
+          <div class="adm-card" style="text-align:center;">
+            <div class="adm-card__body"><div class="adm-circle-progress" data-value="92"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" stroke-width="8"/><circle cx="60" cy="60" r="52" fill="none" stroke="#3b82f6" stroke-width="8" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="adm-circle-progress__ring" transform="rotate(-90 60 60)"/></svg><span class="adm-circle-progress__text">92%</span></div><p class="adm-circle-progress__label">Client Satisfaction</p></div>
+          </div>
+          <div class="adm-card" style="text-align:center;">
+            <div class="adm-card__body"><div class="adm-circle-progress" data-value="78"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" stroke-width="8"/><circle cx="60" cy="60" r="52" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="adm-circle-progress__ring" transform="rotate(-90 60 60)"/></svg><span class="adm-circle-progress__text">78%</span></div><p class="adm-circle-progress__label">On-Time Delivery</p></div>
+          </div>
+          <div class="adm-card" style="text-align:center;">
+            <div class="adm-card__body"><div class="adm-circle-progress" data-value="95"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" stroke-width="8"/><circle cx="60" cy="60" r="52" fill="none" stroke="#8b5cf6" stroke-width="8" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="adm-circle-progress__ring" transform="rotate(-90 60 60)"/></svg><span class="adm-circle-progress__text">95%</span></div><p class="adm-circle-progress__label">Document Accuracy</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== MODULE 8: SYSTEM SETTINGS ========== -->
+      <section class="adm-section" id="section-settings" aria-label="System Settings">
+        <div class="adm-section__header">
+          <div><h2 class="adm-section__title">System Settings</h2><p class="adm-section__subtitle">Configure your administrator account and preferences</p></div>
+        </div>
+        <div class="adm-grid adm-grid--2">
+          <!-- Profile -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Administrator Profile</h3></div>
+            <div class="adm-card__body">
+              <form class="adm-form" id="admProfileForm" aria-label="Profile form">
+                <div class="adm-form__row"><div class="adm-form__group"><label for="admFirstName" class="adm-form__label">First Name</label><input type="text" id="admFirstName" class="adm-form__input" value="Margaret"></div><div class="adm-form__group"><label for="admLastName" class="adm-form__label">Last Name</label><input type="text" id="admLastName" class="adm-form__input" value="Stackly"></div></div>
+                <div class="adm-form__group"><label for="admEmail" class="adm-form__label">Email Address</label><input type="email" id="admEmail" class="adm-form__input" value="admin@stacklylegal.com"></div>
+                <div class="adm-form__group"><label for="admPhone" class="adm-form__label">Phone Number</label><input type="tel" id="admPhone" class="adm-form__input" value="+1 (555) 100-0001"></div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+              </form>
+            </div>
+          </div>
+          <!-- Company Info -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Company Information</h3></div>
+            <div class="adm-card__body">
+              <form class="adm-form" id="admCompanyForm" aria-label="Company information form">
+                <div class="adm-form__group"><label for="admCompanyName" class="adm-form__label">Company Name</label><input type="text" id="admCompanyName" class="adm-form__input" value="Stackly Legal Services"></div>
+                <div class="adm-form__group"><label for="admCompanyAddr" class="adm-form__label">Address</label><input type="text" id="admCompanyAddr" class="adm-form__input" value="123 Justice Avenue, Suite 500, New York, NY 10001"></div>
+                <div class="adm-form__row"><div class="adm-form__group"><label for="admCompanyPhone" class="adm-form__label">Phone</label><input type="tel" id="admCompanyPhone" class="adm-form__input" value="+1 (555) 123-4567"></div><div class="adm-form__group"><label for="admCompanyEmail" class="adm-form__label">Email</label><input type="email" id="admCompanyEmail" class="adm-form__input" value="contact@stacklylegal.com"></div></div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+              </form>
+            </div>
+          </div>
+          <!-- Notifications -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Notification Settings</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-toggles">
+                <div class="adm-toggle-row"><div class="adm-toggle-row__info"><span class="adm-toggle-row__label">Email Notifications</span><span class="adm-toggle-row__desc">Receive email alerts for important events</span></div><label class="adm-toggle"><input type="checkbox" checked><span class="adm-toggle__slider"></span></label></div>
+                <div class="adm-toggle-row"><div class="adm-toggle-row__info"><span class="adm-toggle-row__label">SMS Notifications</span><span class="adm-toggle-row__desc">Urgent alerts via text message</span></div><label class="adm-toggle"><input type="checkbox" checked><span class="adm-toggle__slider"></span></label></div>
+                <div class="adm-toggle-row"><div class="adm-toggle-row__info"><span class="adm-toggle-row__label">Client Registration Alerts</span><span class="adm-toggle-row__desc">Notify when new clients register</span></div><label class="adm-toggle"><input type="checkbox" checked><span class="adm-toggle__slider"></span></label></div>
+                <div class="adm-toggle-row"><div class="adm-toggle-row__info"><span class="adm-toggle-row__label">Payment Notifications</span><span class="adm-toggle-row__desc">Alert for received and overdue payments</span></div><label class="adm-toggle"><input type="checkbox"><span class="adm-toggle__slider"></span></label></div>
+              </div>
+            </div>
+          </div>
+          <!-- Security -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Security Settings</h3></div>
+            <div class="adm-card__body">
+              <form class="adm-form" id="admPasswordForm" aria-label="Change password form">
+                <div class="adm-form__group"><label for="admCurrentPass" class="adm-form__label">Current Password</label><input type="password" id="admCurrentPass" class="adm-form__input" placeholder="Enter current password"></div>
+                <div class="adm-form__group"><label for="admNewPass" class="adm-form__label">New Password</label><input type="password" id="admNewPass" class="adm-form__input" placeholder="Enter new password"></div>
+                <div class="adm-form__group"><label for="admConfirmPass" class="adm-form__label">Confirm Password</label><input type="password" id="admConfirmPass" class="adm-form__input" placeholder="Confirm new password"></div>
+                <button type="submit" class="btn btn-primary">Update Password</button>
+              </form>
+              <hr class="adm-divider">
+              <div class="adm-toggles">
+                <div class="adm-toggle-row"><div class="adm-toggle-row__info"><span class="adm-toggle-row__label">Two-Factor Authentication</span><span class="adm-toggle-row__desc">Add an extra layer of security</span></div><label class="adm-toggle"><input type="checkbox"><span class="adm-toggle__slider"></span></label></div>
+              </div>
+            </div>
+          </div>
+          <!-- Appearance -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Appearance</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-form__group"><label class="adm-form__label">Theme</label>
+                <div class="adm-theme-options">
+                  <label class="adm-theme-opt"><input type="radio" name="admTheme" value="light" checked><div class="adm-theme-opt__box"><i class="fas fa-sun" aria-hidden="true"></i><span>Light</span></div></label>
+                  <label class="adm-theme-opt"><input type="radio" name="admTheme" value="dark"><div class="adm-theme-opt__box"><i class="fas fa-moon" aria-hidden="true"></i><span>Dark</span></div></label>
+                </div>
+              </div>
+              <div class="adm-form__group" style="margin-top:16px;"><label class="adm-form__label">Sidebar</label>
+                <div class="adm-theme-options">
+                  <label class="adm-theme-opt"><input type="radio" name="admSidebar" value="dark" checked><div class="adm-theme-opt__box"><i class="fas fa-moon" aria-hidden="true"></i><span>Dark</span></div></label>
+                  <label class="adm-theme-opt"><input type="radio" name="admSidebar" value="light"><div class="adm-theme-opt__box"><i class="fas fa-sun" aria-hidden="true"></i><span>Light</span></div></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Backup -->
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Backup & Data</h3></div>
+            <div class="adm-card__body">
+              <p class="adm-text-muted" style="margin-bottom:16px;">Last backup: August 4, 2026 at 3:00 AM</p>
+              <button class="btn btn-primary" style="margin-bottom:12px;"><i class="fas fa-download" aria-hidden="true"></i> Export All Data</button>
+              <button class="btn btn-secondary"><i class="fas fa-cloud-upload-alt" aria-hidden="true"></i> Import Data</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Custom 404 page for the Premium Legal Services website. The page you are looking for may have been moved or is unavailable.">
+  <meta name="keywords" content="404, page not found, error, legal services">
+  <meta name="author" content="Stackly Legal Services">
+  <meta name="theme-color" content="#0F172A">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="404 — Page Not Found | Stackly Legal Services">
+  <meta property="og:description" content="The page you're looking for may have been moved, renamed, or is temporarily unavailable.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.stacklylegal.com/404.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="404 — Page Not Found | Stackly Legal Services">
+  <meta name="twitter:description" content="The page you're looking for may have been moved, renamed, or is temporarily unavailable.">
+
+  <link rel="canonical" href="https://www.stacklylegal.com/404.html">
+  
+
+  <title>404 | Premium Legal Services — Page Not Found</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/404.css">
+</head>
+<body>
+
+  <!-- Skip to main content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- 404 Full-Screen Layout -->
+  <main class="error-page" id="main" role="main" aria-label="404 error page">
+
+    <!-- Animated Background -->
+    <div class="error-page__bg" aria-hidden="true">
+      <div class="error-page__gradient"></div>
+      <div class="error-page__grid-lines"></div>
+      <div class="error-page__shape error-page__shape--1"></div>
+      <div class="error-page__shape error-page__shape--2"></div>
+      <div class="error-page__shape error-page__shape--3"></div>
+      <div class="error-page__line error-page__line--1"></div>
+      <div class="error-page__line error-page__line--2"></div>
+      <div class="error-page__line error-page__line--3"></div>
+      <canvas class="error-page__particles" id="particles" aria-hidden="true"></canvas>
+    </div>
+
+    <!-- Content -->
+    <div class="error-page__content">
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="error-page__logo" aria-label="Stackly Legal Services — Go to homepage">
+        <img src="assets/logo-stackly.webp" alt="Stackly Legal Services logo" width="96" height="96" loading="eager">
+        
+      </a>
+
+      <!-- Error Number -->
+      <div class="error-page__number" aria-hidden="true">
+        <span class="error-page__digit error-page__digit--4" data-delay="0">4</span>
+        <span class="error-page__digit error-page__digit--0" data-delay="1">0</span>
+        <span class="error-page__digit error-page__digit--4b" data-delay="2">4</span>
+      </div>
+
+      <!-- Illustration -->
+      <div class="error-page__illustration" aria-hidden="true">
+        <img src="assets/images/justice.webp" alt="Justice scales illustration" width="320" height="240" loading="eager" class="error-page__img">
+      </div>
+
+      <!-- Text Content -->
+      <div class="error-page__text">
+        <h1 class="error-page__title">Page Not Found</h1>
+        <p class="error-page__desc">The page you're looking for may have been moved, renamed, or is temporarily unavailable.</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="error-page__actions">
+        <a href="index.html" class="btn btn-primary error-page__btn error-page__btn--primary">
+          <i class="fas fa-home" aria-hidden="true"></i>
+          <span>Go to Home</span>
+        </a>
+        <button type="button" class="btn btn-secondary error-page__btn error-page__btn--secondary" id="goBackBtn" aria-label="Go back to previous page">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i>
+          <span>Go Back</span>
+        </button>
+      </div>
+
+      <!-- Optional Contact Link -->
+      <div class="error-page__help">
+        <span class="error-page__help-text">Need legal assistance?</span>
+        <a href="contact.html" class="error-page__help-link">
+          Contact our team
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/404.js"></script>
+</body>
+</html>
