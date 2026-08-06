@@ -219,7 +219,7 @@
           <div class="dash-card dash-card--activity">
             <div class="dash-card__header">
               <h3 class="dash-card__title">Recent Activity</h3>
-              <a href="#" class="dash-card__link">View All</a>
+              <a href="404.html" class="dash-card__link">View All</a>
             </div>
             <div class="dash-card__body">
               <div class="timeline" id="dashActivityFeed">
@@ -369,6 +369,29 @@
             </div>
             <div class="dash-card__body">
               <div class="chart-container"><canvas id="dashAreaChart"></canvas></div>
+            </div>
+          </div>
+        </div>
+        <!-- More Dashboard Charts -->
+        <div class="dash-grid dash-grid--2" style="margin-top:20px">
+          <div class="dash-card">
+            <div class="dash-card__header"><h3 class="dash-card__title">Case Status</h3></div>
+            <div class="dash-card__body">
+              <div class="donut-chart" id="dashCaseStatusChart">
+                <canvas id="dashCaseStatusCanvas"></canvas>
+                <div class="donut-center"><span class="donut-center__number">5</span><span class="donut-center__label">Cases</span></div>
+              </div>
+              <div class="donut-legend">
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Active 60%</span>
+                <span><i class="fas fa-circle" style="color:#f59e0b" aria-hidden="true"></i> Pending 20%</span>
+                <span><i class="fas fa-circle" style="color:#6b7280" aria-hidden="true"></i> Closed 20%</span>
+              </div>
+            </div>
+          </div>
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header"><h3 class="dash-card__title">Spending Overview</h3></div>
+            <div class="dash-card__body">
+              <div class="chart-container"><canvas id="dashSpendingChart"></canvas></div>
             </div>
           </div>
         </div>
@@ -579,6 +602,31 @@
           <button class="pagination__btn" aria-label="Page 2">2</button>
           <button class="pagination__btn" aria-label="Next page"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
         </div>
+        <!-- Case Charts -->
+        <div class="dash-grid dash-grid--2" style="margin-top:20px">
+          <div class="dash-card">
+            <div class="dash-card__header"><h3 class="dash-card__title">Cases by Type</h3></div>
+            <div class="dash-card__body">
+              <div class="donut-chart" id="caseTypeChart">
+                <canvas id="caseTypeCanvas"></canvas>
+                <div class="donut-center"><span class="donut-center__number">5</span><span class="donut-center__label">Total</span></div>
+              </div>
+              <div class="donut-legend">
+                <span><i class="fas fa-circle" style="color:#3b82f6" aria-hidden="true"></i> Corporate 25%</span>
+                <span><i class="fas fa-circle" style="color:#C8A96B" aria-hidden="true"></i> Estate 25%</span>
+                <span><i class="fas fa-circle" style="color:#8b5cf6" aria-hidden="true"></i> IP Law 20%</span>
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Real Estate 20%</span>
+                <span><i class="fas fa-circle" style="color:#ef4444" aria-hidden="true"></i> Employment 10%</span>
+              </div>
+            </div>
+          </div>
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header"><h3 class="dash-card__title">Case Progress Overview</h3></div>
+            <div class="dash-card__body">
+              <div class="chart-container"><canvas id="caseProgressChart"></canvas></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ==================== SECTION 3: APPOINTMENTS ==================== -->
@@ -661,9 +709,28 @@
             </div>
           </div>
         </div>
+        <!-- Appointment Charts -->
+        <div class="dash-grid dash-grid--2" style="margin-top:20px">
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header"><h3 class="dash-card__title">Appointments This Week</h3></div>
+            <div class="dash-card__body"><div class="chart-container"><canvas id="apptWeekChart"></canvas></div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card__header"><h3 class="dash-card__title">Appointment Types</h3></div>
+            <div class="dash-card__body">
+              <div class="donut-chart" id="apptTypeChart">
+                <canvas id="apptTypeCanvas"></canvas>
+                <div class="donut-center"><span class="donut-center__number">3</span><span class="donut-center__label">Upcoming</span></div>
+              </div>
+              <div class="donut-legend">
+                <span><i class="fas fa-circle" style="color:#3b82f6" aria-hidden="true"></i> Review 40%</span>
+                <span><i class="fas fa-circle" style="color:#C8A96B" aria-hidden="true"></i> Filing 35%</span>
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Follow-up 25%</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-
-      <!-- ==================== SECTION 4: DOCUMENTS ==================== -->
       <section class="dash-section" id="section-documents" aria-label="Documents">
         <div class="dash-section__header">
           <div>
@@ -763,9 +830,28 @@
             </div>
           </div>
         </div>
+        <!-- Document Charts -->
+        <div class="dash-grid dash-grid--2" style="margin-top:20px">
+          <div class="dash-card">
+            <div class="dash-card__header"><h3 class="dash-card__title">Document Status</h3></div>
+            <div class="dash-card__body">
+              <div class="donut-chart" id="docStatusChart">
+                <canvas id="docStatusCanvas"></canvas>
+                <div class="donut-center"><span class="donut-center__number">6</span><span class="donut-center__label">Total</span></div>
+              </div>
+              <div class="donut-legend">
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Approved 50%</span>
+                <span><i class="fas fa-circle" style="color:#f59e0b" aria-hidden="true"></i> Pending 33%</span>
+                <span><i class="fas fa-circle" style="color:#3b82f6" aria-hidden="true"></i> Submitted 17%</span>
+              </div>
+            </div>
+          </div>
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header"><h3 class="dash-card__title">Documents by Type</h3></div>
+            <div class="dash-card__body"><div class="chart-container"><canvas id="docTypeChart"></canvas></div></div>
+          </div>
+        </div>
       </section>
-
-      <!-- ==================== SECTION 5: MESSAGES ==================== -->
       <section class="dash-section" id="section-messages" aria-label="Messages">
         <div class="dash-section__header">
           <div>
@@ -995,9 +1081,27 @@
             </div>
           </div>
         </div>
+        <!-- Invoice Charts -->
+        <div class="dash-grid dash-grid--2" style="margin-top:20px">
+          <div class="dash-card">
+            <div class="dash-card__header"><h3 class="dash-card__title">Payment Status</h3></div>
+            <div class="dash-card__body">
+              <div class="donut-chart" id="paymentStatusChart">
+                <canvas id="paymentStatusCanvas"></canvas>
+                <div class="donut-center"><span class="donut-center__number">3</span><span class="donut-center__label">Invoices</span></div>
+              </div>
+              <div class="donut-legend">
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Paid 67%</span>
+                <span><i class="fas fa-circle" style="color:#f59e0b" aria-hidden="true"></i> Pending 33%</span>
+              </div>
+            </div>
+          </div>
+          <div class="dash-card dash-card--chart">
+            <div class="dash-card__header"><h3 class="dash-card__title">Monthly Spending</h3></div>
+            <div class="dash-card__body"><div class="chart-container"><canvas id="spendingTrendChart"></canvas></div></div>
+          </div>
+        </div>
       </section>
-
-      <!-- ==================== SECTION 7: SETTINGS ==================== -->
       <section class="dash-section" id="section-settings" aria-label="Settings">
         <div class="dash-section__header">
           <div>

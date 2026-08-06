@@ -4,6 +4,7 @@
    ============================================================ */
 
 /* ---------- Dashboard Layout ---------- */
+*, *::before, *::after { box-sizing: border-box; }
 body {
   background: var(--color-bg);
   overflow-x: hidden;
@@ -40,8 +41,8 @@ body {
 }
 
 .sidebar__logo img {
-  width: 72px;
-  height: 72px;
+  height: 88px;
+  width: auto;
   border-radius: 8px;
   filter: brightness(0) invert(78%) sepia(48%) saturate(450%) hue-rotate(355deg);
 }
@@ -178,6 +179,7 @@ body {
   width: 72px;
 }
 
+.sidebar.collapsed .sidebar__logo,
 .sidebar.collapsed .sidebar__logo-text,
 .sidebar.collapsed .sidebar__label,
 .sidebar.collapsed .sidebar__badge {
@@ -463,6 +465,7 @@ body {
 .dash-main {
   padding: 28px 32px 40px;
   overflow-y: auto;
+  overflow-x: hidden;
   height: calc(100vh - 73px);
 }
 
@@ -789,11 +792,69 @@ body {
 .chart-container {
   height: 200px;
   position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
 }
 
 #lineCanvas {
   width: 100%;
   height: 100%;
+}
+
+/* ---------- Donut Chart ---------- */
+.donut-chart {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 14px;
+  max-width: 100%;
+}
+
+.donut-chart canvas {
+  max-width: 100%;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.donut-center__number {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.donut-center__label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.donut-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.donut-legend i {
+  font-size: 0.6rem;
+  margin-right: 4px;
 }
 
 /* ---------- Toolbar ---------- */
@@ -2012,6 +2073,23 @@ body {
   .sidebar.collapsed.open {
     transform: translateX(0);
   }
+  .sidebar.collapsed .sidebar__logo,
+  .sidebar.collapsed .sidebar__logo-text,
+  .sidebar.collapsed .sidebar__label,
+  .sidebar.collapsed .sidebar__badge {
+    display: block;
+  }
+  .sidebar.collapsed .sidebar__link {
+    justify-content: flex-start;
+    padding: 10px 16px;
+  }
+  .sidebar.collapsed .sidebar__logout {
+    justify-content: flex-start;
+  }
+  .sidebar.collapsed .sidebar__header {
+    justify-content: space-between;
+    padding: 16px 20px;
+  }
   .dashboard {
     margin-left: 0;
   }
@@ -2020,6 +2098,9 @@ body {
   }
   .dash-header__toggle {
     display: flex;
+  }
+  .sidebar__collapse {
+    display: none;
   }
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2112,6 +2193,13 @@ body {
   }
   .invoice-card__body {
     flex-direction: column;
+    gap: 12px;
+  }
+  .chart-container { height: 160px; }
+  .donut-chart { width: 140px; height: 140px; }
+  .dash-grid--2 { grid-template-columns: 1fr; }
+}
+    flex-direction: column;
     gap: 16px;
   }
   .chat-msg {
@@ -2177,6 +2265,9 @@ body {
     flex-direction: row;
     gap: 6px;
   }
+  .chart-container { height: 140px; }
+  .donut-chart { width: 120px; height: 120px; }
+  .donut-legend { gap: 8px; font-size: 0.75rem; }
   .messages-sidebar {
     max-height: 250px;
   }
@@ -2544,3 +2635,22 @@ body {
 .chat-area__messages::-webkit-scrollbar-thumb:hover {
   background: var(--color-muted);
 }
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+body.dark-mode {
+  --color-bg: #0f172a;
+  --color-card: #1e293b;
+  --color-text: #f1f5f9;
+  --color-muted: #94a3b8;
+  --color-border: #334155;
+}
+
+body.dark-mode .dash-header { background: #1e293b; border-bottom-color: #334155; }
+body.dark-mode .dash-card { background: #1e293b; border-color: #334155; }
+body.dark-mode .stat-card { background: #1e293b; border-color: #334155; }
+body.dark-mode .data-table th { background: #1e293b; color: #f1f5f9; }
+body.dark-mode .data-table td { border-color: #334155; color: #e2e8f0; }
+body.dark-mode .notif-panel { background: #1e293b; border-color: #334155; }
+body.dark-mode .dash-header__dropdown { background: #1e293b; border-color: #334155; }

@@ -264,7 +264,7 @@
           <div class="adm-card">
             <div class="adm-card__header">
               <h3 class="adm-card__title">Recent Activity</h3>
-              <a href="#" class="adm-card__link">View All</a>
+              <a href="404.html" class="adm-card__link">View All</a>
             </div>
             <div class="adm-card__body">
               <div class="adm-timeline" id="admActivityFeed">
@@ -434,6 +434,27 @@
           </table>
         </div>
         <div class="adm-cards-mobile" id="clientCards"></div>
+        <!-- Client Charts -->
+        <div class="adm-grid adm-grid--2" style="margin-top:20px;">
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Client Growth</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admClientGrowthChart"></canvas></div></div>
+          </div>
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Client Status</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-donut-chart" id="admClientStatusChart">
+                <canvas id="admClientStatusCanvas"></canvas>
+                <div class="adm-donut-center"><span class="adm-donut-center__number">89</span><span class="adm-donut-center__label">Total</span></div>
+              </div>
+              <div class="adm-donut-legend">
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Active 62%</span>
+                <span><i class="fas fa-circle" style="color:#f59e0b" aria-hidden="true"></i> Pending 18%</span>
+                <span><i class="fas fa-circle" style="color:#6b7280" aria-hidden="true"></i> Inactive 20%</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="adm-pagination"><button class="adm-pagination__btn" disabled aria-label="Previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button><button class="adm-pagination__btn active" aria-current="page">1</button><button class="adm-pagination__btn">2</button><button class="adm-pagination__btn" aria-label="Next"><i class="fas fa-chevron-right" aria-hidden="true"></i></button></div>
       </section>
 
@@ -464,6 +485,27 @@
           </table>
         </div>
         <div class="adm-cards-mobile" id="caseCards"></div>
+        <!-- Case Charts -->
+        <div class="adm-grid adm-grid--2" style="margin-top:20px;">
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Case Status Distribution</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-donut-chart" id="admCaseStatusChart">
+                <canvas id="admCaseStatusCanvas"></canvas>
+                <div class="adm-donut-center"><span class="adm-donut-center__number">67</span><span class="adm-donut-center__label">Total</span></div>
+              </div>
+              <div class="adm-donut-legend">
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Active 55%</span>
+                <span><i class="fas fa-circle" style="color:#f59e0b" aria-hidden="true"></i> Pending 25%</span>
+                <span><i class="fas fa-circle" style="color:#6b7280" aria-hidden="true"></i> Closed 20%</span>
+              </div>
+            </div>
+          </div>
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Cases by Priority</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admCasePriorityChart"></canvas></div></div>
+          </div>
+        </div>
         <div class="adm-pagination"><button class="adm-pagination__btn" disabled aria-label="Previous"><i class="fas fa-chevron-left" aria-hidden="true"></i></button><button class="adm-pagination__btn active" aria-current="page">1</button><button class="adm-pagination__btn">2</button><button class="adm-pagination__btn" aria-label="Next"><i class="fas fa-chevron-right" aria-hidden="true"></i></button></div>
       </section>
 
@@ -503,6 +545,17 @@
               <div class="adm-request"><div class="adm-request__info"><strong>Robert Chen</strong><span>New Client Consultation — Corporate Law</span></div><div class="adm-request__meta"><span>Requested: Aug 8</span><span>Preferred: Aug 20</span></div><div class="adm-request__actions"><button class="btn btn-primary adm-btn-xs">Approve</button><button class="btn btn-secondary adm-btn-xs">Reschedule</button><button class="adm-btn-text adm-btn-text--danger">Cancel</button></div></div>
               <div class="adm-request"><div class="adm-request__info"><strong>Amara Johnson</strong><span>Follow-up — Family Law Consultation</span></div><div class="adm-request__meta"><span>Requested: Aug 6</span><span>Preferred: Aug 18</span></div><div class="adm-request__actions"><button class="btn btn-primary adm-btn-xs">Approve</button><button class="btn btn-secondary adm-btn-xs">Reschedule</button><button class="adm-btn-text adm-btn-text--danger">Cancel</button></div></div>
             </div>
+          </div>
+        </div>
+        <!-- Appointment Charts -->
+        <div class="adm-grid adm-grid--2" style="margin-top:20px;">
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Appointments This Week</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admAppointmentWeekChart"></canvas></div></div>
+          </div>
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Appointments by Type</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admAppointmentTypeChart"></canvas></div></div>
           </div>
         </div>
       </section>
@@ -566,6 +619,27 @@
             <div class="adm-doc-card__actions"><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-eye" aria-hidden="true"></i> Preview</button><button class="btn btn-secondary adm-btn-xs"><i class="fas fa-download" aria-hidden="true"></i> Download</button></div>
           </div>
         </div>
+        <!-- Document Charts -->
+        <div class="adm-grid adm-grid--2" style="margin-top:20px;">
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Document Status</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-donut-chart" id="admDocStatusChart">
+                <canvas id="admDocStatusCanvas"></canvas>
+                <div class="adm-donut-center"><span class="adm-donut-center__number">159</span><span class="adm-donut-center__label">Total</span></div>
+              </div>
+              <div class="adm-donut-legend">
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Verified 89%</span>
+                <span><i class="fas fa-circle" style="color:#f59e0b" aria-hidden="true"></i> Pending 9%</span>
+                <span><i class="fas fa-circle" style="color:#ef4444" aria-hidden="true"></i> Rejected 2%</span>
+              </div>
+            </div>
+          </div>
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Documents by Type</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admDocTypeChart"></canvas></div></div>
+          </div>
+        </div>
       </section>
 
       <!-- ========== MODULE 6: PAYMENTS & BILLING ========== -->
@@ -599,9 +673,29 @@
             </div>
           </div>
         </div>
+        <!-- Payment Charts -->
+        <div class="adm-grid adm-grid--2" style="margin-top:20px;">
+          <div class="adm-card">
+            <div class="adm-card__header"><h3 class="adm-card__title">Payment Methods</h3></div>
+            <div class="adm-card__body">
+              <div class="adm-donut-chart" id="admPaymentMethodChart">
+                <canvas id="admPaymentMethodCanvas"></canvas>
+                <div class="adm-donut-center"><span class="adm-donut-center__number">24</span><span class="adm-donut-center__label">Invoices</span></div>
+              </div>
+              <div class="adm-donut-legend">
+                <span><i class="fas fa-circle" style="color:#3b82f6" aria-hidden="true"></i> Bank Transfer 45%</span>
+                <span><i class="fas fa-circle" style="color:#22c55e" aria-hidden="true"></i> Credit Card 30%</span>
+                <span><i class="fas fa-circle" style="color:#C8A96B" aria-hidden="true"></i> Check 15%</span>
+                <span><i class="fas fa-circle" style="color:#8b5cf6" aria-hidden="true"></i> Other 10%</span>
+              </div>
+            </div>
+          </div>
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Monthly Comparison</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admMonthlyCompChart"></canvas></div></div>
+          </div>
+        </div>
       </section>
-
-      <!-- ========== MODULE 7: REPORTS & ANALYTICS ========== -->
       <section class="adm-section" id="section-reports" aria-label="Reports and Analytics">
         <div class="adm-section__header">
           <div><h2 class="adm-section__title">Reports & Analytics</h2><p class="adm-section__subtitle">Executive analytics and performance insights</p></div>
@@ -646,6 +740,17 @@
             <div class="adm-card__body"><div class="adm-circle-progress" data-value="95"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#E5E7EB" stroke-width="8"/><circle cx="60" cy="60" r="52" fill="none" stroke="#8b5cf6" stroke-width="8" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="adm-circle-progress__ring" transform="rotate(-90 60 60)"/></svg><span class="adm-circle-progress__text">95%</span></div><p class="adm-circle-progress__label">Document Accuracy</p></div>
           </div>
         </div>
+        <!-- More Report Charts -->
+        <div class="adm-grid adm-grid--2" style="margin-top:20px;">
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Revenue vs Expenses</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admRevenueExpenseChart"></canvas></div></div>
+          </div>
+          <div class="adm-card adm-card--chart">
+            <div class="adm-card__header"><h3 class="adm-card__title">Client Acquisition</h3></div>
+            <div class="adm-card__body"><div class="adm-chart-container"><canvas id="admClientAcqChart"></canvas></div></div>
+          </div>
+        </div>
       </section>
 
       <!-- ========== MODULE 8: SYSTEM SETTINGS ========== -->
@@ -672,8 +777,8 @@
             <div class="adm-card__body">
               <form class="adm-form" id="admCompanyForm" aria-label="Company information form">
                 <div class="adm-form__group"><label for="admCompanyName" class="adm-form__label">Company Name</label><input type="text" id="admCompanyName" class="adm-form__input" value="Stackly Legal Services"></div>
-                <div class="adm-form__group"><label for="admCompanyAddr" class="adm-form__label">Address</label><input type="text" id="admCompanyAddr" class="adm-form__input" value="123 Justice Avenue, Suite 500, New York, NY 10001"></div>
-                <div class="adm-form__row"><div class="adm-form__group"><label for="admCompanyPhone" class="adm-form__label">Phone</label><input type="tel" id="admCompanyPhone" class="adm-form__input" value="+1 (555) 123-4567"></div><div class="adm-form__group"><label for="admCompanyEmail" class="adm-form__label">Email</label><input type="email" id="admCompanyEmail" class="adm-form__input" value="contact@stacklylegal.com"></div></div>
+                <div class="adm-form__group"><label for="admCompanyAddr" class="adm-form__label">Address</label><input type="text" id="admCompanyAddr" class="adm-form__input" value="Salem, Tamil Nadu, India"></div>
+                <div class="adm-form__row"><div class="adm-form__group"><label for="admCompanyPhone" class="adm-form__label">Phone</label><input type="tel" id="admCompanyPhone" class="adm-form__input" value="+1 (555) 123-4567"></div><div class="adm-form__group"><label for="admCompanyEmail" class="adm-form__label">Email</label><input type="email" id="admCompanyEmail" class="adm-form__input" value="info@stackly.com"></div></div>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
               </form>
             </div>

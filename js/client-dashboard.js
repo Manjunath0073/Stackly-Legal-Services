@@ -125,8 +125,11 @@
   if (themeToggle) {
     themeToggle.addEventListener('click', function () {
       var icon = this.querySelector('i');
+      document.body.classList.toggle('dark-mode');
       if (icon) { if (icon.classList.contains('fa-moon')) icon.classList.replace('fa-moon', 'fa-sun'); else icon.classList.replace('fa-sun', 'fa-moon'); }
+      try { localStorage.setItem('stacklyTheme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch (e) {}
     });
+    try { if (localStorage.getItem('stacklyTheme') === 'dark') { document.body.classList.add('dark-mode'); var icon = themeToggle.querySelector('i'); if (icon) { icon.classList.replace('fa-moon', 'fa-sun'); } } } catch (e) {}
   }
 
   /* ---------- Notification Panel ---------- */
@@ -291,8 +294,143 @@
     ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y); points.forEach(function (p) { ctx.lineTo(p.x, p.y); }); ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.lineJoin = 'round'; ctx.stroke();
   }
 
+  /* ---------- New Chart Functions ---------- */
+  function drawDonutChart(canvasId, data, colors) {
+    var s = setupCanvas(canvasId, 140, 140); if (!s) return;
+    var ctx = s.ctx, cx = s.w / 2, cy = s.h / 2, r = 55;
+    var total = data.reduce(function (a, b) { return a + b; }, 0); var start = -Math.PI / 2;
+    ctx.clearRect(0, 0, s.w, s.h);
+    data.forEach(function (val, idx) { var angle = (val / total) * Math.PI * 2; ctx.beginPath(); ctx.arc(cx, cy, r, start, start + angle); ctx.lineWidth = 20; ctx.strokeStyle = colors[idx]; ctx.stroke(); start += angle; });
+  }
+
+  function drawDashCaseStatusChart() { drawDonutChart('dashCaseStatusCanvas', [60, 20, 20], ['#22c55e', '#f59e0b', '#6b7280']); }
+  function drawCaseTypeChart() { drawDonutChart('caseTypeCanvas', [25, 25, 20, 20, 10], ['#3b82f6', '#C8A96B', '#8b5cf6', '#22c55e', '#ef4444']); }
+  function drawApptTypeChart() { drawDonutChart('apptTypeCanvas', [40, 35, 25], ['#3b82f6', '#C8A96B', '#22c55e']); }
+  function drawDocStatusChart() { drawDonutChart('docStatusCanvas', [50, 33, 17], ['#22c55e', '#f59e0b', '#3b82f6']); }
+  function drawPaymentStatusChart() { drawDonutChart('paymentStatusCanvas', [67, 33], ['#22c55e', '#f59e0b']); }
+
+  function drawSpendingChart() {
+    var s = setupCanvas('dashSpendingChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 50 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    var data = [4200, 3800, 5100, 4500, 3200, 4800];
+    var max = 6000;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+    for (var i = 0; i <= 4; i++) { var y = pad.top + (cH / 4) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke(); }
+    ctx.fillStyle = '#64748B'; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+    labels.forEach(function (l, idx) { ctx.fillText(l, pad.left + (cW / (labels.length - 1)) * idx, h - 8); });
+    var points = []; data.forEach(function (val, idx) { points.push({ x: pad.left + (cW / (data.length - 1)) * idx, y: pad.top + cH - (val / max) * cH }); });
+    ctx.beginPath(); ctx.moveTo(points[0].x, pad.top + cH); points.forEach(function (p) { ctx.lineTo(p.x, p.y); }); ctx.lineTo(points[points.length - 1].x, pad.top + cH); ctx.closePath();
+    var grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + cH); grad.addColorStop(0, '#C8A96B40'); grad.addColorStop(1, '#C8A96B05'); ctx.fillStyle = grad; ctx.fill();
+    ctx.beginPath(); ctx.strokeStyle = '#C8A96B'; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    points.forEach(function (p, idx) { idx === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y); }); ctx.stroke();
+    points.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fillStyle = '#C8A96B'; ctx.fill(); });
+  }
+
+  function drawCaseProgressChart() {
+    var s = setupCanvas('caseProgressChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 100 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Corporate', 'Estate', 'Trademark', 'Lease', 'Employment'];
+    var data = [75, 45, 90, 30, 100];
+    var max = 100;
+    ctx.clearRect(0, 0, w, h);
+    var barH = (cH / labels.length) * 0.6;
+    var gap = (cH / labels.length) * 0.4;
+    var colors = ['#3b82f6', '#C8A96B', '#8b5cf6', '#22c55e', '#6b7280'];
+    labels.forEach(function (label, idx) {
+      var y = pad.top + idx * (barH + gap);
+      var bw = (data[idx] / max) * cW;
+      var grad = ctx.createLinearGradient(pad.left, 0, pad.left + bw, 0);
+      grad.addColorStop(0, colors[idx]); grad.addColorStop(1, colors[idx] + '80');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.roundRect(pad.left, y, bw, barH, 4); ctx.fill();
+      ctx.fillStyle = '#64748B'; ctx.font = '11px Inter, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText(label, pad.left - 8, y + barH / 2 + 4);
+      ctx.fillStyle = colors[idx]; ctx.font = 'bold 11px Inter, sans-serif'; ctx.textAlign = 'left';
+      ctx.fillText(data[idx] + '%', pad.left + bw + 8, y + barH / 2 + 4);
+    });
+  }
+
+  function drawApptWeekChart() {
+    var s = setupCanvas('apptWeekChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 40 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+    var data = [1, 0, 1, 0, 1];
+    var max = 2;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+    for (var i = 0; i <= 2; i++) { var y = pad.top + (cH / 2) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke(); }
+    var barW = (cW / labels.length) * 0.5;
+    var gap = (cW / labels.length) * 0.5;
+    labels.forEach(function (label, idx) {
+      var x = pad.left + idx * (barW + gap) + gap / 2;
+      var bh = (data[idx] / max) * cH;
+      var grad = ctx.createLinearGradient(0, pad.top + cH - bh, 0, pad.top + cH);
+      grad.addColorStop(0, '#3b82f6'); grad.addColorStop(1, '#3b82f640');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.roundRect(x, pad.top + cH - bh, barW, bh, 4); ctx.fill();
+      ctx.fillStyle = '#64748B'; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(label, x + barW / 2, h - 8);
+    });
+  }
+
+  function drawDocTypeChart() {
+    var s = setupCanvas('docTypeChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 80 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['PDF', 'DOCX', 'Images', 'Other'];
+    var data = [50, 25, 17, 8];
+    var max = 60;
+    ctx.clearRect(0, 0, w, h);
+    var barH = (cH / labels.length) * 0.6;
+    var gap = (cH / labels.length) * 0.4;
+    var colors = ['#ef4444', '#3b82f6', '#22c55e', '#6b7280'];
+    labels.forEach(function (label, idx) {
+      var y = pad.top + idx * (barH + gap);
+      var bw = (data[idx] / max) * cW;
+      var grad = ctx.createLinearGradient(pad.left, 0, pad.left + bw, 0);
+      grad.addColorStop(0, colors[idx]); grad.addColorStop(1, colors[idx] + '80');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.roundRect(pad.left, y, bw, barH, 4); ctx.fill();
+      ctx.fillStyle = '#64748B'; ctx.font = '11px Inter, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText(label, pad.left - 8, y + barH / 2 + 4);
+    });
+  }
+
+  function drawSpendingTrendChart() {
+    var s = setupCanvas('spendingTrendChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 50 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    var data = [4200, 3800, 5100, 4500, 3200, 4800];
+    var max = 6000;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+    for (var i = 0; i <= 4; i++) { var y = pad.top + (cH / 4) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke(); }
+    ctx.fillStyle = '#64748B'; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+    labels.forEach(function (l, idx) { ctx.fillText(l, pad.left + (cW / (labels.length - 1)) * idx, h - 8); });
+    var points = []; data.forEach(function (val, idx) { points.push({ x: pad.left + (cW / (data.length - 1)) * idx, y: pad.top + cH - (val / max) * cH }); });
+    ctx.beginPath(); ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    points.forEach(function (p, idx) { idx === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y); }); ctx.stroke();
+    points.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fillStyle = '#ef4444'; ctx.fill(); });
+  }
+
   function drawAllCharts() {
     drawLineChart(); drawBarChart(); drawAreaChart();
+    drawDashCaseStatusChart(); drawSpendingChart();
+    drawCaseTypeChart(); drawCaseProgressChart();
+    drawApptWeekChart(); drawApptTypeChart();
+    drawDocStatusChart(); drawDocTypeChart();
+    drawPaymentStatusChart(); drawSpendingTrendChart();
     drawSparkline('spark1', [12, 15, 13, 18, 16, 20, 19], '#C8A96B');
     drawSparkline('spark2', [8, 12, 10, 15, 14, 18, 17], '#3b82f6');
     drawSparkline('spark3', [5, 7, 6, 9, 8, 11, 10], '#22c55e');

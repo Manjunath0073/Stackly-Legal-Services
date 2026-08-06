@@ -174,9 +174,14 @@
       }
     });
 
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
     navLinks.forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
+      const href = link.getAttribute('href');
+      if (href === '#' + current) {
+        link.classList.add('active');
+      } else if (href === currentPage) {
         link.classList.add('active');
       }
     });
@@ -205,4 +210,41 @@
   updateScrollProgress();
   updateBackToTop();
   setActiveNav();
+
+  /* ---------- Newsletter Forms ---------- */
+  function setupNewsletterForm(formSelector, successMessage) {
+    const forms = document.querySelectorAll(formSelector);
+    forms.forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = form.querySelector('input[type="email"]');
+        if (!emailInput) return;
+        
+        const email = emailInput.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          emailInput.style.borderColor = '#ef4444';
+          setTimeout(function() { emailInput.style.borderColor = ''; }, 2000);
+          return;
+        }
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i>';
+        submitBtn.disabled = true;
+
+        setTimeout(function() {
+          form.innerHTML = '<div style="display:flex;align-items:center;gap:10px;color:#22c55e;font-weight:600;padding:12px 0;"><i class="fas fa-check-circle" aria-hidden="true"></i><span>' + (successMessage || 'Subscribed successfully!') + '</span></div>';
+          
+          setTimeout(function() {
+            form.innerHTML = '<label for="' + emailInput.id + '" class="sr-only">Email address</label><input type="email" id="' + emailInput.id + '" name="email" placeholder="' + (emailInput.placeholder || 'Your email') + '" required><button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>';
+            setupNewsletterForm(formSelector, successMessage);
+          }, 3000);
+        }, 1000);
+      });
+    });
+  }
+
+  setupNewsletterForm('.newsletter__form', 'Subscribed successfully!');
+  setupNewsletterForm('.pa-newsletter__form', 'Subscribed successfully!');
+  setupNewsletterForm('.footer__newsletter', 'Subscribed successfully!');
 })();

@@ -199,15 +199,28 @@
   });
 
   /* ============================================================
-     THEME TOGGLE (PLACEHOLDER)
+     THEME TOGGLE
      ============================================================ */
   if (themeToggle) {
     themeToggle.addEventListener('click', function () {
       var icon = this.querySelector('i');
+      document.body.classList.toggle('dark-mode');
       if (icon) {
         if (icon.classList.contains('fa-moon')) icon.classList.replace('fa-moon', 'fa-sun');
         else icon.classList.replace('fa-sun', 'fa-moon');
       }
+      try { localStorage.setItem('stacklyTheme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch (e) {}
+    });
+    try { if (localStorage.getItem('stacklyTheme') === 'dark') { document.body.classList.add('dark-mode'); var icon = themeToggle.querySelector('i'); if (icon) { icon.classList.replace('fa-moon', 'fa-sun'); } } } catch (e) {}
+  }
+
+  /* ============================================================
+     MESSAGE BUTTON
+     ============================================================ */
+  if (msgBtn) {
+    msgBtn.addEventListener('click', function () {
+      var section = document.querySelector('[data-section="messages"]') || document.querySelector('a[href="#messages"]');
+      if (section) section.click();
     });
   }
 
@@ -435,9 +448,244 @@
     ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y); points.forEach(function (p) { ctx.lineTo(p.x, p.y); }); ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.lineJoin = 'round'; ctx.stroke();
   }
 
+  /* ---------- New Chart Functions ---------- */
+  function drawClientGrowthChart() {
+    var s = setupCanvas('admClientGrowthChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 40 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    var data = [12, 19, 15, 22, 18, 25];
+    var max = 30;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+    for (var i = 0; i <= 5; i++) { var y = pad.top + (cH / 5) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke(); }
+    ctx.fillStyle = '#64748B'; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+    labels.forEach(function (l, idx) { ctx.fillText(l, pad.left + (cW / (labels.length - 1)) * idx, h - 8); });
+    var points = []; data.forEach(function (val, idx) { points.push({ x: pad.left + (cW / (data.length - 1)) * idx, y: pad.top + cH - (val / max) * cH }); });
+    ctx.beginPath(); ctx.moveTo(points[0].x, pad.top + cH); points.forEach(function (p) { ctx.lineTo(p.x, p.y); }); ctx.lineTo(points[points.length - 1].x, pad.top + cH); ctx.closePath();
+    var grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + cH); grad.addColorStop(0, '#22c55e40'); grad.addColorStop(1, '#22c55e05'); ctx.fillStyle = grad; ctx.fill();
+    ctx.beginPath(); ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    points.forEach(function (p, idx) { idx === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y); }); ctx.stroke();
+    points.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fillStyle = '#22c55e'; ctx.fill(); });
+  }
+
+  function drawClientStatusChart() {
+    var s = setupCanvas('admClientStatusCanvas', 140, 140); if (!s) return;
+    var ctx = s.ctx, cx = s.w / 2, cy = s.h / 2, r = 55;
+    var data = [62, 18, 20]; var colors = ['#22c55e', '#f59e0b', '#6b7280'];
+    var total = data.reduce(function (a, b) { return a + b; }, 0); var start = -Math.PI / 2;
+    ctx.clearRect(0, 0, s.w, s.h);
+    data.forEach(function (val, idx) { var angle = (val / total) * Math.PI * 2; ctx.beginPath(); ctx.arc(cx, cy, r, start, start + angle); ctx.lineWidth = 20; ctx.strokeStyle = colors[idx]; ctx.stroke(); start += angle; });
+  }
+
+  function drawCaseStatusChart() {
+    var s = setupCanvas('admCaseStatusCanvas', 140, 140); if (!s) return;
+    var ctx = s.ctx, cx = s.w / 2, cy = s.h / 2, r = 55;
+    var data = [55, 25, 20]; var colors = ['#22c55e', '#f59e0b', '#6b7280'];
+    var total = data.reduce(function (a, b) { return a + b; }, 0); var start = -Math.PI / 2;
+    ctx.clearRect(0, 0, s.w, s.h);
+    data.forEach(function (val, idx) { var angle = (val / total) * Math.PI * 2; ctx.beginPath(); ctx.arc(cx, cy, r, start, start + angle); ctx.lineWidth = 20; ctx.strokeStyle = colors[idx]; ctx.stroke(); start += angle; });
+  }
+
+  function drawCasePriorityChart() {
+    var s = setupCanvas('admCasePriorityChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 50 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['High', 'Medium', 'Low'];
+    var data = [28, 35, 14];
+    var max = 40;
+    ctx.clearRect(0, 0, w, h);
+    var barH = (cH / labels.length) * 0.6;
+    var gap = (cH / labels.length) * 0.4;
+    var colors = ['#ef4444', '#f59e0b', '#22c55e'];
+    labels.forEach(function (label, idx) {
+      var y = pad.top + idx * (barH + gap);
+      var bw = (data[idx] / max) * cW;
+      var grad = ctx.createLinearGradient(pad.left, 0, pad.left + bw, 0);
+      grad.addColorStop(0, colors[idx]); grad.addColorStop(1, colors[idx] + '80');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.roundRect(pad.left, y, bw, barH, 4); ctx.fill();
+      ctx.fillStyle = '#64748B'; ctx.font = '11px Inter, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText(label, pad.left - 8, y + barH / 2 + 4);
+      ctx.fillStyle = colors[idx]; ctx.font = 'bold 11px Inter, sans-serif'; ctx.textAlign = 'left';
+      ctx.fillText(data[idx], pad.left + bw + 8, y + barH / 2 + 4);
+    });
+  }
+
+  function drawAppointmentWeekChart() {
+    var s = setupCanvas('admAppointmentWeekChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 40 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+    var data = [8, 12, 6, 10, 14];
+    var max = 16;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+    for (var i = 0; i <= 4; i++) { var y = pad.top + (cH / 4) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke(); }
+    var barW = (cW / labels.length) * 0.5;
+    var gap = (cW / labels.length) * 0.5;
+    labels.forEach(function (label, idx) {
+      var x = pad.left + idx * (barW + gap) + gap / 2;
+      var bh = (data[idx] / max) * cH;
+      var grad = ctx.createLinearGradient(0, pad.top + cH - bh, 0, pad.top + cH);
+      grad.addColorStop(0, '#C8A96B'); grad.addColorStop(1, '#C8A96B40');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.roundRect(x, pad.top + cH - bh, barW, bh, 4); ctx.fill();
+      ctx.fillStyle = '#64748B'; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(label, x + barW / 2, h - 8);
+    });
+  }
+
+  function drawAppointmentTypeChart() {
+    var s = setupCanvas('admAppointmentTypeChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 80 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Consultation', 'Case Review', 'Filing', 'Court Prep'];
+    var data = [35, 25, 22, 18];
+    var max = 40;
+    ctx.clearRect(0, 0, w, h);
+    var barH = (cH / labels.length) * 0.6;
+    var gap = (cH / labels.length) * 0.4;
+    var colors = ['#3b82f6', '#C8A96B', '#22c55e', '#8b5cf6'];
+    labels.forEach(function (label, idx) {
+      var y = pad.top + idx * (barH + gap);
+      var bw = (data[idx] / max) * cW;
+      var grad = ctx.createLinearGradient(pad.left, 0, pad.left + bw, 0);
+      grad.addColorStop(0, colors[idx]); grad.addColorStop(1, colors[idx] + '80');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.roundRect(pad.left, y, bw, barH, 4); ctx.fill();
+      ctx.fillStyle = '#64748B'; ctx.font = '11px Inter, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText(label, pad.left - 8, y + barH / 2 + 4);
+    });
+  }
+
+  function drawDocStatusChart() {
+    var s = setupCanvas('admDocStatusCanvas', 140, 140); if (!s) return;
+    var ctx = s.ctx, cx = s.w / 2, cy = s.h / 2, r = 55;
+    var data = [89, 9, 2]; var colors = ['#22c55e', '#f59e0b', '#ef4444'];
+    var total = data.reduce(function (a, b) { return a + b; }, 0); var start = -Math.PI / 2;
+    ctx.clearRect(0, 0, s.w, s.h);
+    data.forEach(function (val, idx) { var angle = (val / total) * Math.PI * 2; ctx.beginPath(); ctx.arc(cx, cy, r, start, start + angle); ctx.lineWidth = 20; ctx.strokeStyle = colors[idx]; ctx.stroke(); start += angle; });
+  }
+
+  function drawDocTypeChart() {
+    var s = setupCanvas('admDocTypeChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 80 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['PDF', 'DOCX', 'Images', 'Other'];
+    var data = [45, 28, 18, 9];
+    var max = 50;
+    ctx.clearRect(0, 0, w, h);
+    var barH = (cH / labels.length) * 0.6;
+    var gap = (cH / labels.length) * 0.4;
+    var colors = ['#ef4444', '#3b82f6', '#22c55e', '#6b7280'];
+    labels.forEach(function (label, idx) {
+      var y = pad.top + idx * (barH + gap);
+      var bw = (data[idx] / max) * cW;
+      var grad = ctx.createLinearGradient(pad.left, 0, pad.left + bw, 0);
+      grad.addColorStop(0, colors[idx]); grad.addColorStop(1, colors[idx] + '80');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.roundRect(pad.left, y, bw, barH, 4); ctx.fill();
+      ctx.fillStyle = '#64748B'; ctx.font = '11px Inter, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText(label, pad.left - 8, y + barH / 2 + 4);
+    });
+  }
+
+  function drawPaymentMethodChart() {
+    var s = setupCanvas('admPaymentMethodCanvas', 140, 140); if (!s) return;
+    var ctx = s.ctx, cx = s.w / 2, cy = s.h / 2, r = 55;
+    var data = [45, 30, 15, 10]; var colors = ['#3b82f6', '#22c55e', '#C8A96B', '#8b5cf6'];
+    var total = data.reduce(function (a, b) { return a + b; }, 0); var start = -Math.PI / 2;
+    ctx.clearRect(0, 0, s.w, s.h);
+    data.forEach(function (val, idx) { var angle = (val / total) * Math.PI * 2; ctx.beginPath(); ctx.arc(cx, cy, r, start, start + angle); ctx.lineWidth = 20; ctx.strokeStyle = colors[idx]; ctx.stroke(); start += angle; });
+  }
+
+  function drawMonthlyCompChart() {
+    var s = setupCanvas('admMonthlyCompChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 50 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    var data1 = [45, 52, 48, 61, 55, 68];
+    var data2 = [32, 38, 35, 42, 40, 45];
+    var max = 80;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+    for (var i = 0; i <= 4; i++) { var y = pad.top + (cH / 4) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke(); }
+    ctx.fillStyle = '#64748B'; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+    labels.forEach(function (l, idx) { ctx.fillText(l, pad.left + (cW / (labels.length - 1)) * idx, h - 8); });
+    function drawLine(data, color) {
+      var points = []; data.forEach(function (val, idx) { points.push({ x: pad.left + (cW / (data.length - 1)) * idx, y: pad.top + cH - (val / max) * cH }); });
+      ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      points.forEach(function (p, idx) { idx === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y); }); ctx.stroke();
+      points.forEach(function (p) { ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill(); });
+    }
+    drawLine(data1, '#22c55e'); drawLine(data2, '#ef4444');
+  }
+
+  function drawRevenueExpenseChart() {
+    var s = setupCanvas('admRevenueExpenseChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 50 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    var revenue = [85, 92, 88, 95, 90, 105];
+    var expenses = [45, 48, 42, 50, 46, 52];
+    var max = 120;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+    for (var i = 0; i <= 4; i++) { var y = pad.top + (cH / 4) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke(); }
+    ctx.fillStyle = '#64748B'; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+    labels.forEach(function (l, idx) { ctx.fillText(l, pad.left + (cW / (labels.length - 1)) * idx, h - 8); });
+    function drawFilledLine(data, color) {
+      var points = []; data.forEach(function (val, idx) { points.push({ x: pad.left + (cW / (data.length - 1)) * idx, y: pad.top + cH - (val / max) * cH }); });
+      ctx.beginPath(); ctx.moveTo(points[0].x, pad.top + cH); points.forEach(function (p) { ctx.lineTo(p.x, p.y); }); ctx.lineTo(points[points.length - 1].x, pad.top + cH); ctx.closePath();
+      var grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + cH); grad.addColorStop(0, color + '40'); grad.addColorStop(1, color + '05'); ctx.fillStyle = grad; ctx.fill();
+      ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.lineJoin = 'round';
+      points.forEach(function (p, idx) { idx === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y); }); ctx.stroke();
+    }
+    drawFilledLine(revenue, '#22c55e'); drawFilledLine(expenses, '#ef4444');
+  }
+
+  function drawClientAcqChart() {
+    var s = setupCanvas('admClientAcqChart'); if (!s) return;
+    var ctx = s.ctx, w = s.w, h = s.h;
+    var pad = { top: 20, right: 20, bottom: 30, left: 40 };
+    var cW = w - pad.left - pad.right, cH = h - pad.top - pad.bottom;
+    var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    var data = [8, 12, 10, 15, 13, 18];
+    var max = 20;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+    for (var i = 0; i <= 4; i++) { var y = pad.top + (cH / 4) * i; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke(); }
+    var barW = (cW / labels.length) * 0.5;
+    var gap = (cW / labels.length) * 0.5;
+    labels.forEach(function (label, idx) {
+      var x = pad.left + idx * (barW + gap) + gap / 2;
+      var bh = (data[idx] / max) * cH;
+      var grad = ctx.createLinearGradient(0, pad.top + cH - bh, 0, pad.top + cH);
+      grad.addColorStop(0, '#8b5cf6'); grad.addColorStop(1, '#8b5cf640');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.roundRect(x, pad.top + cH - bh, barW, bh, 4); ctx.fill();
+      ctx.fillStyle = '#64748B'; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(label, x + barW / 2, h - 8);
+    });
+  }
+
   function drawAllCharts() {
     drawLineChart(); drawBarChart(); drawDonutChart(); drawRevenueChart();
     drawHorizontalBarChart(); drawAreaChart();
+    drawClientGrowthChart(); drawClientStatusChart();
+    drawCaseStatusChart(); drawCasePriorityChart();
+    drawAppointmentWeekChart(); drawAppointmentTypeChart();
+    drawDocStatusChart(); drawDocTypeChart();
+    drawPaymentMethodChart(); drawMonthlyCompChart();
+    drawRevenueExpenseChart(); drawClientAcqChart();
     drawSparkline('sparkline1', [12, 15, 13, 18, 16, 20, 19], '#C8A96B');
     drawSparkline('sparkline2', [8, 12, 10, 15, 14, 18, 17], '#3b82f6');
     drawSparkline('sparkline3', [5, 7, 6, 9, 8, 11, 10], '#22c55e');

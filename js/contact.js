@@ -174,7 +174,7 @@
       successMessage.setAttribute('aria-hidden', 'false');
       successMessage.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
 
-      /* Reset form after 4 seconds */
+      /* Reset form after 3 seconds */
       setTimeout(function () {
         form.reset();
         submitBtn.disabled = false;
@@ -186,7 +186,7 @@
           var group = fields[key].el.closest('.ct-form__group');
           if (group) group.classList.remove('is-valid');
         });
-      }, 4000);
+      }, 3000);
     }, 1500);
   });
 

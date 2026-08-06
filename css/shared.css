@@ -1,5 +1,5 @@
-/* ============================================================
-   STACKLY LEGAL SERVICES — SHARED STYLES
+﻿/* ============================================================
+   STACKLY LEGAL SERVICES ΓÇö SHARED STYLES
    Design system, typography, header, footer, utilities, animations
    ============================================================ */
 
@@ -777,8 +777,19 @@ body.drawer-open .hamburger {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr;
   gap: 48px;
+  align-items: start;
   padding-bottom: 80px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__brand > a {
+  display: inline-block;
+  line-height: 0;
 }
 
 .footer__brand img {

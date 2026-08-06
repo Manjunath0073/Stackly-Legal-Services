@@ -86,6 +86,33 @@
     }
   };
 
+  /* ---------- Input Restrictions ---------- */
+  function setupInputRestrictions() {
+    var nameInput = document.getElementById('auth-name');
+    var phoneInput = document.getElementById('auth-phone');
+    var emailInput = document.getElementById('auth-signup-email') || document.getElementById('auth-email');
+
+    if (nameInput) {
+      nameInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+      });
+    }
+
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+      });
+    }
+
+    if (emailInput) {
+      emailInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^A-Za-z0-9@._-]/g, '');
+      });
+    }
+  }
+
+  setupInputRestrictions();
+
   /* ---------- Password Strength ---------- */
   function getPasswordStrength(password) {
     var score = 0;

@@ -58,8 +58,8 @@
       },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "123 Justice Avenue, Suite 500",
-        "addressLocality": "New York",
+        "streetAddress": "Salem, Tamil Nadu",
+        "addressLocality": "Salem",
         "addressRegion": "NY",
         "postalCode": "10001",
         "addressCountry": "US"
@@ -152,14 +152,14 @@
             <i class="fas fa-phone-alt" aria-hidden="true"></i>
             <span>+1 (555) 123-4567</span>
           </a>
-          <a href="mailto:contact@stacklylegal.com" class="mobile-drawer__contact-item">
+          <a href="mailto:info@stackly.com" class="mobile-drawer__contact-item">
             <i class="fas fa-envelope" aria-hidden="true"></i>
-            <span>contact@stacklylegal.com</span>
+            <span>info@stackly.com</span>
           </a>
         </div>
         <div class="mobile-drawer__social" aria-label="Social media">
           <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          <a href="#" aria-label="X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
         </div>
         <div class="mobile-drawer__actions">
@@ -177,37 +177,79 @@
     <!-- Section 1: Premium About Hero -->
     <section class="about-hero" id="about-hero" aria-label="About hero">
       <div class="about-hero__bg">
-        <img src="assets/images/about-hero.webp" alt="Stackly Legal Services headquarters lobby with marble flooring" loading="eager">
+        <img src="assets/images/about-hero.webp" alt="" loading="eager" aria-hidden="true">
       </div>
-      <div class="about-hero__shape about-hero__shape--1" aria-hidden="true"></div>
-      <div class="about-hero__shape about-hero__shape--2" aria-hidden="true"></div>
-      <div class="about-hero__shape about-hero__shape--3" aria-hidden="true"></div>
+      <div class="about-hero__overlay" aria-hidden="true"></div>
+      <div class="about-hero__lines" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="about-hero__glow about-hero__glow--1" aria-hidden="true"></div>
+      <div class="about-hero__glow about-hero__glow--2" aria-hidden="true"></div>
 
       <div class="about-hero__container">
-        <nav class="about-hero__breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html">Home</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">About Us</span>
-        </nav>
-        <h1 class="about-hero__title">Defining Legal <span>Excellence</span> Since 1991</h1>
-        <p class="about-hero__desc">For over three decades, Stackly Legal Services has been a pillar of integrity, strategic insight, and unwavering commitment to our clients' most critical legal matters.</p>
-        <div class="about-hero__stats">
-          <div class="about-hero__stat">
+        <div class="about-hero__grid">
+          <div class="about-hero__content">
+            <nav class="about-hero__breadcrumb" aria-label="Breadcrumb">
+              <a href="404.html">Home</a>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">About Us</span>
+            </nav>
+            <h1 class="about-hero__title">
+              <span class="about-hero__title-line">Defining Legal</span>
+              <span class="about-hero__title-line about-hero__title-line--accent">Excellence</span>
+              <span class="about-hero__title-line">Since 1991</span>
+            </h1>
+            <p class="about-hero__desc">For over three decades, Stackly Legal Services has been a pillar of integrity, strategic insight, and unwavering commitment to our clients' most critical legal matters.</p>
+            <div class="about-hero__actions">
+              <a href="404.html" class="btn btn-primary">
+                <span>Schedule Consultation</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </a>
+              <a href="#our-story" class="btn btn-outline">
+                <span>Our Story</span>
+              </a>
+            </div>
+          </div>
+          <div class="about-hero__visual">
+            <div class="about-hero__image-card about-hero__image-card--main">
+              <img src="assets/images/our-story.webp" alt="Stackly Legal Services founding moment" loading="eager">
+              <div class="about-hero__image-badge">
+                <span class="about-hero__image-badge-number">35+</span>
+                <span class="about-hero__image-badge-text">Years</span>
+              </div>
+            </div>
+            <div class="about-hero__image-card about-hero__image-card--floating">
+              <img src="assets/images/consultation.webp" alt="Legal consultation in progress" loading="eager">
+            </div>
+            <div class="about-hero__stats-ring" aria-hidden="true">
+              <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(200,169,107,0.2)" stroke-width="2"/>
+                <circle cx="60" cy="60" r="54" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-dasharray="339.3" stroke-dashoffset="85" stroke-linecap="round" class="about-hero__stats-circle"/>
+              </svg>
+              <div class="about-hero__stats-ring-content">
+                <span class="about-hero__stats-ring-number" data-counter data-target="98" data-suffix="%">0</span>
+                <span class="about-hero__stats-ring-label">Success</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-hero__bottom-stats">
+          <div class="about-hero__stat" style="--delay: 0.1s">
             <span class="about-hero__stat-number" data-counter data-target="35" data-suffix="+">0</span>
             <span class="about-hero__stat-label">Years of Practice</span>
           </div>
-          <div class="about-hero__stat">
+          <div class="about-hero__stat" style="--delay: 0.2s">
             <span class="about-hero__stat-number" data-counter data-target="85" data-suffix="+">0</span>
             <span class="about-hero__stat-label">Legal Professionals</span>
           </div>
-          <div class="about-hero__stat">
+          <div class="about-hero__stat" style="--delay: 0.3s">
             <span class="about-hero__stat-number" data-counter data-target="1200" data-suffix="+">0</span>
             <span class="about-hero__stat-label">Clients Served</span>
           </div>
-        </div>
-        <div class="about-hero__actions">
-          <a href="contact.html" class="btn btn-primary">Schedule Consultation</a>
-          <a href="#our-story" class="btn btn-secondary">Our Story</a>
+          <div class="about-hero__stat" style="--delay: 0.4s">
+            <span class="about-hero__stat-number" data-counter data-target="15" data-suffix="+">0</span>
+            <span class="about-hero__stat-label">Global Offices</span>
+          </div>
         </div>
       </div>
     </section>
@@ -466,11 +508,11 @@
         <div class="leadership__grid">
           <article class="leadership__card animate-on-scroll" tabindex="0">
             <div class="leadership__image">
-              <img src="assets/images/attorney.webp" alt="Portrait of Margaret Stackly, Managing Partner" loading="lazy">
+              <img src="assets/images/clients.webp" alt="Portrait of Margaret Stackly, Managing Partner" loading="lazy">
               <div class="leadership__overlay" aria-hidden="true">
                 <div class="leadership__social">
-                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                  <a href="#" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                  <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                  <a href="404.html" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
@@ -483,11 +525,11 @@
 
           <article class="leadership__card animate-on-scroll" tabindex="0">
             <div class="leadership__image">
-              <img src="assets/images/attorney.webp" alt="Portrait of Richard Harmon, Senior Attorney" loading="lazy">
+              <img src="assets/images/client.webp" alt="Portrait of Richard Harmon, Senior Attorney" loading="lazy">
               <div class="leadership__overlay" aria-hidden="true">
                 <div class="leadership__social">
-                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                  <a href="#" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                  <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                  <a href="404.html" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
@@ -500,11 +542,11 @@
 
           <article class="leadership__card animate-on-scroll" tabindex="0">
             <div class="leadership__image">
-              <img src="assets/images/attorney.webp" alt="Portrait of Eleanor Sterling, Legal Consultant" loading="lazy">
+              <img src="assets/images/gallery1.webp" alt="Portrait of Eleanor Sterling, Legal Consultant" loading="lazy">
               <div class="leadership__overlay" aria-hidden="true">
                 <div class="leadership__social">
-                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                  <a href="#" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                  <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                  <a href="404.html" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
@@ -517,11 +559,11 @@
 
           <article class="leadership__card animate-on-scroll" tabindex="0">
             <div class="leadership__image">
-              <img src="assets/images/attorney.webp" alt="Portrait of David Chen, Operations Head" loading="lazy">
+              <img src="assets/images/gallery2.webp" alt="Portrait of David Chen, Operations Head" loading="lazy">
               <div class="leadership__overlay" aria-hidden="true">
                 <div class="leadership__social">
-                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                  <a href="#" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                  <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                  <a href="404.html" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
@@ -578,7 +620,7 @@
             <div class="trust-features__item">
               <div class="trust-features__icon"><i class="fas fa-globe" aria-hidden="true"></i></div>
               <h3>Global Reach</h3>
-              <p>With offices in New York, London, and Singapore, we deliver seamless legal counsel across borders and jurisdictions.</p>
+              <p>With offices in Salem, Chennai, and Bangalore, we deliver seamless legal counsel across borders and jurisdictions.</p>
             </div>
           </div>
         </div>
@@ -666,7 +708,7 @@
               <p>Our open-door culture fosters idea exchange and mentorship at every level.</p>
             </div>
           </div>
-          <div class="culture__item animate-on-scroll">
+          <div class="culture__item culture__item--tall animate-on-scroll">
             <img src="assets/images/gallery2.webp" alt="Attorneys in a high-level strategy meeting around a mahogany conference table" loading="lazy">
             <div class="culture__caption">
               <h3>Strategy Sessions</h3>
@@ -680,11 +722,11 @@
               <p>Designed for focus, creativity, and comfort across all our global offices.</p>
             </div>
           </div>
-          <div class="culture__item culture__item--tall animate-on-scroll">
+          <div class="culture__item animate-on-scroll">
             <img src="assets/images/office.webp" alt="Stackly Legal headquarters reception with elegant design" loading="lazy">
             <div class="culture__caption">
               <h3>Global Offices</h3>
-              <p>Premium spaces in New York, London, and Singapore.</p>
+              <p>Premium spaces in Salem, Chennai, and Bangalore.</p>
             </div>
           </div>
           <div class="culture__item animate-on-scroll">
@@ -729,7 +771,7 @@
                 <span class="about-faq__icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
               </button>
               <div class="about-faq__answer" id="about-faq-1">
-                <div class="about-faq__answer-inner">Stackly Legal Services was founded in 1991 and has been providing premium legal counsel for over 35 years. Our firm has grown from a boutique Manhattan practice to an international law firm with offices in New York, London, and Singapore.</div>
+                <div class="about-faq__answer-inner">Stackly Legal Services was founded in 1991 and has been providing premium legal counsel for over 35 years. Our firm has grown from a boutique Manhattan practice to an international law firm with offices in Salem, Chennai, and Bangalore.</div>
               </div>
             </div>
             <div class="about-faq__item">
@@ -792,8 +834,8 @@
         <h2>Partner With a Firm That Puts You First</h2>
         <p>Whether you're navigating a complex corporate matter or seeking trusted personal legal counsel, our senior team is ready to deliver the exceptional guidance you deserve.</p>
         <div class="about-cta__actions">
-          <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
-          <a href="contact.html" class="btn btn-white">Contact Us</a>
+          <a href="404.html" class="btn btn-primary">Book a Consultation</a>
+          <a href="404.html" class="btn btn-white">Contact Us</a>
         </div>
       </div>
     </section>
@@ -811,7 +853,7 @@
           <p>Premium legal counsel for corporations, families, and individuals. Trusted, strategic, and relentless in pursuit of your best outcome.</p>
           <div class="footer__social" aria-label="Social media links">
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            <a href="#" aria-label="X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
             <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
           </div>
@@ -843,7 +885,7 @@
           <h3 class="footer__title">Contact & Hours</h3>
           <div class="footer__contact-item">
             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-            <span>123 Justice Avenue, Suite 500<br>New York, NY 10001</span>
+            <span>Salem, Tamil Nadu, India</span>
           </div>
           <div class="footer__contact-item">
             <i class="fas fa-phone-alt" aria-hidden="true"></i>
@@ -851,7 +893,7 @@
           </div>
           <div class="footer__contact-item">
             <i class="fas fa-envelope" aria-hidden="true"></i>
-            <span>contact@stacklylegal.com</span>
+            <span>info@stackly.com</span>
           </div>
 
           <div class="footer__hours-row">
