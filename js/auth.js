@@ -336,6 +336,17 @@
         var selectedRole = document.querySelector('input[name="role"]:checked');
         var roleValue = selectedRole ? selectedRole.value : 'client';
 
+        /* Save user data to localStorage */
+        var nameField = document.getElementById('auth-name');
+        var emailField = document.getElementById('auth-email') || document.getElementById('auth-signup-email');
+        var userName = nameField ? nameField.value.trim() : '';
+        var userEmail = emailField ? emailField.value.trim() : '';
+
+        try {
+          var userData = { name: userName || userEmail.split('@')[0] || 'User', email: userEmail, role: roleValue };
+          localStorage.setItem('stacklyUser', JSON.stringify(userData));
+        } catch (e) {}
+
         showSuccess('Login Successful', 'Welcome back! Redirecting to your dashboard...');
 
         if (roleValue === 'admin') {
@@ -344,6 +355,17 @@
           redirectAfter('client-dashboard.html', 2000);
         }
       } else {
+        /* Save user data from signup */
+        var nameField = document.getElementById('auth-name');
+        var emailField = document.getElementById('auth-signup-email');
+        var userName = nameField ? nameField.value.trim() : '';
+        var userEmail = emailField ? emailField.value.trim() : '';
+
+        try {
+          var userData = { name: userName || userEmail.split('@')[0] || 'User', email: userEmail, role: 'client' };
+          localStorage.setItem('stacklyUser', JSON.stringify(userData));
+        } catch (e) {}
+
         showSuccess('Account Created Successfully', 'Your account has been created. Redirecting to login...');
 
         /* Clear form */

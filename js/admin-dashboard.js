@@ -16,7 +16,6 @@
   var sidebarOverlay = document.getElementById('admSidebarOverlay');
   var profileDropdown = document.getElementById('admProfileDropdown');
   var profileBtn = profileDropdown ? profileDropdown.querySelector('.adm-header__profile-btn') : null;
-  var themeToggle = document.getElementById('admThemeToggle');
   var notifBtn = document.getElementById('admNotifBtn');
   var msgBtn = document.getElementById('admMsgBtn');
   var notifPanel = document.getElementById('admNotifPanel');
@@ -197,22 +196,6 @@
       if (notifPanel) notifPanel.classList.remove('open');
     }
   });
-
-  /* ============================================================
-     THEME TOGGLE
-     ============================================================ */
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      var icon = this.querySelector('i');
-      document.body.classList.toggle('dark-mode');
-      if (icon) {
-        if (icon.classList.contains('fa-moon')) icon.classList.replace('fa-moon', 'fa-sun');
-        else icon.classList.replace('fa-sun', 'fa-moon');
-      }
-      try { localStorage.setItem('stacklyTheme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch (e) {}
-    });
-    try { if (localStorage.getItem('stacklyTheme') === 'dark') { document.body.classList.add('dark-mode'); var icon = themeToggle.querySelector('i'); if (icon) { icon.classList.replace('fa-moon', 'fa-sun'); } } } catch (e) {}
-  }
 
   /* ============================================================
      MESSAGE BUTTON

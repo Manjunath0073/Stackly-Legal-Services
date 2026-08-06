@@ -3,6 +3,13 @@
    12 premium sections with unique layouts
    ============================================================ */
 
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: hidden; }
+body { overflow-x: hidden; max-width: 100vw; }
+img { max-width: 100%; height: auto; }
+.container { overflow: hidden; max-width: 100%; }
+section { overflow: hidden; }
+
 /* ---------- Section 1: Premium Hero ---------- */
 .pa-hero {
   position: relative;
@@ -1811,13 +1818,61 @@
 }
 
 @media (max-width: 320px) {
+  .pa-hero {
+    min-height: auto;
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+
+  .pa-hero__container {
+    padding: 0 16px;
+  }
+
+  .pa-hero__grid {
+    gap: 30px;
+  }
+
   .pa-hero__title {
     font-size: 1.45rem;
+  }
+
+  .pa-hero__desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .pa-hero__actions {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .pa-hero__actions .btn {
     font-size: 0.82rem;
     padding: 12px 22px;
+    width: 100%;
+  }
+
+  .pa-hero__visual {
+    flex-direction: column;
+  }
+
+  .pa-hero__card {
+    min-width: auto;
+    padding: 16px;
+  }
+
+  .pa-hero__card-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .pa-hero__card h3 {
+    font-size: 0.95rem;
+  }
+
+  .pa-hero__card p {
+    font-size: 0.8rem;
   }
 
   .pa-stat__number {
@@ -1826,6 +1881,10 @@
 
   .pa-card h3 {
     font-size: 1rem;
+  }
+
+  .pa-process__step {
+    padding-left: 0;
   }
 
   .pa-process__step h3 {

@@ -1164,22 +1164,3 @@ body { background: var(--color-bg); overflow-x: hidden; }
 .adm-main::-webkit-scrollbar-track, .adm-sidebar__nav::-webkit-scrollbar-track { background: transparent; }
 .adm-main::-webkit-scrollbar-thumb, .adm-sidebar__nav::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
 .adm-main::-webkit-scrollbar-thumb:hover, .adm-sidebar__nav::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
-
-/* ============================================================
-   DARK MODE
-   ============================================================ */
-body.dark-mode {
-  --color-bg: #0f172a;
-  --color-card: #1e293b;
-  --color-text: #f1f5f9;
-  --color-muted: #94a3b8;
-  --color-border: #334155;
-}
-
-body.dark-mode .adm-header { background: #1e293b; border-bottom-color: #334155; }
-body.dark-mode .adm-card { background: #1e293b; border-color: #334155; }
-body.dark-mode .adm-kpi { background: #1e293b; border-color: #334155; }
-body.dark-mode .adm-table th { background: #1e293b; color: #f1f5f9; }
-body.dark-mode .adm-table td { border-color: #334155; color: #e2e8f0; }
-body.dark-mode .adm-notif-panel { background: #1e293b; border-color: #334155; }
-body.dark-mode .adm-header__dropdown { background: #1e293b; border-color: #334155; }

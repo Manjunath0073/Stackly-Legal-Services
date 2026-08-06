@@ -13,7 +13,6 @@
   var sidebarOverlay = document.getElementById('sidebarOverlay');
   var profileDropdown = document.getElementById('profileDropdown');
   var profileBtn = profileDropdown ? profileDropdown.querySelector('.dash-header__profile-btn') : null;
-  var themeToggle = document.getElementById('themeToggle');
   var notifBtn = document.getElementById('notifBtn');
   var chatInput = document.getElementById('chatInput');
   var chatSend = document.getElementById('chatSend');
@@ -120,17 +119,6 @@
       if (profileBtn) profileBtn.setAttribute('aria-expanded', 'false');
     }
   });
-
-  /* ---------- Theme Toggle ---------- */
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      var icon = this.querySelector('i');
-      document.body.classList.toggle('dark-mode');
-      if (icon) { if (icon.classList.contains('fa-moon')) icon.classList.replace('fa-moon', 'fa-sun'); else icon.classList.replace('fa-sun', 'fa-moon'); }
-      try { localStorage.setItem('stacklyTheme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); } catch (e) {}
-    });
-    try { if (localStorage.getItem('stacklyTheme') === 'dark') { document.body.classList.add('dark-mode'); var icon = themeToggle.querySelector('i'); if (icon) { icon.classList.replace('fa-moon', 'fa-sun'); } } } catch (e) {}
-  }
 
   /* ---------- Notification Panel ---------- */
   var notifCount = 5;

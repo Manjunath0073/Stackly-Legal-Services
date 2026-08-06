@@ -3,6 +3,11 @@
    11 premium sections with unique layouts
    ============================================================ */
 
+*, *::before, *::after { box-sizing: border-box; }
+body { overflow-x: hidden; max-width: 100vw; }
+img { max-width: 100%; height: auto; }
+.container { overflow: hidden; }
+
 /* ---------- Section 1: Premium About Hero ---------- */
 .about-hero {
   position: relative;
@@ -560,7 +565,7 @@
 .story__milestone::before {
   content: '';
   position: absolute;
-  top: -6px;
+  top: -5.5px;
   left: 50%;
   transform: translateX(-50%);
   width: 14px;
