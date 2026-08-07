@@ -91,47 +91,90 @@ section { overflow: hidden; }
   gap: 20px;
 }
 
-.pa-hero__card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+.pa-hero__img-wrapper {
+  position: relative;
   border-radius: var(--radius-md);
-  padding: 24px 28px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  transition: background var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
 }
 
-.pa-hero__card:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: var(--color-secondary);
-  transform: translateX(6px);
+.pa-hero__img-wrapper img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, filter 0.5s ease;
 }
 
-.pa-hero__card-icon {
-  width: 52px;
-  height: 52px;
-  min-width: 52px;
-  border-radius: 12px;
-  background: var(--color-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  color: var(--color-primary);
+.pa-hero__img-wrapper:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.15);
 }
 
-.pa-hero__card h3 {
-  font-size: 1.1rem;
-  color: var(--color-card);
-  margin-bottom: 4px;
+.pa-hero__img-wrapper:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
-.pa-hero__card p {
+.pa-hero__img-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 18px;
+  background: linear-gradient(transparent, rgba(15, 23, 42, 0.85));
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.5;
+  font-weight: 600;
+  color: var(--color-card);
+  letter-spacing: 0.02em;
+}
+
+/* Animation 1: Float — gentle vertical bob with subtle rotation */
+.pa-hero__img-wrapper--float {
+  animation: paFloat 4s ease-in-out infinite;
+}
+
+/* Animation 2: Pulse — soft scale breathing with glow */
+.pa-hero__img-wrapper--pulse {
+  animation: paPulse 3.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+/* Animation 3: Slide — continuous subtle horizontal sway */
+.pa-hero__img-wrapper--slide {
+  animation: paSlide 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes paFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.8deg);
+  }
+}
+
+@keyframes paPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2);
+  }
+}
+
+@keyframes paSlide {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
 }
 
 .pa-hero__breadcrumb {
@@ -260,6 +303,8 @@ section { overflow: hidden; }
 
 .pa-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--color-card);
   border-radius: var(--radius-lg);
   padding: 36px 28px;
@@ -337,6 +382,7 @@ section { overflow: hidden; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin-top: auto;
   transition: gap var(--transition-base);
 }
 
@@ -1324,7 +1370,7 @@ section { overflow: hidden; }
     gap: 16px;
   }
 
-  .pa-hero__card {
+  .pa-hero__img-wrapper {
     flex: 1;
     min-width: 200px;
   }
@@ -1794,7 +1840,7 @@ section { overflow: hidden; }
 
 @media (max-width: 360px) {
   .pa-hero {
-    padding-top: 90px;
+    padding-top: 84px;
   }
 
   .pa-hero__breadcrumb {
@@ -1820,25 +1866,37 @@ section { overflow: hidden; }
 @media (max-width: 320px) {
   .pa-hero {
     min-height: auto;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding-top: 80px;
+    padding-bottom: 32px;
+    overflow: visible;
   }
 
   .pa-hero__container {
-    padding: 0 16px;
+    padding: 0 14px;
+  }
+
+  .pa-hero__shape {
+    display: none;
   }
 
   .pa-hero__grid {
-    gap: 30px;
+    gap: 24px;
+  }
+
+  .pa-hero__breadcrumb {
+    font-size: 0.75rem;
+    margin-bottom: 16px;
   }
 
   .pa-hero__title {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
+    margin-bottom: 14px;
   }
 
   .pa-hero__desc {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
   }
 
   .pa-hero__actions {
@@ -1847,32 +1905,27 @@ section { overflow: hidden; }
   }
 
   .pa-hero__actions .btn {
-    font-size: 0.82rem;
-    padding: 12px 22px;
+    font-size: 0.8rem;
+    padding: 11px 20px;
     width: 100%;
   }
 
   .pa-hero__visual {
     flex-direction: column;
+    gap: 12px;
   }
 
-  .pa-hero__card {
+  .pa-hero__img-wrapper {
     min-width: auto;
-    padding: 16px;
   }
 
-  .pa-hero__card-icon {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+  .pa-hero__img-wrapper img {
+    height: 100px;
   }
 
-  .pa-hero__card h3 {
-    font-size: 0.95rem;
-  }
-
-  .pa-hero__card p {
-    font-size: 0.8rem;
+  .pa-hero__img-label {
+    font-size: 0.78rem;
+    padding: 8px 14px;
   }
 
   .pa-stat__number {

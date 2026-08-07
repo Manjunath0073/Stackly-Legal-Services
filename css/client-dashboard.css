@@ -576,6 +576,34 @@ body {
   display: block;
 }
 
+.stat-card__trend {
+  font-size: 0.75rem;
+  margin-left: auto;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.stat-card__trend--up {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.stat-card__trend--down {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.stat-card__trend--neutral {
+  color: var(--color-muted);
+  background: rgba(100, 116, 139, 0.1);
+}
+
+.stat-card__trend--warning {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
 /* ---------- Dashboard Grid ---------- */
 .dash-grid {
   display: grid;
@@ -2229,11 +2257,6 @@ body {
   .dash-header__profile-btn {
     padding: 4px 8px 4px 4px;
   }
-  .dash-header__avatar {
-    width: 30px;
-    height: 30px;
-    font-size: 0.75rem;
-  }
   .dash-main {
     padding: 14px 12px 20px;
   }
@@ -2246,6 +2269,9 @@ body {
   }
   .stat-card__number {
     font-size: 1.5rem;
+  }
+  .stat-card__trend {
+    display: none;
   }
   .quick-actions {
     grid-template-columns: 1fr;
@@ -2429,9 +2455,6 @@ body {
 
 /* 340px */
 @media (max-width: 340px) {
-  .dash-header__avatar {
-    display: none;
-  }
   .conversation-item__avatar {
     width: 36px;
     height: 36px;
@@ -2482,6 +2505,48 @@ body {
   .btn-sm {
     padding: 6px 12px !important;
     font-size: 0.75rem !important;
+  }
+  .messages-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+  }
+  .messages-sidebar {
+    max-height: 250px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    overflow-y: auto;
+  }
+  .messages-sidebar__search {
+    padding: 10px;
+  }
+  .messages-sidebar__search input {
+    font-size: 0.8rem;
+    padding: 8px 12px 8px 32px;
+  }
+  .conversation-item {
+    padding: 8px 10px;
+  }
+  .conversation-item__avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+  }
+  .conversation-item__name {
+    font-size: 0.8rem;
+  }
+  .conversation-item__time {
+    font-size: 0.65rem;
+  }
+  .chat-area {
+    min-height: 300px;
+  }
+  .chat-input-area {
+    padding: 8px;
+  }
+  .chat-input-area input {
+    font-size: 0.8rem;
+    padding: 8px 12px;
   }
 }
 

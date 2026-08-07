@@ -16,9 +16,10 @@
   width: 48%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: var(--color-primary);
 }
 
@@ -173,6 +174,129 @@
   bottom: -40px;
   left: 10%;
   background: radial-gradient(circle, rgba(200, 169, 107, 0.06) 0%, transparent 70%);
+}
+
+/* Features Section */
+.auth__features {
+  margin-top: 48px;
+}
+
+.auth__features-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-card);
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+.auth__features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.auth__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.auth__feature:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(200, 169, 107, 0.3);
+}
+
+.auth__feature-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 8px;
+  background: rgba(200, 169, 107, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+}
+
+.auth__feature h4 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-card);
+  margin-bottom: 4px;
+}
+
+.auth__feature p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+}
+
+/* Testimonial Section */
+.auth__testimonial {
+  margin-top: 36px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.auth__testimonial-quote {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.auth__testimonial-quote i {
+  color: var(--color-secondary);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  display: block;
+  opacity: 0.6;
+}
+
+.auth__testimonial-quote p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.auth__testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth__testimonial-avatar {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.auth__testimonial-name {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-card);
+}
+
+.auth__testimonial-role {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* ---------- Right Panel (Auth Card) ---------- */
@@ -913,6 +1037,11 @@
     min-height: 320px;
   }
 
+  .auth__features,
+  .auth__testimonial {
+    display: none;
+  }
+
   .auth__form-panel {
     padding: 40px 24px 60px;
   }
@@ -994,6 +1123,54 @@
     font-size: 0.72rem;
   }
 
+  .auth__features {
+    margin-top: 32px;
+  }
+
+  .auth__feature {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .auth__feature-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 0.8rem;
+  }
+
+  .auth__feature h4 {
+    font-size: 0.82rem;
+  }
+
+  .auth__feature p {
+    font-size: 0.75rem;
+  }
+
+  .auth__testimonial {
+    margin-top: 28px;
+    padding: 20px;
+  }
+
+  .auth__testimonial-quote p {
+    font-size: 0.82rem;
+  }
+
+  .auth__testimonial-avatar {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    font-size: 0.75rem;
+  }
+
+  .auth__testimonial-name {
+    font-size: 0.8rem;
+  }
+
+  .auth__testimonial-role {
+    font-size: 0.7rem;
+  }
+
   .auth__form-panel {
     padding: 32px 20px 48px;
   }
@@ -1042,6 +1219,63 @@
 
   .auth__stats {
     gap: 16px;
+  }
+
+  .auth__features {
+    margin-top: 24px;
+  }
+
+  .auth__features-title {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+
+  .auth__feature {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .auth__feature-icon {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    font-size: 0.75rem;
+  }
+
+  .auth__feature h4 {
+    font-size: 0.78rem;
+  }
+
+  .auth__feature p {
+    font-size: 0.72rem;
+  }
+
+  .auth__testimonial {
+    margin-top: 20px;
+    padding: 16px;
+  }
+
+  .auth__testimonial-quote i {
+    font-size: 1rem;
+  }
+
+  .auth__testimonial-quote p {
+    font-size: 0.78rem;
+  }
+
+  .auth__testimonial-avatar {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 0.7rem;
+  }
+
+  .auth__testimonial-name {
+    font-size: 0.75rem;
+  }
+
+  .auth__testimonial-role {
+    font-size: 0.68rem;
   }
 
   .auth__form-panel {
@@ -1159,6 +1393,11 @@
 
   .auth__stat-label {
     font-size: 0.68rem;
+  }
+
+  .auth__features,
+  .auth__testimonial {
+    display: none;
   }
 
   .auth__card {

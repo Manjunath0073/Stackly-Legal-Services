@@ -882,7 +882,6 @@ body { background: var(--color-bg); overflow-x: hidden; }
   .adm-header__toggle { width: 36px; height: 36px; font-size: 0.95rem; }
   .adm-header__icon-btn { width: 34px; height: 34px; }
   .adm-header__profile-btn { padding: 4px 8px 4px 4px; }
-  .adm-header__avatar { width: 28px; height: 28px; font-size: 0.7rem; }
   .adm-main { padding: 12px 12px 20px; }
   .adm-kpi-grid { grid-template-columns: 1fr; gap: 12px; }
   .adm-kpi-grid--3 { grid-template-columns: 1fr; }
@@ -921,7 +920,6 @@ body { background: var(--color-bg); overflow-x: hidden; }
 }
 
 @media (max-width: 430px) {
-  .adm-header__chevron { display: none; }
   .adm-theme-options { flex-direction: column; }
 }
 
@@ -946,7 +944,6 @@ body { background: var(--color-bg); overflow-x: hidden; }
 }
 
 @media (max-width: 340px) {
-  .adm-header__avatar { display: none; }
 }
 
 @media (max-width: 320px) {

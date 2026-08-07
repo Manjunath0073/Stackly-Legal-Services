@@ -142,10 +142,10 @@
             <i class="fas fa-chevron-down dash-header__chevron" aria-hidden="true"></i>
           </button>
           <div class="dash-header__dropdown" id="profileMenu" role="menu">
-            <a href="#settings" class="dash-header__dropdown-item" data-section="settings" role="menuitem">
+            <a href="404.html" class="dash-header__dropdown-item" data-section="settings" role="menuitem">
               <i class="fas fa-user-cog" aria-hidden="true"></i> My Profile
             </a>
-            <a href="#settings" class="dash-header__dropdown-item" data-section="settings" role="menuitem">
+            <a href="404.html" class="dash-header__dropdown-item" data-section="settings" role="menuitem">
               <i class="fas fa-cog" aria-hidden="true"></i> Settings
             </a>
             <hr class="dash-header__dropdown-divider">
@@ -179,7 +179,9 @@
               <span class="stat-card__number" id="kpi-active" data-count="4">0</span>
               <span class="stat-card__label">Active Cases</span>
             </div>
-            <canvas class="stat-card__sparkline" id="spark1" aria-hidden="true"></canvas>
+            <div class="stat-card__trend stat-card__trend--up">
+              <i class="fas fa-arrow-up" aria-hidden="true"></i> 2 this month
+            </div>
           </div>
           <div class="stat-card">
             <div class="stat-card__icon stat-card__icon--gold">
@@ -189,7 +191,9 @@
               <span class="stat-card__number" id="kpi-meetings" data-count="2">0</span>
               <span class="stat-card__label">Upcoming Meetings</span>
             </div>
-            <canvas class="stat-card__sparkline" id="spark2" aria-hidden="true"></canvas>
+            <div class="stat-card__trend stat-card__trend--neutral">
+              <i class="fas fa-clock" aria-hidden="true"></i> Next: Aug 12
+            </div>
           </div>
           <div class="stat-card">
             <div class="stat-card__icon stat-card__icon--green">
@@ -199,7 +203,9 @@
               <span class="stat-card__number" id="kpi-pending" data-count="3">0</span>
               <span class="stat-card__label">Pending Documents</span>
             </div>
-            <canvas class="stat-card__sparkline" id="spark3" aria-hidden="true"></canvas>
+            <div class="stat-card__trend stat-card__trend--down">
+              <i class="fas fa-arrow-down" aria-hidden="true"></i> 1 awaiting review
+            </div>
           </div>
           <div class="stat-card">
             <div class="stat-card__icon stat-card__icon--red">
@@ -208,6 +214,9 @@
             <div class="stat-card__info">
               <span class="stat-card__number" id="kpi-invoices" data-count="1">0</span>
               <span class="stat-card__label">Unpaid Invoices</span>
+            </div>
+            <div class="stat-card__trend stat-card__trend--warning">
+              <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Due Aug 15
             </div>
           </div>
         </div>
@@ -335,10 +344,10 @@
                   <div class="quick-action__icon"><i class="fas fa-calendar-plus" aria-hidden="true"></i></div>
                   <span class="quick-action__label">Book Appointment</span>
                 </button>
-                <button class="quick-action" data-section="documents">
+                <a href="404.html" class="quick-action" data-section="documents">
                   <div class="quick-action__icon"><i class="fas fa-upload" aria-hidden="true"></i></div>
                   <span class="quick-action__label">Upload Document</span>
-                </button>
+                </a>
                 <button class="quick-action" data-section="messages">
                   <div class="quick-action__icon"><i class="fas fa-paper-plane" aria-hidden="true"></i></div>
                   <span class="quick-action__label">Send Message</span>
@@ -635,10 +644,10 @@
             <h2 class="dash-section__title">Appointments</h2>
             <p class="dash-section__subtitle">Manage your consultations and meetings</p>
           </div>
-          <button class="btn btn-primary" id="requestAppointmentBtn">
+          <a href="404.html" class="btn btn-primary" id="requestAppointmentBtn">
             <i class="fas fa-plus" aria-hidden="true"></i>
             <span>Request Appointment</span>
-          </button>
+          </a>
         </div>
 
         <div class="appointments-grid">
@@ -736,10 +745,10 @@
             <h2 class="dash-section__title">Documents</h2>
             <p class="dash-section__subtitle">Manage and organize your legal documents</p>
           </div>
-          <button class="btn btn-primary" id="uploadDocBtn">
+          <a href="404.html" class="btn btn-primary" id="uploadDocBtn">
             <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
             <span>Upload Document</span>
-          </button>
+          </a>
         </div>
 
         <!-- Upload Area Placeholder -->
@@ -774,7 +783,7 @@
             <p class="doc-card__meta">Corporate Merger Case &bull; 2.4 MB</p>
             <span class="badge badge--active">Approved</span>
             <div class="doc-card__actions">
-              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <a href="404.html" class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></a>
               <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -784,7 +793,7 @@
             <p class="doc-card__meta">Estate Planning &bull; 1.8 MB</p>
             <span class="badge badge--pending">Pending Review</span>
             <div class="doc-card__actions">
-              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <a href="404.html" class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></a>
               <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -794,7 +803,7 @@
             <p class="doc-card__meta">Trademark Registration &bull; 3.1 MB</p>
             <span class="badge badge--active">Submitted</span>
             <div class="doc-card__actions">
-              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <a href="404.html" class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></a>
               <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -804,7 +813,7 @@
             <p class="doc-card__meta">Commercial Lease &bull; 1.2 MB</p>
             <span class="badge badge--pending">Awaiting Signature</span>
             <div class="doc-card__actions">
-              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <a href="404.html" class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></a>
               <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -814,7 +823,7 @@
             <p class="doc-card__meta">Commercial Lease &bull; 4.5 MB</p>
             <span class="badge badge--active">Verified</span>
             <div class="doc-card__actions">
-              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <a href="404.html" class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></a>
               <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -824,7 +833,7 @@
             <p class="doc-card__meta">Estate Planning &bull; 890 KB</p>
             <span class="badge badge--active">Approved</span>
             <div class="doc-card__actions">
-              <button class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></button>
+              <a href="404.html" class="btn-icon-sm" aria-label="Download document"><i class="fas fa-download" aria-hidden="true"></i></a>
               <button class="btn-icon-sm" aria-label="View document"><i class="fas fa-eye" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -857,10 +866,10 @@
             <h2 class="dash-section__title">Messages</h2>
             <p class="dash-section__subtitle">Communicate securely with your legal team</p>
           </div>
-          <button class="btn btn-primary" id="newMessageBtn">
+          <a href="404.html" class="btn btn-primary" id="newMessageBtn">
             <i class="fas fa-pen" aria-hidden="true"></i>
             <span>New Message</span>
-          </button>
+          </a>
         </div>
 
         <div class="messages-layout">
@@ -1021,7 +1030,7 @@
               </div>
             </div>
             <div class="invoice-card__footer">
-              <button class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</button>
+              <a href="404.html" class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</a>
             </div>
           </div>
 
@@ -1048,8 +1057,8 @@
               </div>
             </div>
             <div class="invoice-card__footer">
-              <button class="btn btn-primary btn-sm"><i class="fas fa-credit-card" aria-hidden="true"></i> Pay Now</button>
-              <button class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</button>
+              <a href="404.html" class="btn btn-primary btn-sm"><i class="fas fa-credit-card" aria-hidden="true"></i> Pay Now</a>
+              <a href="404.html" class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</a>
             </div>
           </div>
 
@@ -1076,7 +1085,7 @@
               </div>
             </div>
             <div class="invoice-card__footer">
-              <button class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</button>
+              <a href="404.html" class="btn btn-secondary btn-sm"><i class="fas fa-download" aria-hidden="true"></i> Download</a>
             </div>
           </div>
         </div>
@@ -1135,7 +1144,7 @@
                   <label for="settingsPhone" class="form-label">Phone Number</label>
                   <input type="tel" id="settingsPhone" class="form-input" value="+1 (555) 234-5678">
                 </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="404.html" class="btn btn-primary">Save Changes</a>
               </form>
             </div>
           </div>
@@ -1159,7 +1168,7 @@
                   <label for="settingsConfirmPass" class="form-label">Confirm New Password</label>
                   <input type="password" id="settingsConfirmPass" class="form-input" placeholder="Confirm new password">
                 </div>
-                <button type="submit" class="btn btn-primary">Update Password</button>
+                <a href="404.html" class="btn btn-primary">Update Password</a>
               </form>
             </div>
           </div>

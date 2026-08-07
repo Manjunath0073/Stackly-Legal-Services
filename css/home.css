@@ -11,7 +11,7 @@
   align-items: center;
   background: var(--color-primary);
   color: var(--color-card);
-  overflow: hidden;
+  overflow-x: hidden;
   padding-top: 120px;
   padding-bottom: 80px;
 }
@@ -248,27 +248,39 @@
 
 .trust__header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 56px;
+  text-align: center;
 }
 
 .trust__title {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .trust__logos {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  padding-bottom: 24px;
-  scrollbar-width: none;
+  overflow: hidden;
   margin-bottom: 64px;
+  width: 100%;
 }
 
-.trust__logos::-webkit-scrollbar {
-  display: none;
+.trust__logos__track {
+  display: flex;
+  gap: 24px;
+  animation: marquee 20s linear infinite;
+  width: max-content;
+}
+
+.trust__logos:hover .trust__logos__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 12px)); }
 }
 
 .trust__logo {
@@ -297,6 +309,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  justify-items: center;
 }
 
 .trust__award {
@@ -467,7 +480,7 @@
 .why-us__features::before {
   content: '';
   position: absolute;
-  top: 100px;
+  top: 160px;
   bottom: 0;
   left: 21px;
   width: 2px;
@@ -645,7 +658,7 @@
   position: absolute;
   inset: 0;
   opacity: 0.1;
-  background-image: url('../images/justice.webp');
+  background-image: url('../assets/images/justice.webp');
   background-size: cover;
   background-position: center;
   filter: grayscale(100%);
@@ -1389,7 +1402,7 @@
   position: absolute;
   inset: 0;
   opacity: 0.08;
-  background-image: url('../images/review.webp');
+  background-image: url('../images/meeting.webp');
   background-size: 500px;
   background-repeat: repeat;
   filter: grayscale(100%);
@@ -1589,8 +1602,13 @@
 
   .trust__header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
+  }
+
+  .trust__title {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .spotlight__image img {
@@ -1611,7 +1629,7 @@
     font-size: 2.35rem;
   }
 
-  .trust__logos {
+  .trust__logos__track {
     gap: 18px;
   }
 
@@ -1811,17 +1829,25 @@
 }
 
 @media (max-width: 600px) {
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+
   .hero__title {
     font-size: clamp(2rem, 8vw, 2.6rem);
   }
 
   .hero__desc {
     font-size: 1rem;
+    margin-bottom: 28px;
   }
 
   .hero__actions {
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
+    gap: 14px;
   }
 
   .hero__stats {
@@ -1845,11 +1871,6 @@
   .trust__header {
     align-items: center;
     text-align: center;
-  }
-
-  .trust__header .btn {
-    width: 100%;
-    max-width: 280px;
   }
 
   .trust__award {
@@ -1980,9 +2001,28 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 96px;
+    padding-bottom: 56px;
+  }
+
+  .hero__label {
+    margin-bottom: 18px;
+  }
+
+  .hero__title {
+    margin-bottom: 18px;
+  }
+
+  .hero__desc {
+    margin-bottom: 24px;
+  }
+
   .hero__actions {
     flex-direction: column;
     align-items: center;
+    margin-bottom: 36px;
+    gap: 12px;
   }
 
   .btn {
@@ -2050,12 +2090,41 @@
 }
 
 @media (max-width: 430px) {
+  .hero {
+    padding-top: 96px;
+    padding-bottom: 56px;
+  }
+
+  .hero__container {
+    padding: 0 16px;
+  }
+
+  .hero__label {
+    margin-bottom: 16px;
+  }
+
   .hero__title {
     font-size: clamp(1.8rem, 8vw, 2.2rem);
+    margin-bottom: 16px;
   }
 
   .hero__desc {
     font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+
+  .hero__actions {
+    margin-bottom: 32px;
+    gap: 12px;
+  }
+
+  .hero .btn {
+    padding: 12px 24px;
+    font-size: 0.85rem;
+  }
+
+  .hero__stats {
+    gap: 20px;
   }
 
   .hero__stat-number {
@@ -2406,8 +2475,44 @@
 }
 
 @media (max-width: 320px) {
+  .hero {
+    padding-top: 80px;
+    padding-bottom: 48px;
+    min-height: auto;
+  }
+
+  .hero__container {
+    padding: 0 14px;
+    gap: 0;
+  }
+
+  .hero__label {
+    margin-bottom: 14px;
+  }
+
   .hero__title {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
+    margin-bottom: 14px;
+  }
+
+  .hero__desc {
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+    line-height: 1.65;
+  }
+
+  .hero__actions {
+    margin-bottom: 28px;
+    gap: 10px;
+  }
+
+  .hero .btn {
+    padding: 11px 22px;
+    font-size: 0.82rem;
+  }
+
+  .hero__stats {
+    gap: 16px;
   }
 
   .hero__stat-number {
@@ -2416,6 +2521,7 @@
 
   .hero__stat-label {
     font-size: 0.6rem;
+    margin-top: 4px;
   }
 
   .trust__logo {

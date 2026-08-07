@@ -543,7 +543,7 @@ body.drawer-open .hamburger {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../images/justice.webp');
+  background-image: url('../assets/images/justice.webp');
   background-size: cover;
   background-position: center;
   opacity: 0.06;
@@ -585,7 +585,7 @@ body.drawer-open .hamburger {
 
 .mobile-drawer__logo img {
   height: 88px;
-  width: 88px;
+  width: auto;
   filter: brightness(0) invert(78%) sepia(48%) saturate(450%) hue-rotate(355deg);
 }
 
@@ -809,6 +809,7 @@ body.drawer-open .hamburger {
 .footer__brand {
   display: flex;
   flex-direction: column;
+  margin-top: -30px;
 }
 
 .footer__brand > a {
@@ -820,6 +821,7 @@ body.drawer-open .hamburger {
   height: 104px;
   width: auto;
   margin-bottom: 20px;
+  padding-top: 4px;
   filter: brightness(0) invert(78%) sepia(48%) saturate(450%) hue-rotate(355deg) brightness(1.1);
 }
 
@@ -1104,6 +1106,31 @@ body.drawer-open .hamburger {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
+
+  .footer__brand {
+    margin-top: 0;
+    align-items: center;
+  }
+
+  .footer__title {
+    text-align: center;
+  }
+
+  .footer__list {
+    text-align: center;
+  }
+
+  .footer__contact {
+    text-align: center;
+  }
+
+  .footer__contact-item {
+    justify-content: center;
+  }
+
+  .footer__newsletter {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 992px) {
@@ -1148,12 +1175,34 @@ body.drawer-open .hamburger {
     padding-bottom: 60px;
   }
 
+  .footer__brand {
+    margin-top: 0;
+    align-items: center;
+  }
+
   .footer__brand img {
     height: 92px;
   }
 
   .footer__title {
     font-size: 1.15rem;
+    text-align: center;
+  }
+
+  .footer__list {
+    text-align: center;
+  }
+
+  .footer__contact {
+    text-align: center;
+  }
+
+  .footer__contact-item {
+    justify-content: center;
+  }
+
+  .footer__newsletter {
+    justify-content: center;
   }
 
   .footer__bottom {
@@ -1215,6 +1264,10 @@ body.drawer-open .hamburger {
   .footer__grid {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .footer__brand {
+    margin-top: 0;
   }
 }
 
