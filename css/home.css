@@ -1568,6 +1568,11 @@
     margin: 0 auto;
   }
 
+  .hero__desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .hero__actions,
   .hero__stats {
     justify-content: center;
@@ -1841,6 +1846,8 @@
   .hero__desc {
     font-size: 1rem;
     margin-bottom: 28px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero__actions {
@@ -2016,6 +2023,8 @@
 
   .hero__desc {
     margin-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero__actions {
@@ -2111,6 +2120,8 @@
   .hero__desc {
     font-size: 0.95rem;
     margin-bottom: 24px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero__actions {
