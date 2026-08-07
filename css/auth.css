@@ -318,17 +318,24 @@
 .auth__back {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--color-muted);
+  gap: 10px;
+  color: var(--color-primary);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   margin-bottom: 32px;
-  transition: color var(--transition-base);
+  padding: 10px 20px;
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
   text-decoration: none;
 }
 
 .auth__back:hover {
   color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  background: rgba(200, 169, 107, 0.06);
 }
 
 .auth__back i {

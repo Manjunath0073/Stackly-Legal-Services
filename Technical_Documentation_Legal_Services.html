@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Documentation — Premium Legal Services Frontend Theme</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #0F172A;
+    --secondary: #C8A96B;
+    --accent: #8B6F3D;
+    --bg: #FFFFFF;
+    --text: #1E293B;
+    --muted: #64748B;
+    --border: #E2E8F0;
+    --light-bg: #F8FAFC;
+    --card-bg: #F1F5F9;
+  }
+
+  @page { size: A4 portrait; margin: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm 22mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  /* ---- Cover Page ---- */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--primary);
+    color: #fff;
+    padding: 0;
+    position: relative;
+  }
+
+  .cover__accent {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+  }
+
+  .cover__shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+    background: var(--secondary);
+  }
+
+  .cover__shape--1 { width: 500px; height: 500px; top: -120px; right: -100px; }
+  .cover__shape--2 { width: 300px; height: 300px; bottom: -80px; left: -60px; }
+
+  .cover__logo {
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--secondary);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover__subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 420px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover__line {
+    width: 60px;
+    height: 2px;
+    background: var(--secondary);
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover__meta {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- Typography ---- */
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; line-height: 1.2; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--primary); margin-bottom: 8px; margin-top: 20px; line-height: 1.3; }
+  h3 { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; margin-top: 14px; }
+  p { margin-bottom: 8px; color: var(--text); }
+  ul, ol { margin-left: 18px; margin-bottom: 8px; }
+  li { margin-bottom: 3px; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+
+  .page-header__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .page-header__num {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ---- Tables ---- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px;
+    font-size: 0.85rem;
+  }
+
+  th {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-align: left;
+    padding: 8px 12px;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td { background: var(--light-bg); }
+
+  /* ---- Cards / Callouts ---- */
+  .callout {
+    background: var(--light-bg);
+    border-left: 3px solid var(--secondary);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 12px 0;
+  }
+
+  .info-card {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .info-card__title {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--primary);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .info-card__title .icon {
+    color: var(--secondary);
+    font-size: 0.9rem;
+  }
+
+  .info-card p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ---- Screenshot Placeholder ---- */
+  .screenshot {
+    background: var(--card-bg);
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    text-align: center;
+    margin: 12px 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  .screenshot__icon {
+    font-size: 1.8rem;
+    color: var(--secondary);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  /* ---- Badge ---- */
+  .badge {
+    display: inline-block;
+    background: var(--secondary);
+    color: var(--primary);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .badge--outline {
+    background: transparent;
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+  }
+
+  /* ---- TOC ---- */
+  .toc-list { list-style: none; margin: 0; padding: 0; }
+  .toc-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--border);
+    font-size: 0.9rem;
+  }
+  .toc-list li span:first-child { font-weight: 500; color: var(--primary); }
+  .toc-list li span:last-child { color: var(--muted); font-size: 0.8rem; }
+
+  /* ---- Footer ---- */
+  .page-footer {
+    position: absolute;
+    bottom: 16mm;
+    left: 22mm;
+    right: 22mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+  }
+
+  /* ---- Utilities ---- */
+  .mt-8 { margin-top: 8px; }
+  .mt-12 { margin-top: 12px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-20 { margin-top: 20px; }
+  .mb-4 { margin-bottom: 4px; }
+  .mb-8 { margin-bottom: 8px; }
+  .mb-12 { margin-bottom: 12px; }
+  .text-sm { font-size: 0.82rem; }
+  .text-xs { font-size: 0.75rem; }
+  .text-muted { color: var(--muted); }
+  .text-center { text-align: center; }
+  .fw-600 { font-weight: 600; }
+  .flex-between { display: flex; justify-content: space-between; align-items: center; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .accent-bar { width: 40px; height: 2px; background: var(--secondary); margin: 8px 0; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+  .tag { display: inline-block; background: var(--light-bg); border: 1px solid var(--border); font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; margin: 2px; color: var(--muted); }
+
+  @media print {
+    .page { page-break-after: always; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1 — COVER
+     ============================================================ -->
+<div class="page cover">
+  <div class="cover__accent"></div>
+  <div class="cover__shape cover__shape--1"></div>
+  <div class="cover__shape cover__shape--2"></div>
+  <div class="cover__logo">SL</div>
+  <div class="cover__label">Technical Documentation</div>
+  <h1 class="cover__title">Premium Legal Services<br>Frontend Theme</h1>
+  <p class="cover__subtitle">A comprehensive technical reference covering architecture, design system, component library, and deployment guidelines for the Stackly Legal Services frontend.</p>
+  <div class="cover__line"></div>
+  <p class="cover__meta">Stackly Legal Services — Confidential</p>
+</div>
+
+<!-- ============================================================
+     PAGE 2 — TABLE OF CONTENTS
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Table of Contents</span>
+    <span class="page-header__num">02</span>
+  </div>
+
+  <h1>Table of Contents</h1>
+  <div class="accent-bar"></div>
+
+  <ul class="toc-list mt-16">
+    <li><span>01 &nbsp; Introduction</span><span>Page 3</span></li>
+    <li><span>02 &nbsp; Technology Stack</span><span>Page 4</span></li>
+    <li><span>03 &nbsp; Project Folder Structure</span><span>Page 5</span></li>
+    <li><span>04 &nbsp; Design System</span><span>Page 6</span></li>
+    <li><span>05 &nbsp; Homepage</span><span>Page 7</span></li>
+    <li><span>06 &nbsp; About Page</span><span>Page 8</span></li>
+    <li><span>07 &nbsp; Practice Areas Page</span><span>Page 9</span></li>
+    <li><span>08 &nbsp; Attorneys Page</span><span>Page 10</span></li>
+    <li><span>09 &nbsp; Contact Page</span><span>Page 11</span></li>
+    <li><span>10 &nbsp; Authentication</span><span>Page 12</span></li>
+    <li><span>11 &nbsp; Dashboards</span><span>Page 13</span></li>
+    <li><span>12 &nbsp; 404 Page</span><span>Page 14</span></li>
+    <li><span>13 &nbsp; Deployment</span><span>Page 15</span></li>
+    <li><span>14 &nbsp; Responsive Design</span><span>Page 16</span></li>
+    <li><span>15 &nbsp; Conclusion</span><span>Page 17</span></li>
+    <li><span>16 &nbsp; Appendix</span><span>Page 18</span></li>
+  </ul>
+
+  <div class="callout mt-20">
+    <strong>Note:</strong> This document is structured for quick reference. Each section is self-contained and can be read independently. Navigation links between sections are provided where applicable.
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 3 — INTRODUCTION
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Introduction</span>
+    <span class="page-header__num">03</span>
+  </div>
+
+  <h1>Introduction</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Project Overview</h2>
+  <p>The Premium Legal Services Frontend Theme is a complete, production-ready website solution built for law firms and legal consultancies. It delivers a polished, professional web presence across public-facing pages, authenticated user areas, and administrative dashboards.</p>
+
+  <div class="two-col mt-12">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Purpose</div>
+      <p>Provide a high-fidelity, responsive frontend for legal service providers seeking a premium digital presence without framework dependencies.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Objectives</div>
+      <p>Deliver cross-browser compatibility, sub-second load times, full WCAG accessibility compliance, and a consistent design language across all pages.</p>
+    </div>
+  </div>
+
+  <h2>Target Users</h2>
+  <table>
+    <thead>
+      <tr><th>User Type</th><th>Access Level</th><th>Primary Pages</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Prospective Client</td><td>Public</td><td>Home, About, Practice Areas, Attorneys, Contact</td></tr>
+      <tr><td>Registered Client</td><td>Authenticated</td><td>Client Dashboard, Profile, Documents, Messages</td></tr>
+      <tr><td>Administrator</td><td>Admin Role</td><td>Admin Dashboard, Client Management, Reports, Settings</td></tr>
+      <tr><td>General Visitor</td><td>Public</td><td>404 Error Page, Login, Signup</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Business Goal</h2>
+  <p>The theme targets conversion-oriented legal firms that require a sophisticated web presence capable of handling client intake, case tracking, document management, and real-time communication — all within a unified visual framework.</p>
+
+  <div class="callout">
+    <strong>Scope:</strong> This documentation covers the frontend layer only. Backend integration, CMS connectivity, and database architecture are outside the current scope.
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 4 — TECHNOLOGY STACK
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Technology Stack</span>
+    <span class="page-header__num">04</span>
+  </div>
+
+  <h1>Technology Stack</h1>
+  <div class="accent-bar"></div>
+
+  <table>
+    <thead>
+      <tr><th>Technology</th><th>Version</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>HTML5</strong></td><td>Living Standard</td><td>Semantic markup, accessibility attributes, structured document outline</td></tr>
+      <tr><td><strong>CSS3</strong></td><td>Level 3</td><td>Layout systems, custom properties, animations, responsive design</td></tr>
+      <tr><td><strong>Vanilla JavaScript</strong></td><td>ES6+</td><td>DOM manipulation, event handling, form validation, UI state management</td></tr>
+      <tr><td><strong>Font Awesome</strong></td><td>6.x</td><td>Icon library for UI elements and decorative icons</td></tr>
+      <tr><td><strong>Google Fonts</strong></td><td>—</td><td>Cormorant Garamond (headings) and Inter (body text)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Development Approach</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Component-Based Architecture</div>
+      <p>Each page is composed of modular, reusable UI components defined in shared CSS and JS files. Components follow a BEM-inspired naming convention.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Zero Framework Dependency</div>
+      <p>No external frameworks or build tools required. The theme runs on native browser capabilities, ensuring fast load times and minimal overhead.</p>
+    </div>
+  </div>
+
+  <h2>Reusable Components</h2>
+  <table>
+    <thead>
+      <tr><th>Component</th><th>File</th><th>Usage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Navigation Header</td><td>shared.css / shared.js</td><td>All public pages</td></tr>
+      <tr><td>Mobile Drawer</td><td>shared.css / shared.js</td><td>All pages (responsive)</td></tr>
+      <tr><td>Footer</td><td>shared.css / shared.js</td><td>All public pages</td></tr>
+      <tr><td>Newsletter Form</td><td>shared.js</td><td>Footer, Practice Areas</td></tr>
+      <tr><td>Back-to-Top Button</td><td>shared.js</td><td>All pages</td></tr>
+      <tr><td>Scroll Animations</td><td>shared.js</td><td>All pages (on-scroll reveal)</td></tr>
+      <tr><td>Auth Card Layout</td><td>auth.css / auth.js</td><td>Login, Signup</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 5 — FOLDER STRUCTURE
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Project Folder Structure</span>
+    <span class="page-header__num">05</span>
+  </div>
+
+  <h1>Project Folder Structure</h1>
+  <div class="accent-bar"></div>
+
+  <table>
+    <thead>
+      <tr><th>Path</th><th>Type</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>Stackly Legal Services/</code></td><td>Root</td><td>Project root directory containing all HTML entry points</td></tr>
+      <tr><td><code>assets/</code></td><td>Folder</td><td>Static assets — logo and image files</td></tr>
+      <tr><td><code>assets/images/</code></td><td>Folder</td><td>Page-specific images (hero, sections, backgrounds) in WebP format</td></tr>
+      <tr><td><code>assets/images/persons/</code></td><td>Folder</td><td>Team member and testimonial portrait photos</td></tr>
+      <tr><td><code>css/</code></td><td>Folder</td><td>Stylesheets — one shared base file plus per-page stylesheets</td></tr>
+      <tr><td><code>js/</code></td><td>Folder</td><td>Scripts — one shared base file plus per-page scripts</td></tr>
+    </tbody>
+  </table>
+
+  <h2>File Inventory</h2>
+  <div class="two-col">
+    <div>
+      <h3>HTML Pages (10)</h3>
+      <table>
+        <thead><tr><th>File</th><th>Page</th></tr></thead>
+        <tbody>
+          <tr><td><code>index.html</code></td><td>Homepage</td></tr>
+          <tr><td><code>about.html</code></td><td>About Us</td></tr>
+          <tr><td><code>practice-areas.html</code></td><td>Practice Areas</td></tr>
+          <tr><td><code>attorneys.html</code></td><td>Attorneys</td></tr>
+          <tr><td><code>contact.html</code></td><td>Contact</td></tr>
+          <tr><td><code>login.html</code></td><td>Login</td></tr>
+          <tr><td><code>signup.html</code></td><td>Signup</td></tr>
+          <tr><td><code>client-dashboard.html</code></td><td>Client Dashboard</td></tr>
+          <tr><td><code>admin-dashboard.html</code></td><td>Admin Dashboard</td></tr>
+          <tr><td><code>404.html</code></td><td>Error Page</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>CSS Files (10)</h3>
+      <table>
+        <thead><tr><th>File</th><th>Scope</th></tr></thead>
+        <tbody>
+          <tr><td><code>shared.css</code></td><td>Global design system</td></tr>
+          <tr><td><code>home.css</code></td><td>Homepage</td></tr>
+          <tr><td><code>about.css</code></td><td>About page</td></tr>
+          <tr><td><code>practice-areas.css</code></td><td>Practice Areas</td></tr>
+          <tr><td><code>attorneys.css</code></td><td>Attorneys page</td></tr>
+          <tr><td><code>contact.css</code></td><td>Contact page</td></tr>
+          <tr><td><code>auth.css</code></td><td>Login & Signup</td></tr>
+          <tr><td><code>admin-dashboard.css</code></td><td>Admin Dashboard</td></tr>
+          <tr><td><code>client-dashboard.css</code></td><td>Client Dashboard</td></tr>
+          <tr><td><code>404.css</code></td><td>Error page</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>JavaScript Files (10)</h2>
+  <table>
+    <thead><tr><th>File</th><th>Scope</th><th>Key Responsibilities</th></tr></thead>
+    <tbody>
+      <tr><td><code>shared.js</code></td><td>Global</td><td>Header, drawer, footer, newsletter, scroll animations, back-to-top</td></tr>
+      <tr><td><code>home.js</code></td><td>Homepage</td><td>Hero slider, testimonial carousel, stats counter</td></tr>
+      <tr><td><code>about.js</code></td><td>About</td><td>Journey timeline animation, FAQ accordion</td></tr>
+      <tr><td><code>practice-areas.js</code></td><td>Practice Areas</td><td>Tab navigation, testimonial slider, FAQ accordion</td></tr>
+      <tr><td><code>attorneys.js</code></td><td>Attorneys</td><td>Testimonial carousel, filter interactions</td></tr>
+      <tr><td><code>contact.js</code></td><td>Contact</td><td>Form validation, submission handling, success message</td></tr>
+      <tr><td><code>auth.js</code></td><td>Login/Signup</td><td>Form validation, password toggle, role selection</td></tr>
+      <tr><td><code>admin-dashboard.js</code></td><td>Admin</td><td>Sidebar toggle, profile dropdown, charts, theme switcher</td></tr>
+      <tr><td><code>client-dashboard.js</code></td><td>Client</td><td>Sidebar toggle, profile dropdown, calendar, chat simulation</td></tr>
+      <tr><td><code>404.js</code></td><td>Error</td><td>Go-back navigation, redirect timer</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 6 — DESIGN SYSTEM
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Design System</span>
+    <span class="page-header__num">06</span>
+  </div>
+
+  <h1>Design System</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Brand Colors</h2>
+  <table>
+    <thead><tr><th>Token</th><th>Hex</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge" style="background:#0F172A;color:#fff;">Primary</span></td><td><code>#0F172A</code></td><td>Backgrounds, headings, primary text, dark sections</td></tr>
+      <tr><td><span class="badge">Secondary</span></td><td><code>#C8A96B</code></td><td>Gold accents, buttons, highlights, icons, links</td></tr>
+      <tr><td><span class="badge" style="background:#8B6F3D;color:#fff;">Accent</span></td><td><code>#8B6F3D</code></td><td>Hover states, secondary buttons, depth accents</td></tr>
+      <tr><td><span class="badge" style="background:#F8FAFC;color:#1E293B;border:1px solid #E2E8F0;">Background</span></td><td><code>#F8FAFC</code></td><td>Page backgrounds, light sections</td></tr>
+      <tr><td><span class="badge" style="background:#FFFFFF;color:#1E293B;border:1px solid #E2E8F0;">Card</span></td><td><code>#FFFFFF</code></td><td>Cards, modals, elevated surfaces</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Typography</h2>
+  <table>
+    <thead><tr><th>Role</th><th>Font Family</th><th>Weight</th><th>Size Range</th></tr></thead>
+    <tbody>
+      <tr><td>Display / H1</td><td>Cormorant Garamond</td><td>700</td><td>clamp(2rem, 5vw, 4.4rem)</td></tr>
+      <tr><td>Section / H2</td><td>Cormorant Garamond</td><td>600</td><td>clamp(1.8rem, 4vw, 3.2rem)</td></tr>
+      <tr><td>Subsection / H3</td><td>Inter</td><td>600</td><td>1.1rem – 1.25rem</td></tr>
+      <tr><td>Body</td><td>Inter</td><td>400</td><td>0.9rem – 1.05rem</td></tr>
+      <tr><td>Caption / Label</td><td>Inter</td><td>600</td><td>0.72rem – 0.8rem</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Spacing & Layout</h2>
+  <table>
+    <thead><tr><th>Token</th><th>Value</th><th>Application</th></tr></thead>
+    <tbody>
+      <tr><td><code>--section-padding</code></td><td>100px 0</td><td>Top-level section vertical spacing</td></tr>
+      <tr><td><code>--container-width</code></td><td>1240px</td><td>Max content width</td></tr>
+      <tr><td><code>--radius-sm</code></td><td>8px</td><td>Small elements (tags, badges)</td></tr>
+      <tr><td><code>--radius-md</code></td><td>12px</td><td>Cards, inputs, medium elements</td></tr>
+      <tr><td><code>--radius-lg</code></td><td>16px</td><td>Large cards, modals</td></tr>
+      <tr><td><code>--radius-full</code></td><td>9999px</td><td>Pills, buttons, avatars</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Buttons</h2>
+  <table>
+    <thead><tr><th>Variant</th><th>Background</th><th>Text</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge">Primary</span></td><td>#C8A96B</td><td>#0F172A</td><td>CTAs, form submissions, key actions</td></tr>
+      <tr><td><span class="badge badge--outline">Secondary</span></td><td>Transparent</td><td>#C8A96B</td><td>Secondary actions, outline buttons</td></tr>
+      <tr><td><span class="badge" style="background:#1E293B;color:#fff;">Dark</span></td><td>#0F172A</td><td>#FFFFFF</td><td>Footer CTAs, dark sections</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Shadow Styles</h2>
+  <table>
+    <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><code>--shadow-card</code></td><td>0 4px 24px rgba(0,0,0,0.06)</td><td>Default card elevation</td></tr>
+      <tr><td><code>--shadow-elevated</code></td><td>0 12px 40px rgba(0,0,0,0.12)</td><td>Hover states, dropdowns, modals</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 7 — HOMEPAGE
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Homepage</span>
+    <span class="page-header__num">07</span>
+  </div>
+
+  <h1>Homepage</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Purpose</h2>
+  <p>The homepage serves as the primary entry point, establishing brand credibility and guiding visitors toward consultation or service exploration.</p>
+
+  <h2>Sections</h2>
+  <table>
+    <thead><tr><th>Section</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hero</strong></td><td>Full-viewport hero with background image, headline, subtitle, and dual CTA buttons</td></tr>
+      <tr><td><strong>Stats Bar</strong></td><td>Animated counters displaying key firm metrics (years, clients, attorneys, success rate)</td></tr>
+      <tr><td><strong>Practice Areas Preview</strong></td><td>Grid of practice area cards with icons and brief descriptions</td></tr>
+      <tr><td><strong>About Teaser</strong></td><td>Split-layout section with image and firm overview text</td></tr>
+      <tr><td><strong>Attorneys Preview</strong></td><td>Team member cards with photos, names, and specializations</td></tr>
+      <tr><td><strong>Testimonials</strong></td><td>Client testimonial carousel with quotes and avatars</td></tr>
+      <tr><td><strong>CTA Section</strong></td><td>Full-width call-to-action with background image and consultation prompt</td></tr>
+      <tr><td><strong>FAQ</strong></td><td>Accordion-style frequently asked questions</td></tr>
+      <tr><td><strong>Newsletter</strong></td><td>Email subscription form in footer area</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Key Features</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Hero Slider</div>
+      <p>Auto-rotating background images with fade transitions and manual navigation controls.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Animated Counters</div>
+      <p>Number counters animate from zero when scrolled into view, using Intersection Observer.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Scroll Reveal</div>
+      <p>Sections fade in on scroll with configurable delay and easing via CSS transitions.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Responsive Grid</div>
+      <p>4-column desktop layout collapses to 2 columns on tablet and 1 column on mobile.</p>
+    </div>
+  </div>
+
+  <h2>Responsive Behaviour</h2>
+  <p>At 1100px, the navigation collapses into a hamburger-triggered slide-out drawer. Hero text scales proportionally. Stats grid shifts from 4-column to 2-column at 768px. Footer columns stack vertically below 768px.</p>
+
+  <div class="screenshot">
+    <span class="screenshot__icon">&#9634;</span>
+    Homepage — Desktop View Placeholder
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 8 — ABOUT PAGE
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">About Page</span>
+    <span class="page-header__num">08</span>
+  </div>
+
+  <h1>About Page</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Purpose</h2>
+  <p>The about page communicates the firm's history, values, team expertise, and community involvement to build trust with potential clients.</p>
+
+  <h2>Sections</h2>
+  <table>
+    <thead><tr><th>Section</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hero</strong></td><td>Full-width hero with firm image, headline, and breadcrumb navigation</td></tr>
+      <tr><td><strong>Our Story</strong></td><td>Split layout with narrative text and image, plus key milestones timeline</td></tr>
+      <tr><td><strong>Who We Are</strong></td><td>Core values with icon cards — Excellence, Integrity, Innovation</td></tr>
+      <tr><td><strong>Stats</strong></td><td>Animated counter section with firm achievements</td></tr>
+      <tr><td><strong>Our Journey</strong></td><td>Vertical alternating timeline with golden line animation on scroll</td></tr>
+      <tr><td><strong>Awards</strong></td><td>Achievement cards with icons and descriptions</td></tr>
+      <tr><td><strong>Community</strong></td><td>CSR initiatives and community involvement highlights</td></tr>
+      <tr><td><strong>FAQ</strong></td><td>Accordion with firm-related questions</td></tr>
+      <tr><td><strong>Newsletter</strong></td><td>Email subscription form</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Key Features</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Journey Timeline</div>
+      <p>Vertical timeline with alternating left-right cards and an animated golden line that fills on scroll.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Milestones Track</div>
+      <p>Horizontal milestone bar with dot markers and year labels, transitioning to a grid layout on mobile.</p>
+    </div>
+  </div>
+
+  <h2>Responsive Behaviour</h2>
+  <p>At 1100px, the vertical timeline collapses to a single-column left-aligned layout. The milestones track switches from horizontal line to wrapping cards. Hero height reduces progressively at 992px, 768px, and 600px breakpoints.</p>
+
+  <div class="screenshot">
+    <span class="screenshot__icon">&#9634;</span>
+    About Page — Desktop View Placeholder
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 9 — PRACTICE AREAS
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Practice Areas Page</span>
+    <span class="page-header__num">09</span>
+  </div>
+
+  <h1>Practice Areas Page</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Purpose</h2>
+  <p>Showcases the firm's legal specializations with detailed descriptions, statistics, and industry coverage to demonstrate comprehensive legal capability.</p>
+
+  <h2>Sections</h2>
+  <table>
+    <thead><tr><th>Section</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hero</strong></td><td>Split layout with animated images on the right side — floating, pulsing, and sliding effects</td></tr>
+      <tr><td><strong>Overview</strong></td><td>Statistics and firm capability summary with animated counters</td></tr>
+      <tr><td><strong>Our Expertise</strong></td><td>8 practice area cards in a 4-column grid with icons, tags, and Read More links</td></tr>
+      <tr><td><strong>Industries</strong></td><td>Industry-specific legal service cards with icons</td></tr>
+      <tr><td><strong>Why Choose Us</strong></td><td>Feature cards highlighting firm advantages</td></tr>
+      <tr><td><strong>Testimonials</strong></td><td>Client testimonial carousel with navigation dots</td></tr>
+      <tr><td><strong>FAQ</strong></td><td>Accordion-style practice area questions</td></tr>
+      <tr><td><strong>CTA</strong></td><td>Full-width consultation call-to-action</td></tr>
+      <tr><td><strong>Newsletter</strong></td><td>Email subscription form</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Key Features</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Animated Hero Images</div>
+      <p>Three unique CSS animations — float, pulse, and slide — applied to right-side images with hover scale effects.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Flex-Aligned Cards</div>
+      <p>Practice area cards use flexbox column layout with margin-top auto on Read More links for consistent bottom alignment.</p>
+    </div>
+  </div>
+
+  <h2>Responsive Behaviour</h2>
+  <p>Hero switches to vertical stack at 1100px. Expertise grid drops to 2 columns at 1280px and 1 column at 768px. Testimonial carousel becomes vertically stacked on mobile. FAQ sections maintain accordion functionality at all breakpoints.</p>
+
+  <div class="screenshot">
+    <span class="screenshot__icon">&#9634;</span>
+    Practice Areas — Desktop View Placeholder
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 10 — ATTORNEYS
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Attorneys Page</span>
+    <span class="page-header__num">10</span>
+  </div>
+
+  <h1>Attorneys Page</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Purpose</h2>
+  <p>Introduces the firm's legal team with professional profiles, specializations, and direct contact options to build client confidence.</p>
+
+  <h2>Sections</h2>
+  <table>
+    <thead><tr><th>Section</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hero</strong></td><td>Full-width hero with team image background and headline</td></tr>
+      <tr><td><strong>Team Grid</strong></td><td>Attorney cards in a responsive grid with photos, names, roles, and specializations</td></tr>
+      <tr><td><strong>Attorney Profile</strong></td><td>Each card includes education, bar admissions, and contact links</td></tr>
+      <tr><td><strong>Testimonials</strong></td><td>Client testimonial carousel with prev/next navigation</td></tr>
+      <tr><td><strong>CTA</strong></td><td>Consultation call-to-action section</td></tr>
+      <tr><td><strong>Newsletter</strong></td><td>Email subscription form</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Key Features</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Team Cards</div>
+      <p>Each attorney card displays a portrait photo, name, role, specialization tags, and social/contact links with hover reveal effects.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Testimonial Carousel</div>
+      <p>Auto-rotating testimonial slider with dot indicators and arrow navigation, pausing on hover.</p>
+    </div>
+  </div>
+
+  <h2>Responsive Behaviour</h2>
+  <p>Team grid shifts from 4 columns (desktop) to 3 columns at 1024px, 2 columns at 768px, and 1 column at 480px. Attorney card details collapse into a compact layout on mobile. Testimonial navigation arrows are hidden on screens below 600px.</p>
+
+  <div class="screenshot">
+    <span class="screenshot__icon">&#9634;</span>
+    Attorneys Page — Desktop View Placeholder
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 11 — CONTACT
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Contact Page</span>
+    <span class="page-header__num">11</span>
+  </div>
+
+  <h1>Contact Page</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Purpose</h2>
+  <p>Provides multiple contact channels including a validated consultation form, office locations, and direct communication options.</p>
+
+  <h2>Sections</h2>
+  <table>
+    <thead><tr><th>Section</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hero</strong></td><td>Full-width hero with office image background</td></tr>
+      <tr><td><strong>Contact Info</strong></td><td>Office locations, phone numbers, email addresses, and working hours</td></tr>
+      <tr><td><strong>Consultation Form</strong></td><td>7-field form with validation — name, email, phone, practice area, contact method, message, privacy consent</td></tr>
+      <tr><td><strong>Map Placeholder</strong></td><td>Office location map embed area</td></tr>
+      <tr><td><strong>FAQ</strong></td><td>Contact-specific frequently asked questions</td></tr>
+      <tr><td><strong>Newsletter</strong></td><td>Email subscription form</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Form Validation</h2>
+  <table>
+    <thead><tr><th>Field</th><th>Validation Rule</th><th>Error Message</th></tr></thead>
+    <tbody>
+      <tr><td>Full Name</td><td>Letters only, min 2 chars</td><td>Please enter a valid name (letters only)</td></tr>
+      <tr><td>Email</td><td>Valid email format regex</td><td>Please enter a valid email address</td></tr>
+      <tr><td>Phone</td><td>Digits only, 7–20 chars</td><td>Please enter a valid phone number</td></tr>
+      <tr><td>Practice Area</td><td>Required selection</td><td>Please select a practice area</td></tr>
+      <tr><td>Contact Method</td><td>Required selection</td><td>Please select a preferred contact method</td></tr>
+      <tr><td>Message</td><td>Min 10 characters</td><td>Message must be at least 10 characters</td></tr>
+      <tr><td>Privacy</td><td>Checkbox checked</td><td>You must consent to the privacy policy</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Responsive Behaviour</h2>
+  <p>Contact grid switches from 2-column to single-column at 1100px. Form fields stack vertically. Office info cards reflow into a single column at 768px. Map placeholder maintains aspect ratio at all breakpoints.</p>
+
+  <div class="screenshot">
+    <span class="screenshot__icon">&#9634;</span>
+    Contact Page — Desktop View Placeholder
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 12 — AUTHENTICATION
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Authentication</span>
+    <span class="page-header__num">12</span>
+  </div>
+
+  <h1>Authentication</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Login</h2>
+  <p>Split-screen layout with a branded left panel (firm info, trust indicators, stats) and a right-aligned login form. Fields include email, password with show/hide toggle, remember me checkbox, and forgot password link.</p>
+
+  <h2>Signup</h2>
+  <p>Extended split-screen with role selection (Client / Administrator), full name, email, phone, password with strength meter, confirm password, and terms consent. Left panel includes "Why Choose Stackly" features and a client testimonial.</p>
+
+  <h2>Validation</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>Login</th><th>Signup</th></tr></thead>
+    <tbody>
+      <tr><td>Email format</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>Password strength</td><td>—</td><td>Real-time strength meter with requirements</td></tr>
+      <tr><td>Name validation</td><td>—</td><td>Letters only, min 2 chars</td></tr>
+      <tr><td>Phone validation</td><td>—</td><td>Digits only, 7–20 chars</td></tr>
+      <tr><td>Password match</td><td>—</td><td>Confirm password must match</td></tr>
+      <tr><td>Terms consent</td><td>—</td><td>Required checkbox</td></tr>
+      <tr><td>Real-time feedback</td><td>On blur</td><td>On blur + input</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Password Toggle</h2>
+  <p>Both login and signup forms include a show/hide password toggle button that switches the input type between "password" and "text" with an eye icon change.</p>
+
+  <h2>Role Selection</h2>
+  <p>Signup includes a 2-column role selector with "Client" and "Administrator" cards. Each card has a distinct icon and description. The selected role is visually highlighted with a gold border.</p>
+
+  <h2>Redirections</h2>
+  <p>Successful login redirects to the corresponding dashboard based on role selection. Signup success displays a confirmation message. The "Back to Home" link redirects to index.html.</p>
+
+  <h2>Responsive Behaviour</h2>
+  <p>At 1100px, the split-screen collapses to a vertical stack with the left panel as a compact banner (max 320px). Logo size is reduced at 600px and 320px. Role selector switches to single column at 390px.</p>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 13 — DASHBOARDS
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Dashboards</span>
+    <span class="page-header__num">13</span>
+  </div>
+
+  <h1>Dashboards</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Client Dashboard</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Sidebar Navigation</td><td>Collapsible sidebar with profile card, navigation links, and collapse toggle</td></tr>
+      <tr><td>Stats Cards</td><td>Active cases, pending tasks, upcoming appointments, unread messages</td></tr>
+      <tr><td>Quick Actions</td><td>Book appointment, upload document, send message, view invoices</td></tr>
+      <tr><td>Case Table</td><td>Sortable table with case names, types, dates, status badges, and view actions</td></tr>
+      <tr><td>Calendar</td><td>Monthly calendar with appointment indicators and navigation</td></tr>
+      <tr><td>Documents</td><td>Document cards with file type icons, names, sizes, status badges, download and view actions</td></tr>
+      <tr><td>Messages</td><td>Chat interface with conversation list, message thread, and input area</td></tr>
+      <tr><td>Invoices</td><td>Invoice cards with amounts, dates, status, pay and download buttons</td></tr>
+      <tr><td>Settings</td><td>Personal info, company info, and password change forms</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Administrator Dashboard</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>KPI Cards</td><td>Revenue, active clients, open cases, pending tasks with trend indicators</td></tr>
+      <tr><td>Quick Actions</td><td>New client, new case, schedule, upload doc, invoice, reports</td></tr>
+      <tr><td>Client Management</td><td>Client table with avatars, emails, status badges, assigned attorneys, view/edit actions</td></tr>
+      <tr><td>Case Management</td><td>Case table with client names, types, status, dates, and actions</td></tr>
+      <tr><td>Appointments</td><td>Appointment cards with charts and pending request approval/reschedule/cancel</td></tr>
+      <tr><td>Documents</td><td>Document cards with preview, download, verify, and reject actions</td></tr>
+      <tr><td>Payments</td><td>Revenue KPIs, invoice table, create invoice action</td></tr>
+      <tr><td>Reports</td><td>Chart cards with weekly/monthly/yearly toggle</td></tr>
+      <tr><td>Tasks</td><td>Task list with add, complete, and delete functionality</td></tr>
+      <tr><td>Settings</td><td>Personal info, company info, password, theme switcher, backup/export</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Shared Features</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Profile Dropdown</div>
+      <p>Avatar icon and chevron visible at all breakpoints. Dropdown with profile, settings, and logout options.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Theme Switcher</div>
+      <p>Admin dashboard includes a theme toggle between default, dark, and blue color schemes.</p>
+    </div>
+  </div>
+
+  <h2>Responsive Design</h2>
+  <p>Both dashboards use a collapsible sidebar pattern. At 1024px, the sidebar slides out as an overlay. Header elements (search, notifications, profile name) progressively hide at smaller breakpoints. Tables become horizontally scrollable on mobile.</p>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 14 — 404 PAGE
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">404 Page</span>
+    <span class="page-header__num">14</span>
+  </div>
+
+  <h1>404 Page</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Purpose</h2>
+  <p>Displays a user-friendly error page when a requested URL does not match any existing route, preventing dead-end experiences.</p>
+
+  <h2>Features</h2>
+  <table>
+    <thead><tr><th>Element</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Error Code</td><td>Prominent "404" display with large typography</td></tr>
+      <tr><td>Headline</td><td>"Page Not Found" heading with clear messaging</td></tr>
+      <tr><td>Description</td><td>Brief explanation of the error and suggested next steps</td></tr>
+      <tr><td>Go Back Button</td><td>Navigates to the previously visited page using browser history</td></tr>
+      <tr><td>Home Button</td><td>Direct link to the homepage (index.html)</td></tr>
+      <tr><td>Background</td><td>Subtle gradient background consistent with the brand palette</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Navigation</h2>
+  <p>Two primary navigation paths are provided: a "Go Back" button that uses <code>window.history.back()</code> and a "Home" button that links directly to index.html. Both buttons are styled as prominent CTAs.</p>
+
+  <h2>User Experience</h2>
+  <p>The page maintains the site's visual language with consistent fonts, colors, and spacing. The error message is concise and actionable. The layout is centered both vertically and horizontally for immediate visibility. On mobile, buttons stack vertically for easier thumb interaction.</p>
+
+  <h2>Responsive Behaviour</h2>
+  <p>The 404 page uses a flexible center-aligned layout that adapts to all screen sizes. Font sizes scale down proportionally at smaller breakpoints. Button widths expand to full-width on mobile for easier tap targets.</p>
+
+  <div class="screenshot">
+    <span class="screenshot__icon">&#9634;</span>
+    404 Page — Desktop View Placeholder
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 15 — DEPLOYMENT
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Deployment</span>
+    <span class="page-header__num">15</span>
+  </div>
+
+  <h1>Deployment</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Deployment Platform</h2>
+  <p>The project is hosted on <strong>GitHub</strong> and can be deployed via GitHub Pages or any static file hosting service.</p>
+
+  <h2>Repository Structure</h2>
+  <table>
+    <thead><tr><th>Branch</th><th>Purpose</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><code>main</code></td><td>Production-ready code</td><td><span class="badge">Stable</span></td></tr>
+      <tr><td><code>develop</code></td><td>Active development branch</td><td><span class="badge badge--outline">Development</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>How to Run</h2>
+
+  <h3>Clone the Repository</h3>
+  <div class="callout">
+    <code>git clone https://github.com/stackly-legal/services-theme.git</code>
+  </div>
+
+  <h3>Open Locally</h3>
+  <div class="callout">
+    <code>cd services-theme</code><br>
+    <code>open index.html</code>
+  </div>
+  <p>No build step, no package manager, no compilation required. Open <code>index.html</code> directly in any modern browser.</p>
+
+  <h3>Deploy to GitHub Pages</h3>
+  <ol>
+    <li>Push the repository to GitHub</li>
+    <li>Navigate to Repository → Settings → Pages</li>
+    <li>Select the <code>main</code> branch and root directory</li>
+    <li>Click Save — the site deploys automatically</li>
+  </ol>
+
+  <h2>Prerequisites</h2>
+  <table>
+    <thead><tr><th>Requirement</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td>Web Server</td><td>Any static file server or direct file access</td></tr>
+      <tr><td>Browser</td><td>Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</td></tr>
+      <tr><td>Internet Connection</td><td>Required for Google Fonts and Font Awesome CDN</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Note:</strong> For local development with hot reload, use any static server such as VS Code Live Server, Python's <code>http.server</code>, or Node's <code>http-server</code>.
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 16 — RESPONSIVE DESIGN
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Responsive Design</span>
+    <span class="page-header__num">16</span>
+  </div>
+
+  <h1>Responsive Design</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Breakpoints</h2>
+  <table>
+    <thead><tr><th>Breakpoint</th><th>Target Device</th><th>Layout Changes</th></tr></thead>
+    <tbody>
+      <tr><td><code>1920px</code></td><td>Ultra-wide displays</td><td>Increased gaps, larger typography scale</td></tr>
+      <tr><td><code>1600px</code></td><td>Large desktops</td><td>Container width adjustment</td></tr>
+      <tr><td><code>1440px</code></td><td>Standard desktops</td><td>Baseline desktop layout</td></tr>
+      <tr><td><code>1366px</code></td><td>Laptop screens</td><td>Minor spacing adjustments</td></tr>
+      <tr><td><code>1280px</code></td><td>Small laptops</td><td>Grid column reduction (4→2 for cards)</td></tr>
+      <tr><td><code>1100px</code></td><td>Tablet landscape</td><td>Hamburger menu activates, sidebar collapses, layouts stack vertically</td></tr>
+      <tr><td><code>1024px</code></td><td>Tablet portrait</td><td>Further grid reduction, sidebar overlay mode</td></tr>
+      <tr><td><code>992px</code></td><td>Large phones</td><td>Font size reduction, padding tightens</td></tr>
+      <tr><td><code>900px</code></td><td>Medium tablets</td><td>Profile names hidden, single-column sections</td></tr>
+      <tr><td><code>768px</code></td><td>Tablets</td><td>Single-column grids, reduced hero heights</td></tr>
+      <tr><td><code>600px</code></td><td>Small tablets</td><td>Compact padding, reduced icon sizes</td></tr>
+      <tr><td><code>480px</code></td><td>Large phones</td><td>Badge hidden, full-width buttons, minimal spacing</td></tr>
+      <tr><td><code>430px</code></td><td>Standard phones</td><td>Further font reduction, chevron hidden</td></tr>
+      <tr><td><code>390px</code></td><td>Small phones</td><td>Role grid single column, compact cards</td></tr>
+      <tr><td><code>375px</code></td><td>iPhone SE</td><td>Minimal padding, reduced font sizes</td></tr>
+      <tr><td><code>360px</code></td><td>Budget phones</td><td>Compact everything</td></tr>
+      <tr><td><code>320px</code></td><td>Minimum support</td><td>Smallest safe layout, all elements functional</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Key Principles</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Zero Horizontal Scroll</div>
+      <p>All layouts prevent horizontal overflow at every breakpoint. Content reflows gracefully without clipping.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Fluid Layout</div>
+      <p>CSS Grid and Flexbox create fluid, proportional layouts that adapt to any viewport without fixed breakpoints.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Mobile-First Optimization</div>
+      <p>Critical content loads first. Progressive enhancement adds complexity at larger viewports.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Touch Targets</div>
+      <p>All interactive elements maintain minimum 44px touch targets on mobile devices for accessibility compliance.</p>
+    </div>
+  </div>
+
+  <h2>Accessibility</h2>
+  <ul>
+    <li>Semantic HTML5 elements (<code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>footer</code>)</li>
+    <li>ARIA labels on all interactive elements and landmarks</li>
+    <li><code>role</code> attributes on custom components (menus, carousels, tabs)</li>
+    <li>Keyboard navigation support with visible focus indicators</li>
+    <li>Color contrast ratios meeting WCAG 2.1 AA standards</li>
+    <li><code>prefers-reduced-motion</code> media query respected for animations</li>
+  </ul>
+
+  <h2>Browser Compatibility</h2>
+  <table>
+    <thead><tr><th>Browser</th><th>Version</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Google Chrome</td><td>90+</td><td><span class="badge">Fully Supported</span></td></tr>
+      <tr><td>Mozilla Firefox</td><td>88+</td><td><span class="badge">Fully Supported</span></td></tr>
+      <tr><td>Apple Safari</td><td>14+</td><td><span class="badge">Fully Supported</span></td></tr>
+      <tr><td>Microsoft Edge</td><td>90+</td><td><span class="badge">Fully Supported</span></td></tr>
+      <tr><td>Samsung Internet</td><td>15+</td><td><span class="badge">Fully Supported</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 17 — CONCLUSION
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Conclusion</span>
+    <span class="page-header__num">17</span>
+  </div>
+
+  <h1>Conclusion</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Project Summary</h2>
+  <p>The Premium Legal Services Frontend Theme delivers a complete, production-ready web solution for law firms and legal consultancies. The theme covers 10 distinct pages spanning public marketing pages, authenticated user areas, and administrative dashboards — all built with vanilla HTML, CSS, and JavaScript.</p>
+
+  <h2>Key Features</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>Implementation</th></tr></thead>
+    <tbody>
+      <tr><td>10 Responsive Pages</td><td>Each page is fully responsive from 320px to 1920px+</td></tr>
+      <tr><td>Zero Framework Dependencies</td><td>Pure vanilla stack — no React, Vue, or Angular</td></tr>
+      <tr><td>Design System</td><td>Consistent colors, typography, spacing, and component library</td></tr>
+      <tr><td>Form Validation</td><td>Real-time client-side validation with accessible error messaging</td></tr>
+      <tr><td>Scroll Animations</td><td>Intersection Observer-based reveal animations with reduced-motion support</td></tr>
+      <tr><td>Interactive Dashboards</td><td>Full client and admin dashboards with simulated real-time UI</td></tr>
+      <tr><td>Accessibility</td><td>ARIA labels, semantic HTML, keyboard navigation, focus management</td></tr>
+      <tr><td>Performance</td><td>Optimized WebP images, minimal HTTP requests, no build step required</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Scalability</h2>
+  <p>The modular file structure (per-page CSS and JS files with shared base files) allows new pages to be added without modifying existing code. The BEM-inspired naming convention prevents style conflicts. The design token system (CSS custom properties) enables theme-wide changes from a single location.</p>
+
+  <h2>Maintainability</h2>
+  <p>Each page is self-contained with its own stylesheet and script file, reducing the risk of cross-page regressions. Shared components are centralized in <code>shared.css</code> and <code>shared.js</code>. Code comments and consistent formatting ensure readability for future developers.</p>
+
+  <h2>Future Enhancement Possibilities</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Backend Integration</div>
+      <p>Connect forms and dashboards to a REST API or CMS for dynamic content and real data persistence.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Build Tooling</div>
+      <p>Introduce Vite or Webpack for CSS/JS minification, tree-shaking, and cache-busting in production.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Component Framework</div>
+      <p>Migrate to a component-based framework (React, Vue, or Svelte) for dynamic routing and state management.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Testing</div>
+      <p>Add unit tests (Jest), end-to-end tests (Playwright), and visual regression tests for quality assurance.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 18 — APPENDIX
+     ============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header__title">Appendix</span>
+    <span class="page-header__num">18</span>
+  </div>
+
+  <h1>Appendix</h1>
+  <div class="accent-bar"></div>
+
+  <h2>Image Asset Naming Convention</h2>
+  <table>
+    <thead><tr><th>Pattern</th><th>Example</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><code>{page}-hero.webp</code></td><td>about-hero.webp</td><td>Hero section backgrounds</td></tr>
+      <tr><td><code>{descriptive-name}.webp</code></td><td>court.webp, office.webp</td><td>Section-specific images</td></tr>
+      <tr><td><code>{person-name}-unsplash.webp</code></td><td>jonas-kakaroto-unsplash.webp</td><td>Team member portraits</td></tr>
+      <tr><td><code>logo-stackly.webp</code></td><td>logo-stackly.webp</td><td>Brand logo (root + images)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Coding Standards</h2>
+  <table>
+    <thead><tr><th>Standard</th><th>Convention</th></tr></thead>
+    <tbody>
+      <tr><td>CSS Naming</td><td>BEM-inspired: <code>.block__element--modifier</code></td></tr>
+      <tr><td>JavaScript</td><td>ES6+ with IIFE scoping, <code>var</code> for older browser support where needed</td></tr>
+      <tr><td>HTML</td><td>Semantic elements, ARIA attributes, <code>role</code> on custom components</td></tr>
+      <tr><td>File Naming</td><td>kebab-case for files, matching page names (e.g., <code>practice-areas.css</code>)</td></tr>
+      <tr><td>Indentation</td><td>2 spaces (CSS/HTML), 2 spaces (JavaScript)</td></tr>
+      <tr><td>Quotes</td><td>Single quotes in JavaScript, double quotes in HTML attributes</td></tr>
+      <tr><td>Semicolons</td><td>Required in JavaScript, omitted in CSS</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Best Practices</h2>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Performance</div>
+      <p>Use WebP format for all images. Implement lazy loading with <code>loading="lazy"</code> on non-critical images. Minimize DOM depth.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Security</div>
+      <p>Never embed API keys or secrets in frontend code. Use <code>rel="noopener"</code> on external links. Validate all form inputs client-side and server-side.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Accessibility</div>
+      <p>Test with screen readers (NVDA, VoiceOver). Ensure all images have descriptive <code>alt</code> text. Maintain logical tab order throughout.</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card__title"><span class="icon">&#9670;</span> Version Control</div>
+      <p>Commit atomic changes with descriptive messages. Use feature branches for new development. Review all changes before merging to main.</p>
+    </div>
+  </div>
+
+  <h2>Support Information</h2>
+  <table>
+    <thead><tr><th>Channel</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td>Repository</td><td>github.com/stackly-legal/services-theme</td></tr>
+      <tr><td>Issues</td><td>GitHub Issues tracker for bug reports and feature requests</td></tr>
+      <tr><td>Documentation</td><td>This document serves as the primary technical reference</td></tr>
+      <tr><td>License</td><td>Proprietary — Stackly Legal Services</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout mt-12">
+    <strong>End of Document</strong> — This technical documentation covers the complete frontend theme architecture, design system, page specifications, and deployment guidelines. For questions or clarification, refer to the repository or contact the development team.
+  </div>
+
+  <div class="page-footer">
+    <span>Stackly Legal Services</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+</body>
+</html>
